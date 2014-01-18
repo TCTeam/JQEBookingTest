@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{18E179F0-3BEE-49AF-B921-E07578DD42A4}</ProjectGuid>
+    <ProjectGuid>{A946DCBA-4D04-48AB-8A19-E03FDFDA9E8F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JQEBookingTest.IBusiness</RootNamespace>
@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JQEBookingTest.Model\JQEBookingTest.Model.csproj">
-      <Project>{C22EE390-AF05-4EB3-863F-54B575F872C6}</Project>
+      <Project>{0E94341C-2B96-49F6-BE04-1175BD44F5AB}</Project>
       <Name>JQEBookingTest.Model</Name>
     </ProjectReference>
   </ItemGroup>

@@ -14,8 +14,11 @@ using JQEBookingTest.Business.TableBusiness;
 using JQEBookingTest.Model.Enum;
 using JQEBookingTest.DataAccess.Tables;
 using JQEBookingTest.Model;
+using JQEBookingTest.Model.TableModel;
+using JQEBookingTest.DataAccess.Tables;
 using JQEBookingTest.Injector;
 using JQEBookingTest.IBusiness.TableBusiness;
+using JQEBookingTest.Model.Enum;
 
 namespace JQEBookingTest.Web
 {
@@ -35,11 +38,10 @@ namespace JQEBookingTest.Web
         //    DataBaseType dbType = DataBaseType.Read;
         //    return new JQEBookingTest.DataAccess.Tables.OrderTableAccess().GetOrderTableList(dbType, showFields, whereFields, orderFields, pageSize, pageIndex);
         //}
-        public DataTable GetServerTableExtend(List<OrderTableFields> orderTableShowFields, List<TicketTypeFields> ticketTypeShowFields, List<OrderTableWhereFields> whereFields, List<OrderTableOrderFields> orderFields,int pageSize, int pageIndex)
+        public DataTable GetServerTableExtend(List<OrderTableFields> orderTableShowFields, List<TicketTypeFields> ticketTypeShowFields, List<OrderTableWhereFields> whereFields, List<OrderTableOrderFields> orderFields, int pageSize, int pageIndex)
         {
             DataBaseType dbType = DataBaseType.Read;
-            DataTable datatable = JQEBookingTest.Injector.DependencyInjector.GetInstance<IOrderTableServices>().GetOrderTableExtend(dbType, orderTableShowFields, ticketTypeShowFields, whereFields, orderFields, pageSize, pageIndex);
-            return datatable;
+            return JQEBookingTest.Injector.DependencyInjector.GetInstance<IOrderTableServices>().GetOrderTableExtend(dbType, orderTableShowFields, ticketTypeShowFields, whereFields, orderFields, pageSize, pageIndex);
         }
     }
 }

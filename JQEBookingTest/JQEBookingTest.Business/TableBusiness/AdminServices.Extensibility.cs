@@ -29,7 +29,7 @@ namespace JQEBookingTest.Business.TableBusiness
         public string CheckLogin(string userName, string userPwd)
         {
             List<AdminFields> show = new List<AdminFields>();
-            show.Add(AdminFields.AId);
+            show.Add(AdminFields.AScenicId);
             List<AdminWhereFields> whereFileds = new List<AdminWhereFields>();
             whereFileds.Add(new AdminWhereFields(AdminFields.AName, userName));
             whereFileds.Add(new AdminWhereFields(AdminFields.APassword, userPwd));
@@ -37,9 +37,9 @@ namespace JQEBookingTest.Business.TableBusiness
             string result = null;
             if (dt != null && dt.Rows.Count > 0)
             {
-                result = Convert.ToString(dt.Rows[0]["AId"]);
+                result = Convert.ToString(dt.Rows[0]["AScenicId"]);
             }
-            return result; ;
+            return result;
         }
 
         /// <summary>
@@ -56,6 +56,24 @@ namespace JQEBookingTest.Business.TableBusiness
             if (dt != null && dt.Rows.Count > 0)
             {
                 result = Convert.ToString(dt.Rows[0]["AId"]);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 获得景区ID
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public string GetScenicId(string userName)
+        {
+            List<AdminWhereFields> whereFileds = new List<AdminWhereFields>();
+            whereFileds.Add(new AdminWhereFields(AdminFields.AName, userName));
+            DataTable dt = DependencyInjector.GetInstance<IAdminServices>().GetAdminTable(whereFileds);
+            string result = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                result = Convert.ToString(dt.Rows[0]["AScenicId"]);
             }
             return result;
         }
@@ -89,16 +107,8 @@ namespace JQEBookingTest.Business.TableBusiness
             whereFileds.Add(new AdminWhereFields(AdminFields.AName, userName));
             whereFileds.Add(new AdminWhereFields(AdminFields.ATelephone, phoNum));
             DataTable dt = DependencyInjector.GetInstance<IAdminServices>().GetAdminTable(whereFileds);
-            bool checkB;
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                checkB = true;
-            }
-            else
-            {
-                checkB = false;
-            }
-            return checkB;
+            
+            return ((dt != null && dt.Rows.Count > 0)?true:false);
         }
 
         /// <summary>

@@ -21,6 +21,14 @@ namespace JQEBookingTest.IBusiness.TableBusiness
         /// 获取所有评论列表
         /// </summary>
         /// <returns></returns>
-        DataTable GetCommentsExtend(int scenicId, int pageSize, int pageIndex);
+        DataTable GetCommentsExtend(List<CommentsWhereFields> whereFields, int scenicId, int pageSize, int pageIndex);
+
+        /// <summary>
+        /// 获取某个景区的评论数
+        /// </summary>
+        /// <param name="whereFields"></param>
+        /// <param name="scenicId"></param>
+        /// <returns></returns>
+        int GetCommentsCount(List<CommentsWhereFields> whereFields, int scenicId);
     }
 }

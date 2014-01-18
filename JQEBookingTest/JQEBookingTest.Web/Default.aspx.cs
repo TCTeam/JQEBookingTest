@@ -19,91 +19,68 @@ public partial class Default2 : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
         Ran check = new Ran();
-        if (Request.Cookies["userName"] != null)
-        {
-            userName.Text = Request.Cookies["userName"].Value;
-            userPwd.Attributes.Add("value", check.RandomNum(8));
-        }
+        //if (Request.Cookies["userName"] != null)
+        //{
+        //    userName.Text = Request.Cookies["userName"].Value;
+        //    userPwd.Attributes.Add("value", check.RandomNum(8));
+        //}
     }
 
     protected void loginBtn_Click(object sender, EventArgs e)
     {
         // 用户名及密码获取
-        string name = userName.Text.Trim();
-        string password = userPwd.Text.Trim();
+        string sName = userName.Text.Trim();
+        string passWord = userPwd.Text.Trim();
+        string scenicId = string.Empty;
+
+        // 实例化对象，便于基本数据的访问
         AdminServices Lg = new AdminServices();
 
-        // 检查Cookie之中是否拥有有效的登陆记录
-        if (Request.Cookies["userName"] == null)
+        // 验证码判断
+        if (Session["CheckCode"].ToString() == validCode.Text.Trim())
         {
-            if (Lg.CheckLogin(name, password) != null)
+            scenicId = Lg.CheckLogin(sName, passWord);
+            // 密码校验
+            if (!string.IsNullOrEmpty(scenicId))
             {
-                if (Session["CheckCode"].ToString() == validCode.Text.Trim())
+                Session["userName"] = sName;
+                Session["ScenidId"] = scenicId;
+                Session["userLimit"] = Lg.GetUserMode(sName);
+                Session["userId"] = Lg.GetUserID(sName);
+
+                // 记住密码
+                if (autoLoging.Checked)
                 {
-                    if (autoLoging.Checked)
-                    {
-                        Session.Add("userName", name);
-                        Session.Add("AId", Lg.GetUserID(name));
-                        Session.Add("UserLimit", Lg.GetUserMode(name));
-
-                        Response.Cookies["userName"].Value = name;
-                        Response.Cookies["userPwd"].Value = password;
-                        Response.Cookies["userName"].Expires = DateTime.Now.AddDays(7);
-                        Response.Cookies["userPwd"].Expires = DateTime.Now.AddDays(7);
-
-                        Response.Redirect("~/HomePage.aspx");
-                    }
-                    else
-                    {
-                        Session.Add("userName", name);
-                        Session.Add("AId", Lg.GetUserID(name));
-                        Session.Add("UserLimit", Lg.GetUserMode(name));
-
-                        Response.Redirect("~/HomePage.aspx");
-
-                    }
+                    Response.Cookies["userName"].Value = sName;
+                    Response.Cookies["userPwd"].Value = passWord;
+                    Response.Cookies["userName"].Expires = DateTime.Now.AddDays(7);
+                    Response.Cookies["userPwd"].Expires = DateTime.Now.AddDays(7);
+                }
+                // 强制修改密码
+                if (passWord.Equals("11111111"))
+                {
+                    string url = @"<script language=javascript>
+                                        alert('您的密码已被初始化，需要重置！');
+                                        window.location.href='PwdChange.aspx';
+                                   </script>";
+                    Response.Write(url);
                 }
                 else
                 {
-                    Response.Write("<script>alert('验证码有误请重新输入！')</script>");
-                    //this.Page.RegisterStartupScript("", "<script>alert('验证码有误请重新输入！')</script>");//此方法在form执行完后执行
-
-                    validCode.Text = string.Empty;
+                    Response.Redirect("HomePage.aspx");
                 }
             }
             else
             {
-                Response.Write("<script>alert('用户或密码错误！')</script>");
-                //this.Page.RegisterStartupScript("","<script>alert('用户或密码错误！')</script>");//此方法在form执行完后执行
-
+                Response.Write("<script>alert('密码错误！')</script>");
                 validCode.Text = string.Empty;
             }
         }
         else
         {
-            if (Session["CheckCode"].ToString() == validCode.Text.Trim())
-            {
-                //////////////更改：修正密码记住之后就会出现密码错误提示
-                if (Lg.CheckLogin(Request.Cookies["userName"].Value.ToString(),Lg.GetUserPassWD(Lg.GetUserID(Request.Cookies["userName"].Value))) != null)
-                {
-                    Session.Add("userName", name);
-                    Session.Add("AId", Lg.GetUserID(name));
-                    Session.Add("UserLimit", Lg.GetUserMode(name));
-
-                    Response.Redirect("~/HomePage.aspx");
-                }
-                else
-                {
-                    Response.Write("<script>alert('用户或密码错误！')</script>");
-                    validCode.Text = string.Empty;
-                }
-            }
-            else
-            {
-                Response.Write("<script>alert('验证码错误！')</script>");
-            }
+            Response.Write("<script>alert('验证码错误！')</script>");
+            validCode.Text = string.Empty;
         }
     }
 }

@@ -39,15 +39,13 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
     /// <param name="e"></param>
     protected void Page_Load(object sender, EventArgs e)
     {
-        // 处理类型参数处理
         string type = Request["type"];
-        if (Int32.TryParse(Request["index"], out pageIndex) == false) 
+        if (Int32.TryParse(Request["index"], out pageIndex) == false)
         {
             pageIndex = 1;
         };
         string otOrderSerialNo = Request["otOrderSerialNo"];
         string realTicketNum = Request["realTicketNum"];
-        
         // 返回数据
         switch (type)
         {
@@ -72,79 +70,15 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
             case "CommentsQuery":
                 Response.Write(CommentsQuery(pageIndex));
                 break;
-            case "GetRemark":
-                Response.Write(GetRemark(Request["otOrderSerialNo"]));
+            case "CommentsReply":
+                Response.Write(CommentsReply(Request));
                 break;
-            case "UpdataRemark":
-                Response.Write(UpdataRemark(Request["otOrderSerialNo"], Request["text"]));
+            default:
                 break;
         }
 
     }
 
-    /// <summary>
-    /// 订单确认初始化页面--“订单确认选项”
-    /// </summary>
-    /// <param name="index"></param>
-    /// <returns></returns>
-    public string OrderConfirmInit(int pageIndex)
-    {
-        DefaultData.showFields = new List<OrderTableFields>();
-        DefaultData.showFields1 = new List<TicketTypeFields>();
-        DefaultData.showFields.Add(OrderTableFields.OTOrderSerialNo);
-        DefaultData.showFields.Add(OrderTableFields.OTOrderComfirmNo);
-        DefaultData.showFields.Add(OrderTableFields.OTOrderState);
-        DefaultData.showFields.Add(OrderTableFields.OTTicketName);
-        DefaultData.showFields.Add(OrderTableFields.OTTicketPhone);
-        DefaultData.showFields.Add(OrderTableFields.OTOrderCreateTime);
-        DefaultData.showFields.Add(OrderTableFields.OTTravelTime);
-        DefaultData.showFields.Add(OrderTableFields.OTTicketNumber);
-        DefaultData.showFields.Add(OrderTableFields.OTTicketPrice);
-        DefaultData.showFields1.Add(TicketTypeFields.TTTypeName);
-        DefaultData.whereFields = new List<OrderTableWhereFields>();
-        DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTScenicId, 3320));
-        DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTOrderState, 1));
-        DefaultData.listCount = new OrderTableAccess().GetCount(DefaultData.whereFields) / 10;
-        StringBuilder stringbuilder = new StringBuilder();
-        
-        // 获取结果集 
-        DefaultData.datatable = new ShowSplitData().GetServerTableExtend(DefaultData.showFields, DefaultData.showFields1, DefaultData.whereFields, null, pageCount, pageIndex );
-
-        // 嵌入tbody标签中的table内容
-        foreach (DataRow item in DefaultData.datatable.Rows)
-        {
-            // 添加内容并嵌入表格内容标签
-            stringbuilder.Append("<tr><td>");
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTOrderComfirmNo"]);//将Append修改为AppendFormat
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTOrderSerialNo"]);
-            stringbuilder.AppendFormat("{0}</td><td>", (OrderStatus)Convert.ToInt32(item["OTOrderState"]));
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketName"]);
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketPhone"]);
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTOrderCreateTime"]);
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTTravelTime"]);
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketNumber"]);
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketPrice"]);
-            stringbuilder.AppendFormat("{0}</td><td>", (Convert.ToInt32(item["OTTicketPrice"]) * Convert.ToInt32(item["OTTicketNumber"])).ToString());
-            stringbuilder.AppendFormat("{0}</td><td>", item["TTTypeName"]);
-            stringbuilder.AppendFormat("<input type='button' class='ChooseTicketNum' value='确认' data='{0}{1}{2}", item["OTOrderSerialNo"], "'/>", "</td><td>");
-            stringbuilder.AppendFormat("<input type='button' class='CancelReConfirm' value='未购票' data='{0}{1}{2}", item["OTOrderSerialNo"], "'/>", "</td></tr>");
-        }
-        //
-        if (DefaultData.listCount > 0)
-        {
-            stringbuilder.Append("<tr><td class='linkpage' colspan='13'>");
-        }
-        for (int i = 1; i <= DefaultData.listCount; i++)
-        {
-            stringbuilder.Append("<a class='item3ListPage' style='cursor:pointer;'>" + i + "</a>");
-        }
-        if (DefaultData.listCount > 0)
-        {
-            stringbuilder.Append("</td></tr>");
-        }
-        return stringbuilder.ToString();
-    }
-    /////////////////////////////// 更改：结果返回编写简单优化
     /// <summary>
     /// 订单确认执行订单确认操作
     /// </summary>
@@ -153,7 +87,6 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
     /// <returns></returns>
     public string OrderConfirmOk(string otOrderSerialNo, string realTicketNum)
     {
-        // 条件处理
         List<OrderTableFieldValuePair> updateFields = new List<OrderTableFieldValuePair>();
         updateFields.Add(new OrderTableFieldValuePair(OrderTableFields.OTOrderState, 3));
         updateFields.Add(new OrderTableFieldValuePair(OrderTableFields.OTHaveTicketNumber, realTicketNum));
@@ -161,11 +94,16 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderSerialNo, otOrderSerialNo));
         where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderState, 1));
         bool ret = DependencyInjector.GetInstance<IOrderTableServices>().Update(updateFields, where);
-        
-        // 结果返回
-        return (ret ? "true" : "false");
+        if (ret)
+        {
+            return "true";
+        }
+        else
+        {
+            return "false";
+        }
     }
-    ////////////////////////////// 更改：结果返回编写简单优化
+
     /// <summary>
     /// 订单确认为未购票操作
     /// </summary>
@@ -173,16 +111,20 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
     /// <returns></returns>
     public string CancelReConfirm(string otOrderSerialNo)
     {
-        // 条件处理
         List<OrderTableFieldValuePair> updateFields = new List<OrderTableFieldValuePair>();
         updateFields.Add(new OrderTableFieldValuePair(OrderTableFields.OTOrderState, 0));
         List<OrderTableWhereFields> where = new List<OrderTableWhereFields>();
         where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderSerialNo, otOrderSerialNo));
         where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderState, 1));
         bool ret = DependencyInjector.GetInstance<IOrderTableServices>().Update(updateFields, where);
-        
-        // 结果返回
-        return (ret ? "true" : "false");
+        if (ret)
+        {
+            return "true";
+        }
+        else
+        {
+            return "false";
+        }
     }
 
     /// <summary>
@@ -255,7 +197,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         DefaultData.listCount = new OrderTableAccess().GetCount(DefaultData.whereFields) / 10;
         StringBuilder stringbuilder = new StringBuilder();
         // 获取结果集 
-        DefaultData.datatable = new ShowSplitData().GetServerTableExtend(DefaultData.showFields, DefaultData.showFields1, DefaultData.whereFields, null, pageCount, pageIndex );
+        DefaultData.datatable = new ShowSplitData().GetServerTableExtend(DefaultData.showFields, DefaultData.showFields1, DefaultData.whereFields, null, pageCount, pageIndex);
 
         // 嵌入tbody标签中的table内容
         foreach (DataRow item in DefaultData.datatable.Rows)
@@ -279,11 +221,18 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         //
         if (DefaultData.listCount > 0)
         {
-            stringbuilder.Append("<tr><td class='linkpage' colspan='13'>");
+            stringbuilder.Append("<tr><td class='linkPage' colspan='13'>");
         }
         for (int i = 1; i <= DefaultData.listCount; i++)
         {
-            stringbuilder.AppendFormat("<a class='item3ListPage'>{0}{1}", i, "</a>");
+            if (i == pageIndex)
+            {
+                stringbuilder.Append("<a class='item3ListPage active' style='cursor:pointer;'>" + i + "</a>");
+            }
+            else
+            {
+                stringbuilder.Append("<a class='item3ListPage' style='cursor:pointer;'>" + i + "</a>");
+            }
         }
         if (DefaultData.listCount > 0)
         {
@@ -399,7 +348,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         DefaultData.listCount = new OrderTableAccess().GetCount(DefaultData.whereFields) / pageCount;
         StringBuilder stringbuilder = new StringBuilder();
         // 获取结果集 
-        DefaultData.datatable = new ShowSplitData().GetServerTableExtend(DefaultData.showFields, DefaultData.showFields1, DefaultData.whereFields, DefaultData.order, pageCount, pageIndex );
+        DefaultData.datatable = new ShowSplitData().GetServerTableExtend(DefaultData.showFields, DefaultData.showFields1, DefaultData.whereFields, DefaultData.order, pageCount, pageIndex);
 
         // 嵌入tbody标签中的table内容
         foreach (DataRow item in DefaultData.datatable.Rows)
@@ -416,18 +365,25 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketNumber"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTHaveTicketNumber"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketPrice"]);
-            stringbuilder.AppendFormat("{0}</td><td>", (Convert.ToInt32(item["OTTicketPrice"]) * Convert.ToInt32(item["OTHaveTicketNumber"])).ToString());
+            stringbuilder.AppendFormat("{0}</td><td>", (Convert.ToInt32(item["OTTicketPrice"]) * Convert.ToInt32(item["OTTicketNumber"])).ToString());
             stringbuilder.AppendFormat("{0}</td><td>", item["TTTypeName"]);
             stringbuilder.AppendFormat("{0}</td><td>", (PayWay)Convert.ToInt32(item["OTPayWay"]));
-            stringbuilder.AppendFormat("<input class='sbutton' value='查看' type='button' data='{0}'/></td></tr>", item["OTOrderSerialNo"]);
+            stringbuilder.AppendFormat("<input type='button' value='查看修改' data='{0}'/></td></tr>", item["OTOrderSerialNo"]);
         }
         if (DefaultData.listCount > 0)
         {
-            stringbuilder.Append("<tr><td class='linkpage' colspan='14'>");
+            stringbuilder.Append("<tr><td class='linkPage' colspan='14'>");
         }
         for (int i = 1; i <= DefaultData.listCount; i++)
         {
-            stringbuilder.AppendFormat("<a class='item2ListPage' style='cursor:pointer;'>{0}{1}", i, "</a>");
+            if (i == pageIndex)
+            {
+                stringbuilder.Append("<a class='item2ListPage active' style='cursor:pointer;'>" + i + "</a>");
+            }
+            else
+            {
+                stringbuilder.Append("<a class='item2ListPage' style='cursor:pointer;'>" + i + "</a>");
+            }
         }
         if (DefaultData.listCount > 0)
         {
@@ -484,7 +440,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         DefaultData.listCount = new OrderTableAccess().GetCount(DefaultData.whereFields) / pageCount;
         StringBuilder stringbuilder = new StringBuilder();
         // 获取结果集 
-        DefaultData.datatable = new ShowSplitData().GetServerTableExtend(DefaultData.showFields, DefaultData.showFields1, DefaultData.whereFields, null, pageCount, pageIndex );
+        DefaultData.datatable = new ShowSplitData().GetServerTableExtend(DefaultData.showFields, DefaultData.showFields1, DefaultData.whereFields, null, pageCount, pageIndex);
 
         // 嵌入tbody标签中的table内容
         foreach (DataRow item in DefaultData.datatable.Rows)
@@ -499,16 +455,23 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
             stringbuilder.AppendFormat("{0}</td><td>", item["OTOrderCreateTime"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTravelTime"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketNumber"]);
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTHaveTicketNumber"]); 
-            stringbuilder.AppendFormat("{0}</td><td>", item["TTTypeName"]);
+            stringbuilder.AppendFormat("{0}</td><td>", item["OTHaveTicketNumber"]);
+            stringbuilder.AppendFormat("{0}</td>", item["TTTypeName"]);
         }
         if (DefaultData.listCount > 0)
         {
-            stringbuilder.Append("<tr><td class='linkpage' colspan='13'>");
+            stringbuilder.Append("<tr><td class='linkPage' colspan='13'>");
         }
         for (int i = 1; i <= DefaultData.listCount; i++)
         {
-            stringbuilder.AppendFormat("<a class='item4ListPage' style='cursor:pointer;' >{0}{1}", i, "</a>");
+            if (i == pageIndex)
+            {
+                stringbuilder.Append("<a class='item4ListPage active' style='cursor:pointer;'>" + i + "</a>");
+            }
+            else
+            {
+                stringbuilder.Append("<a class='item4ListPage' style='cursor:pointer;'>" + i + "</a>");
+            }
         }
         if (DefaultData.listCount > 0)
         {
@@ -524,10 +487,12 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
     /// <returns></returns>
     public string CommentsQuery(int pageIndex)
     {
+        List<CommentsWhereFields> whereFields = new List<CommentsWhereFields>();
+        // whereFields.Add(new CommentsWhereFields(CommentsFields.CCommentsTime));
+        DefaultData.listCount = new CommentsAccess().GetCommentsCount(whereFields, scenicId) / pageCount;
         StringBuilder stringbuilder = new StringBuilder();
         // 获取结果集 
-        int scenicId = 3320;
-        DefaultData.datatable = DependencyInjector.GetInstance<ICommentsServices>().GetCommentsExtend(scenicId, pageCount, pageIndex);
+        DefaultData.datatable = DependencyInjector.GetInstance<ICommentsServices>().GetCommentsExtend(whereFields, scenicId, pageCount, pageIndex);
 
         // 嵌入tbody标签中的table内容
         foreach (DataRow item in DefaultData.datatable.Rows)
@@ -541,24 +506,47 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
             stringbuilder.AppendFormat("{0}</td><td>", item["CCommentsTime"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["CCommentsReply"]);
             stringbuilder.AppendFormat("{0}</td><td>", (CommentsState)Convert.ToInt32(item["CCommentsState"]));
-
-            //stringbuilder.AppendFormat("<input type='button' class='ChooseTicketNum' value='查看' data='{0}{1}{2}", item["COrderSerialNo"], "'/>", "</td><td>");
-            //stringbuilder.AppendFormat("<input type='button' class='CancelReConfirm' value='回复' data='{0}{1}{2}", item["COrderSerialNo"], "'/>", "</td></tr>");
+            stringbuilder.AppendFormat("<input type='button' class='CommentsReply' value='回复' data='{0}'/></td>", item["COrderSerialNo"]);
         }
-        //
-        //if (DefaultData.listCount > 0)
-        //{
-        //    stringbuilder.Append("<tr><td class='linkpage' colspan='7'>");
-        //}
-        //for (int i = 1; i <= DefaultData.listCount; i++)
-        //{
-        //    stringbuilder.Append("<a class='item3ListPage' style='cursor:pointer;'>" + i + "</a>");
-        //}
+
+        if (DefaultData.listCount > 0)
+        {
+            stringbuilder.Append("<tr><td class='linkPage' colspan='8'>");
+        }
+        for (int i = 1; i <= DefaultData.listCount; i++)
+        {
+            if (i == pageIndex)
+            {
+                stringbuilder.Append("<a class='item6ListPage active' style='cursor:pointer;'>" + i + "</a>");
+            }
+            else
+            {
+                stringbuilder.Append("<a class='item6ListPage' style='cursor:pointer;'>" + i + "</a>");
+            }
+        }
         if (DefaultData.listCount > 0)
         {
             stringbuilder.Append("</td></tr>");
         }
         return stringbuilder.ToString();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns></returns>
+    public string CommentsReply(HttpRequest req)
+    {
+        List<CommentsFieldValuePair> updateFields = new List<CommentsFieldValuePair>();
+        updateFields.Add(new CommentsFieldValuePair(CommentsFields.CCommentsReply, req["commentsReply"]));
+        updateFields.Add(new CommentsFieldValuePair(CommentsFields.CCommentsState, 1));
+        List<CommentsWhereFields> where = new List<CommentsWhereFields>();
+        where.Add(new CommentsWhereFields(CommentsFields.COrderSerialNo, req["orderSerialNo"]));
+        where.Add(new CommentsWhereFields(CommentsFields.CCommentsState, 0));
+        bool ret = DependencyInjector.GetInstance<ICommentsServices>().Update(updateFields, where);
+        // 结果返回
+        return (ret ? "true" : "false");
     }
 
     /// <summary>
@@ -579,7 +567,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
             result = Convert.ToString(dt.Rows[0]["OTRemark"]);
         }
         return result;
-     }
+    }
 
     /// <summary>
     /// 更改流水号备注
@@ -587,7 +575,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
     /// <param name="otOrderSerialNo"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    public string UpdataRemark(string otOrderSerialNo,string value)
+    public string UpdataRemark(string otOrderSerialNo, string value)
     {
         // 条件处理
         List<OrderTableFieldValuePair> updateFields = new List<OrderTableFieldValuePair>();
@@ -595,15 +583,8 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         List<OrderTableWhereFields> where = new List<OrderTableWhereFields>();
         where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderSerialNo, otOrderSerialNo));
         bool ret = DependencyInjector.GetInstance<IOrderTableServices>().Update(updateFields, where);
-        
+
         // 结果返回
         return (ret ? "true" : "false");
     }
 }
-
-
-
-
-
-
-

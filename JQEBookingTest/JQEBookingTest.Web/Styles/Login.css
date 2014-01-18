@@ -1,147 +1,106 @@
-﻿body{
-	padding:0;
-	margin:0;
-	font-family:"微软雅黑";	
-}
-img{
-	border-style: none;
-    border-color: inherit;
-    border-width: 0;
-    margin-top: 0px;
-}
-#logo
+﻿
+/*--------------------------------- Conntent */
+#content
 {
-	margin-top:40px;
-	margin-left:200px;
-}
-#content,#footer{
-	width:960px;
-	margin:0 auto;
-}
-
-.none{
-	display: none;
-}
-
-.logo h1{
+    margin-top:40px;
+    }
+#left_content{
+	width:500px!important;
+	height:450px;
 	float:left;
-}
-.logo img{
-	border:0;
-}
-
-.clear_float {
-	clear: both;
-	height: 0;
-	overflow: hidden;
-	font-size: 0;
-	line-height: 0;
-}
-/* .content */
-#content {
-	border: 1px solid #dddddd;
-	width: 600px;
-	margin: 40px auto;
-}
-#content h1 {
-	border-bottom: 1px solid #dddddd;
-	height: 31px;
-	line-height: 31px;
-	vertical-align:middle;
-	font-weight: bold;
-	text-indent: 10px;
-	background: url(../Images/comcncss.png) repeat-x 0 -142px;
-	text-align:center;
-	font-size:20px;
-	font-weight:normal;
-}
-#login_box{
-	padding:10px 0 10px 200px;
-		}
-#login_box label{
-	width:80px;
-	height:24px;
-	line-height:24px;
-	
-	display:block;
-}
-#login_box input{
-	margin-bottom:2px;
-}
-
-#userName,#userPwd{
-	width:200px;
-	height:25px;
-}
-#auto_login{
-	margin-top:6px;
-}
-.lostfound{
-	margin-left:10px;
-}
-.form_btn{
-	margin-left:20px;
-	margin-top:20px;
-	margin-bottom:20px;
-	height:30px;
-	width:60px;
-}
-a:link, a:visited
-{
-	text-decoration:none
-}
-
-
-
-#validCode{
-	 height:20px;
 	}
-#footer{
-	clear:both;	
+#right_content{
+	float:right;
+	margin-right:30px;
 	padding:10px 0;
-	text-align:center;
-	font-size:12px;
-	color:#666;
+	width:320px!important;
+	border:1px solid #e6e6e6;
+	border-radius:3px;
+	-moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -webkit-border-radius: 3px;
+	box-shadow:0 3px 3px 0 #666;
+	-webkit-box-shadow: 0 3px 3px 0 #666;
+    -moz-box-shadow: 0 3px 3px 0 #666;
+    -khtml-box-shadow: 0 3px 3px 0 #666;
 	}
-#errInfo{
-	height:16px;
-	line-height:16px;
-	font-size:12px;
-	color:red;
+#right_content p{
+	font-size:18px;
+	font-weight:normal;
+	color:#B77D66;
+	padding-bottom:6px;
+	margin-bottom:6px;
+	padding-left:80px;
+	border-bottom:1px solid #d5d5d5;
 	}
+#errInfo
+{
+    visibility: hidden;
+    cursor:default;
+	background:#FDEEE9;
+	border:1px solid #EF754B;
+	width:188px;
+	height:18px;
+	line-height:18px;
+	margin-left:50px;
+	margin-bottom:5px;
+	padding:3px 0 3px 10px;
+	}
+.Nplace,.ninput
+{
+    margin-left:50px;
+    color:#666;
+    width:200px;
+    height:25px;
+    }
+#autoLoging,.labAuto,.lostfound
+{
+    margin-top:10px;
+    }
+.lostfound
+{
+    margin-left:20px;
+    color:#666;
+    text-decoration:underline;
+    }  
+.lostfound:hover
+{
+    color:#FF6F00;
+    }      
+.form_btn
+{
+    margin-top:10px;
+    margin-bottom:10px;
+    border:none;
+    background:url(../Images/loginA.png) 0 0 no-repeat;
+    width:100px;
+    height:30px;
+    color:#fff;
+    cursor:pointer;
+    font-size:20px;
+    border-radius:2px;
+	-moz-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -webkit-border-radius: 2px;
+	box-shadow:0 2px 0 0 #666;
+	-webkit-box-shadow: 0 2px 0 0 #666;
+    -moz-box-shadow: 0 2px 0 0 #666;
+    -khtml-box-shadow: 0 2px 0 0 #666;
+    }
+.form_btn:hover
+{
+    background:url(../Images/loginA.png) 0 -59px no-repeat;
+    }
+.inpName
+{
+    cursor:default;
+    font-weight:bold;
+    color:#666;
+    margin-top:6px;
+    }
 #ImageButton1
 {
-    
     position:relative;
-    top:12px;
-    }
-/*--------------------
-body {
-	
-}
-.head
-{
-    background:url(../images/cnLogo.png) no-repeat 50px;
-	height:100px;
-	width:100%;
-	margin-bottom:30px;
-}
-.content-left
-{
-    float:left;
-    width:67%;  
-    height:400px;
-}
-.login-form
-{
-    margin-top:30px;
-    float:left;
-    width:300px;
-    padding:25px 20px;
-    border:1px solid #ccc;
-}
-.submit
-{
-    width:100%;
-}
--------------------*/
+    top:8px;
+    left:5px;
+    }   

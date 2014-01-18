@@ -1,13 +1,16 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright company="同程网" file="BasePage.cs">
+//    作者：asp.net全体组员
+//    功能：登陆后台
+//-----------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-
 /// <summary>
-///BasePage 的摘要说明
+/// 登陆后台设计  
 /// </summary>
 public class BasePage : System.Web.UI.Page
 {
@@ -16,20 +19,7 @@ public class BasePage : System.Web.UI.Page
 		//
 		//TODO: 在此处添加构造函数逻辑
 		//
+
 	}
 
-    /// <summary>
-    /// 检查用户是否有登陆状态
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    public void CheckLogState(object sender ,EventArgs e)
-    {
-        if (Request.Cookies["userName"] != null)
-        { 
-            
-        }
-    }
-
-    //public void 
 }

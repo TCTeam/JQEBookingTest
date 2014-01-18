@@ -29,7 +29,7 @@ namespace JQEBookingTest.DataAccess
          /// <summary>
          /// 数据库SQL说明
          /// </summary> 
-         public const string SqlDescription=@"Flat:D:\工作文档\StepThree\JQEBookingTest\JQEBookingTest\JQEBookingTest\";
+         public const string SqlDescription=@"Flat:E:\asp.net\WorkSpace\JQEBookingTest\JQEBookingTest\JQEBookingTest\";
          
 
         /// <summary>

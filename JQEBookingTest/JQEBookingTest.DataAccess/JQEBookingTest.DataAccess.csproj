@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1D90941A-0AC2-428B-B22C-699FA4CDC71D}</ProjectGuid>
+    <ProjectGuid>{6D281FF9-8D71-480F-9B2F-D5A1EE0DE178}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JQEBookingTest.DataAccess</RootNamespace>
@@ -36,10 +36,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="TCSmartFramework.DataAccess">
-      <HintPath>..\..\..\..\..\TCSmartFrameWork\TCSmartFramework.DataAccess.dll</HintPath>
+      <HintPath>G:\Program Files\TCSmartFrameWork\TCSmartFramework.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="TCSmartFramework.Utility">
-      <HintPath>..\..\..\..\..\TCSmartFrameWork\TCSmartFramework.Utility.dll</HintPath>
+      <HintPath>G:\Program Files\TCSmartFrameWork\TCSmartFramework.Utility.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -62,12 +62,8 @@
     <Folder Include="Transaction\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JQEBookingTest.Injector\JQEBookingTest.Injector.csproj">
-      <Project>{15BD8212-4FB4-452D-8FFC-87E1966B3E29}</Project>
-      <Name>JQEBookingTest.Injector</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JQEBookingTest.Model\JQEBookingTest.Model.csproj">
-      <Project>{C22EE390-AF05-4EB3-863F-54B575F872C6}</Project>
+      <Project>{0E94341C-2B96-49F6-BE04-1175BD44F5AB}</Project>
       <Name>JQEBookingTest.Model</Name>
     </ProjectReference>
   </ItemGroup>

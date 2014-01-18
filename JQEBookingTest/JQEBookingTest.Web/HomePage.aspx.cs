@@ -18,60 +18,51 @@ using JQEBookingTest.Business.TableBusiness;
 
 public partial class HomePage : BasePage
 {
-    // id号
+    // 用户信息
     private string scenicId = string.Empty;
     private string userName = string.Empty;
     private string userLimit = string.Empty;
+    private string userId = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        // 判断Cookie记录，确定用户已经登陆
-        if (Request.Cookies["userName"] != null)
+        Session["CheckCode"] = "";
+        // 用户状态判断
+        if (Session["userName"] != null)
+        {
+            // 页面添加选项
+            LinkButton user = new LinkButton();
+            user.Text = (string)Session["userName"];
+            user.Attributes.Add("href", "Change.aspx");
+            Place.Controls.Add(user);
+        }
+        else if (Request.Cookies["userName"] != null)
         {
             userName = Request.Cookies["userName"].Value;
-            scenicId = new AdminServices().GetUserID(userName);
+            userId = new AdminServices().GetUserID(userName);
+      //      scenicId = new AdminServices().CheckLogin(userName, new AdminServices().GetUserPassWD(userName));
             userLimit = (new AdminServices().GetUserMode(userName));
-            if (Session["userName"] == null)
-            {
-                // 保存用户信息
-                Session.Add("userName", Request.Cookies["userName"].Value);
-                Session.Add("ScenicId", scenicId);
 
-                // 页面添加选项
-                LinkButton user = new LinkButton();
-                user.Text = (string)Session["userName"];
-                user.Attributes.Add("href", "Change.aspx");
-                Place.Controls.Add(user);
-            }
-            else
-            {
-                // 页面添加选项
-                LinkButton user = new LinkButton();
-                user.Text = (string)Session["userName"];
-                user.Attributes.Add("href", "Change.aspx");
-                Place.Controls.Add(user);
-            }
+            // 保存用户信息
+            Session.Add("userName", Request.Cookies["userName"].Value);
+    //        Session.Add("ScenicId", scenicId);
+            Session.Add("userLimit", userLimit);
+            Session.Add("AId", userId);
+
+            // 页面添加选项
+            LinkButton user = new LinkButton();
+            user.Text = (string)Session["userName"];
+            user.Attributes.Add("href", "Change.aspx");
+            Place.Controls.Add(user);
         }
         else
         {
-            // 检查Cookie确定用户已经拥有合适身份浏览过网页
-            if (Session["userName"] != null)
-            {
-                // 页面添加选项
-                LinkButton user = new LinkButton();
-                user.Text = (string)Session["userName"];
-                user.Attributes.Add("href", "Change.aspx");
-                Place.Controls.Add(user);
-            }
-            else
-            {
-                // 返回登录页面
-                Response.Redirect("Default.aspx");
-            }
+            Response.Write("Default.aspx");
         }
+        // 用户权限判断
         if (userLimit == "1")
         {
-            DataOut.Visible=false;
+            DataOut.Visible = false;
         }
     }
 
@@ -83,19 +74,21 @@ public partial class HomePage : BasePage
     protected void ButtonOrderBackExcel_Click(object sender, EventArgs e)
     {
         #region
-        List<OrderTableFields> fields = new List<OrderTableFields>();
-        fields.Add(OrderTableFields.OTOrderSerialNo);
-        fields.Add(OrderTableFields.OTOrderComfirmNo);
-        fields.Add(OrderTableFields.OTTicketName);
-        fields.Add(OrderTableFields.OTTicketPhone);
-        fields.Add(OrderTableFields.OTTicketNumber);
-        fields.Add(OrderTableFields.OTTicketPrice);
-        //fields.Add(OrderTableFields.OTTicketType);
-        fields.Add(OrderTableFields.OTOrderCreateTime);
-        fields.Add(OrderTableFields.OTTravelTime);
-        fields.Add(OrderTableFields.OTOrderState);
-        fields.Add(OrderTableFields.OTIdentityCard);
+        List<OrderTableFields> orderTableFields = new List<OrderTableFields>();
+        List<TicketTypeFields> ticketTypeFields = new List<TicketTypeFields>();
+        ticketTypeFields.Add(TicketTypeFields.TTTypeName);
+        orderTableFields.Add(OrderTableFields.OTOrderSerialNo);
+        orderTableFields.Add(OrderTableFields.OTOrderComfirmNo);
+        orderTableFields.Add(OrderTableFields.OTTicketName);
+        orderTableFields.Add(OrderTableFields.OTTicketPhone);
+        orderTableFields.Add(OrderTableFields.OTTicketNumber);
+        orderTableFields.Add(OrderTableFields.OTTicketPrice);
+        orderTableFields.Add(OrderTableFields.OTOrderCreateTime);
+        orderTableFields.Add(OrderTableFields.OTTravelTime);
+        orderTableFields.Add(OrderTableFields.OTOrderState);
+        orderTableFields.Add(OrderTableFields.OTIdentityCard);
         List<OrderTableWhereFields> where = new List<OrderTableWhereFields>();
+        where.Add(new OrderTableWhereFields(OrderTableFields.OTScenicId, 3320));
         switch (Item5payType.Value)
         {
             case "viewPay":
@@ -137,8 +130,8 @@ public partial class HomePage : BasePage
                 where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderState, 3));
                 break;
         }
-
-        DataTable table = DependencyInjector.GetInstance<IOrderTableServices>().GetOrderTableTable(fields, where, null);
+        DataBaseType dbType = DataBaseType.Read;
+        DataTable table = DependencyInjector.GetInstance<IOrderTableServices>().GetOrderTableExtend(dbType, orderTableFields, ticketTypeFields, where, null, 100, 1);
         if (table != null && table.Rows.Count >= 1)
         {
             table.Columns["OTOrderSerialNo"].ColumnName = "订单号";
@@ -148,7 +141,7 @@ public partial class HomePage : BasePage
             table.Columns["OTTicketNumber"].ColumnName = "票数";
             table.Columns["OTOrderCreateTime"].ColumnName = "下单时间";
             table.Columns["OTTravelTime"].ColumnName = "旅游时间";
-            table.Columns["OTTicketType"].ColumnName = "门票类型";
+            table.Columns["TTTypeName"].ColumnName = "门票类型";
             table.Columns["OTIdentityCard"].ColumnName = "身份证号";
             table.Columns.Add("总价", Type.GetType("System.Double"));
             table.Columns.Add("订单状态", Type.GetType("System.String"));
@@ -211,5 +204,25 @@ public partial class HomePage : BasePage
             curContext.Response.Write(strWriter.ToString());
             curContext.Response.End();
         }
+    }
+
+    public void LogoutClick(object sender, EventArgs e)
+    {
+        // Cookie手动过期
+        if (Request.Cookies["userName"] != null)
+        {
+            // session清除
+            Session["userName"] = null;
+            Session["userId"] = null;
+            Session["ScenicId"] = null;
+            Session["userLimit"] = null;
+            // cookie清除
+            Request.Cookies["userName"].Expires = DateTime.Now;
+            Request.Cookies["userName"].Value = string.Empty;
+            Request.Cookies["userPwd"].Expires = DateTime.Now;
+            Request.Cookies["userPwd"].Value = string.Empty;
+        }
+
+        Response.Redirect("Default.aspx");
     }
 }

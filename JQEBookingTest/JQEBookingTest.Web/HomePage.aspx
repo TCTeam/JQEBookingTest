@@ -4,68 +4,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<link href="Styles/jquery-ui-1.10.0.custom.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="Scripts/jquery-1.10.2.min.js"></script>
-<script src="Scripts/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></script>
-<script src="Scripts/handle.js" type="text/javascript"></script>
+    <link href="Styles/jquery-ui-1.10.0.custom.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></script>
+    <script src="Scripts/handle.js" type="text/javascript"></script>
+    <link href="Styles/common.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/Home.css" rel="stylesheet" type="text/css" />
 <title>ebooking订单处理</title>
-<style type="text/css" media="screen">
-		@import url("css/handle.css");
-	</style>
 </head>
 <body>
-<form runat="server">
+<form id="Form1" runat="server">
 <!--PageHead-->
-	<div class="head">
-    	<img id="logo" src="Images/cnLogo.png" />
-        <span class="title">订单处理系统</span>
-        <ul class="headright">
-        	<li>
-            	<span id="head_uname"><asp:PlaceHolder runat="server" ID="Place"></asp:PlaceHolder></span>,<span>欢迎您!</span>
-                <span></span>
-            </li>
-            <li>
-                <a href="PwdChange.aspx">修改密码</a>
-            </li>
-            <li>
-            	<a href="Default.aspx">退出</a>
-            </li>
-        </ul>
+    <div class="head">
+        <div id="headerCont">
+            <div class="logo">
+                <a href="Homepage.aspx"><img id="logo" src="Images/cnLogo.png" /></a><span>景区订单管理系统</span>
+            </div>
+            <div class="loginInfo">
+                <span>你好,&nbsp;&nbsp;</span><span id="head_uname"><asp:PlaceHolder runat="server" ID="Place"></asp:PlaceHolder></span><a href="PwdChange.aspx">修改密码</a>
+                <asp:LinkButton ID="Logout" OnClick="LogoutClick" Text="退出" runat="server"></asp:LinkButton>
+            </div>
+            <div class="actionbar">
+                <ul>
+                    <li><a class="nowPlace" onclick="">首页</a></li>
+                    <li id="OrderQuery"><a onclick="">订单查询</a>
+                        <div class="actSon none"><a onclick="">自定义查询</a></div>
+                    </li>
+                    <li id="OrderConfirm"><a onclick="">订单确认</a></li>
+                    <li id="OrderSta"><a onclick="">订单统计</a></li>
+                    <li id="Comments"><a onclick="">点评管理</a></li>
+                    <li id="DataOut" runat="server"><a onclick="">数据导出</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
- <!--   PageHeadEnd-->
-  <!--   Action-->
-    <div class="actionbar">
-    	<ul >
-        	<li>首页</li>
-            <li id="OrderQuery">订单查询</li>
-            <li id="OrderConfirm">订单确认</li>
-            <li id="OrderSta">订单统计</li>
-            <li id="DataOut" runat="server">数据导出</li>
-            <li id="Comments">点评管理</li>
-        </ul>
-    </div>
+    <div class="clear"></div>
     <div class="content">
     <!--Item1-->
     	<div class="contentItem1">
         	<ul>
-            	<li>
+            	<li class="aItem1">
                 	<p class="Chandle">订单查询</p>
-                    <p>按照游客下单日期、取票日期、订单号、取票人姓名和手机，进行订单查询功能 </p>
+                    <div><p>按照游客下单日期、取票日期、订单号、取票人姓名和手机，进行订单查询功能 </p></div>
                 </li>   	
-                <li>
+                <li class="bItem1">
                 	<p class="Chandle">订单确认</p>
-                    <p>对客户购票票数进行确认。方便景区与同程网之间的订单确认。 </p>
+                    <div><p>对客户购票票数进行确认。方便景区与同程网之间的订单确认。 </p></div>
                 </li>
-            </ul>
-            <ul>
-            	<li>
+            	<li class="cItem1">
                 	<p class="Chandle">订单统计</p>
-                    <p>按照游客下单日期、取票日期、付费类型对已核单的账单进行统计</p>
+                    <div><p>按照游客下单日期、取票日期、付费类型对已核单的账单进行统计</p></div>
+                </li>
+                <li style="display:none;">
+                    <p class="Chandle">点评管理</p>
                 </li>   	
-                <li>
+                <li class="dItem1">
                 	<p class="Chandle">数据导出</p>
-                    <p>按照游客下单日期、取票日期、付费类型对数据导出（高级管理员权限）</p>
+                    <div><p>按照游客下单日期、取票日期、付费类型对数据导出（高级管理员权限）</p></div>
                 </li>
             </ul>
         </div>
@@ -73,10 +68,8 @@
       <!--Item2-->
         <div class="contentItem2" style="display:none">
         	<div class="selectBar">
-                
-                <p class="mySearchP">【<span class="mySearch">自定义查询</span>】</p>
+                <p class="mySearchP">-＞&nbsp;<span class="mySearch">自定义查询</span></p>
                  <div style="display:none" class="uDefined">
-                	
                     <ul>
                         <li>
                             <span>订单确认号：</span>
@@ -129,55 +122,56 @@
                                     <option value="onlinePay" >在线支付</option>
                                 </select>
                             </span>   
+                        </li>
+                        <li>
                             <span>身份证号：</span>
                            <span><input id="identityId" type="text" value=""/></span>
                         </li>
                     </ul>
-                    
+                    <div class="clear"></div>
                      <div class="btn" >
                       <span><input id="ButtonItem2Query" class="item2input" type="button" value="查询"/></span>
-                     <%-- <span><input class="putout" type="button" value="导出数据"/></span>--%>
                   </div>
                   
                  
             </div>
-       
+            <div class="clear"></div>
             <div class="form">
             	<table class="selectTab" id="TabelOrderQuery">
                 	<tr class="tabtitle">
-                    	<td width="100px">订单确认号</td>
-                        <td width="175px">订单流水号</td>
-                        <td width="100px">订单状态</td>
-                        <td width="105px">取票人</td>
-                        <td width="120px">取票人手机</td>
-                        <td width="100px">下单时间</td>
-                        <td width="80px">旅游时间</td>
+                    	<td width="80px">订单确认号</td>
+                        <td width="100px">订单流水号</td>
+                        <td width="80px">订单状态</td>
+                        <td width="50px">取票人</td>
+                        <td width="80px">取票人手机</td>
+                        <td width="80px">下单时间</td>
+                        <td width="60px">旅游时间</td>
                         <td width="40px">票数</td>
                         <td width="80px">实际取票数</td>
-                        <td width="100px">单价</td>
+                        <td width="60px">单价</td>
                         <td width="100px">总金额</td>
-                        <td width="110px">门票类型</td>
-                        <td width="100px">支付方式</td>
-                        <td width="80px">备注</td>
+                        <td width="80px">门票类型</td>
+                        <td width="80px">支付方式</td>
+                        <td width="130px">备注</td>
                     </tr>
                 </table>
             </div>
         </div>
         </div>
  <!--Item2 End-->
-      <!--订单确认-->
+      <!--Item3 订单确认-->
         <div class="contentItem3" style="display: none">
-            <%--<div id="quick">
+            <div id="quick">
                 <span>
                     <asp:Button ID="ButtonNewOrder" CssClass="put" runat="server" Text="今日未确认订单" /></span><span>订单确认号：</span>
                 <span>
-                    <input type="text" value="" /></span> <span>
+                    <input type="text" value="" />
                         <input class="put" type="button" value="查询" /></span>
-            </div>--%>
+            </div>
             <p class="mySearchP2">
-                【<span class="mySearch">自定义查询</span>】</p>
+                -＞&nbsp;<span class="mySearch">自定义查询</span></p>
             <div id="item3Form" style="display: none" class="uDefined2">
-                <ul>
+                 <ul>
                     <li><span>日期选择：</span> <span>
                         <input id="Item3OrderDate" type="radio" name="Item3nation" value="buyTime" checked="checked" />
                         <lable for="Item3OrderDate">下单日期</lable>
@@ -187,31 +181,36 @@
                     </span></li>
                 </ul>
                 <ul>
+                    <li style="float:left;"><span >查确认号：</span>
+                        <span><input id="Item3OrderConfirmNum" type="text" value="" /></span> 
+                    </li>
+                    <li><span style="display: inline-block; width: 85px; margin-left: 9px">订单号：</span> <span>
+                        <input id="Item3OrderSerialNum" type="text" value="" /></span> 
+                    </li>
+                </ul>
+                <ul>
                     <li><span style="display: inline-block; width: 60px">起始日期：</span> <span>
                         <input id="Item3dateStart" type="text" value="" class="dateStart" /></span> <span style="display: inline-block;
                             width: 85px; margin-left: 5px">截止到</span> <span>
                         <input id="Item3dateEnd" type="text" value="" class="dateEnd" /><span> </li>
                 </ul>
                 <ul>
-                    <li><span style="display: inline-block; width: 60px">订单号：</span> <span>
-                        <input id="Item3OrderSerialNum" type="text" value="" /></span> </li>
-                    <li><span style="display: inline-block; width: 85px; margin-left: 8px">订单确认号：</span>
-                        <span>
-                            <input id="Item3OrderConfirmNum" type="text" value="" /></span> </li>
+                    <li>
+                    <span style="display: inline-block; width: 60px">客户姓名：</span> 
+                    <span> <input id="Item3OrderName" type="text" value="" /></span> 
+                    <span style="display: inline-block; width: 85px; margin-left: 5px">取票人手机号：</span> 
+                    <span><input id="Item3TicketPhone" type="text" value="" /></span> 
+                    </li>
                 </ul>
-                <ul>
-                    <li><span style="display: inline-block; width: 60px">客户姓名：</span> <span>
-                        <input id="Item3OrderName" type="text" value="" /></span> <span style="display: inline-block; width: 85px;
-                            margin-left: 5px">取票人手机号：</span> <span>
-                                <input id="Item3TicketPhone" type="text" value="" /></span> </li>
                     <ul>
-                        <li><span>门票排序：</span> <span>
+                        <li>
+                        <span>门票排序：</span> 
                             <select id="Item3TicketSort" name="ticketSort">
                                 <option value="drawTicketName">取票人姓名</option>
                                 <option value="drawTicketTime">取票时间</option>
                                 <option value="buyTime">下单时间</option>
                             </select>
-                        </span></li>
+                        </li>
                     </ul>
                     <ul>
                         <li><span>支付方式：</span> <span>
@@ -227,7 +226,7 @@
                     </ul>
                     <div class="clear">
                     </div>
-                    <input class="put" type="button" id="ButtonItem3Query" value="查询" />
+                    <input class="put item2input" type="button" id="ButtonItem3Query" value="查询" />
                     <div class="clear">
                     </div>
             </div>
@@ -280,8 +279,8 @@
             <div>
             </div>
         </div>
-        <!--订单确认 End-->
-          
+        <!--Item3 订单确认 End-->
+        <!--Item4 --------------->  
         <div class="contentItem4" style="display:none;" >
         	  <div class="selectBar">
                      <ul class="PayWay">
@@ -295,6 +294,8 @@
                                 </select>
                             </span>   
                         </li>
+                        </ul>
+                        <ul>
                          <li>
                          		<input type="radio" name="chooseOrderByDate" id="chOrByDate" value="ordertime" checked="checked" /><label for="chOrByDate">下单日期：</label>
                                 <span>从</span>
@@ -311,23 +312,24 @@
                             </li>
                     </ul>
                         <ul class="PayWay">
-                            <li><input id="ButtonItem4Query" type="button" value="查询"/></li>
+                            <li><input id="ButtonItem4Query" class="item2input" type="button" value="查询"/></li>
                         </ul>
                </div>
+               <div class="clear"></div>
                 <div class="form">
             	<table class="selectTab" id="Chitem4">
                 	<tr class="tabtitle">
                     	
-                        <td width="175px">订单确认号</td>
-                        <td width="100px">订单流水号</td>
-                        <td width="105px">票数</td>
-                        <td width="98px">取票人</td>
-                        <td width="88px">取票人手机</td>
-                        <td width="88px">下单时间</td>
-                        <td width="88px">旅游时间</td>
-                        <td width="60px">票数</td>
-                        <td width="60px">实际取票数</td>
-                        <td width="200px">门票类型</td>
+                        <td>订单确认号</td>
+                        <td>订单流水号</td>
+                        <td >票数</td>
+                        <td >取票人</td>
+                        <td >取票人手机</td>
+                        <td >下单时间</td>
+                        <td>旅游时间</td>
+                        <td >票数</td>
+                        <td >实际取票数</td>
+                        <td>门票类型</td>
                         
                     </tr>
                      
@@ -335,7 +337,26 @@
             </div>
         </div>  
          <!--Item4End-->
-         <!--数据导出-->
+           <!--点评管理-->
+        <div class="contentItem6" style="display: none">
+            <div class="form">
+                <table id="Item6Table" class="selectTab">
+                    <tr class="tabtitle">
+                       <td><input type="checkbox" /></td>
+                       <td>订单流水号</td>
+                       <td>用户名</td>
+                       <td>点评内容</td>
+                       <td>点评日期</td>
+                       <td>回复内容</td>
+                       <td>状态</td>
+                       <td>操作</td>
+                    </tr>
+                    <!--遍历数据形成表格,后台数据返回到这里-->
+                </table>
+            </div>
+        </div>
+        <!--点评管理 End-->
+         <!--Item5 -->
         <div class="contentItem5" style="display: none;">
             <div class="selectBar">
                 <ul>
@@ -420,28 +441,10 @@
             </div>
         </div>
         <!--数据导出 End-->
-        <!--点评管理-->
-        <div class="contentItem6" style="display: none">
-            <div class="form">
-                <table id="Item6Table" class="selectTab">
-                    <tr class="tabtitle">
-                       <td><input type="checkbox" /></td>
-                       <td>订单流水号</td>
-                       <td>用户名</td>
-                       <td>点评内容</td>
-                       <td>点评日期</td>
-                       <td>回复内容</td>
-                       <td>状态</td>
-                       <td>操作</td>
-                    </tr>
-                    <!--遍历数据形成表格,后台数据返回到这里-->
-                </table>
-            </div>
-        </div>
-        <!--点评管理 End-->
+      
     </div>
-    <div id="body_cont" class="tip_window" style="display: none;"></div>
-    <div id="btn_tip" class="tip_window" style="display: none;">
+    <div id="body_cont" class="tip_window" style="display:none; "></div><!--黑色透明背景-->
+    <div id="btn_tip" class="tip_window" style="display:none; ">
         <div id="tip_up">
             <span id="tip_title">确认提示</span><span id="tip_close" onclick="javascript:closeTip()"></span>
         </div>
@@ -500,9 +503,11 @@
             </div>
         </div>
     </div>
-    <div id="BzDiv" class="tip_window" style="display:none;">
+    <!--备注弹窗页 --------------------------------------->
+    <div class="clear"></div> 
+    <div id="BzDiv" class="tip_window commentBox" style="display:none;">
         <div class="BzDivUp">
-            <span class="BzTitle">添加备注</span>
+            <p><span class="BzTitle">添加备注</span></p>
         </div>
         <div class="BzDivDown">
             <textarea class="BzText" cols="46" rows="8" placeholder="在此添加备注"></textarea>
@@ -511,6 +516,19 @@
                 <input class="BzBtn" id="CanBz" type="button" value="取消" />
             </div>
         </div>
+    </div>
+    <!--评论页 -->
+    <div class="clear"></div> 
+    <div class="commentBox" style="display:none; ">
+        <p>回复<span>某某</span>的点评：</p>
+        <textarea placeholder="在此处输入回复..."></textarea>
+        <input type="button" class="subBtn" value="提交" /><input type="button" class="cancleBtn" value="取消" />
+    </div>
+    <!--Footer-->
+    <div class="clear"></div> 
+    <div id="footer">
+    	Copyright&nbsp;&copy;&nbsp;<span class="cr_time">2002-2014</span>&nbsp;版权所有&nbsp;<span
+            class="corp_name">同程网络科技股份有限公司</span>&nbsp;
     </div>
     </form>
 </body>
