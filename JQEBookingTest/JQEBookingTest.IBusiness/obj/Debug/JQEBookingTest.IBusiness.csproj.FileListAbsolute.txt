@@ -1,0 +1,7 @@
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.IBusiness\bin\Debug\JQEBookingTest.IBusiness.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.IBusiness\bin\Debug\JQEBookingTest.IBusiness.pdb
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.IBusiness\bin\Debug\JQEBookingTest.Model.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.IBusiness\bin\Debug\JQEBookingTest.Model.pdb
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.IBusiness\obj\Debug\JQEBookingTest.IBusiness.csprojResolveAssemblyReference.cache
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.IBusiness\obj\Debug\JQEBookingTest.IBusiness.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.IBusiness\obj\Debug\JQEBookingTest.IBusiness.pdb

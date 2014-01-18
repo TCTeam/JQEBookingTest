@@ -1,0 +1,4 @@
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\bin\Debug\JQEBookingTest.Model.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\bin\Debug\JQEBookingTest.Model.pdb
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\obj\Debug\JQEBookingTest.Model.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\obj\Debug\JQEBookingTest.Model.pdb

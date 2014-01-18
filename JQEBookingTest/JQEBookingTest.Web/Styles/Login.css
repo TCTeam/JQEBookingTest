@@ -1,0 +1,28 @@
+﻿body {
+	
+}
+.head
+{
+    background:url(../images/cnLogo.png) no-repeat 50px;
+	height:100px;
+	width:100%;
+	margin-bottom:30px;
+}
+.content-left
+{
+    float:left;
+    width:67%;  
+    height:400px;
+}
+.login-form
+{
+    margin-top:30px;
+    float:left;
+    width:300px;
+    padding:25px 20px;
+    border:1px solid #ccc;
+}
+.submit
+{
+    width:100%;
+}

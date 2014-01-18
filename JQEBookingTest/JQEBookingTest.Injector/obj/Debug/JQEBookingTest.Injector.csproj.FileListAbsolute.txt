@@ -1,0 +1,4 @@
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.pdb
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.pdb

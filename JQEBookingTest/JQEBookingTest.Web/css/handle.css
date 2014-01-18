@@ -1,0 +1,183 @@
+html {
+color: #333; 
+font: 12px/20px helvetica,Arial,sans-serif;
+background: #f0f0f0;
+}
+img, div, ul, li{
+margin: 0px; padding: 0px;
+}
+ ul li
+{
+	list-style:none;
+	float:left;
+}
+.head
+{
+	width:1200px;
+	height:60px;
+}
+#logo
+{
+	float:left;
+}
+.headright
+{
+	float:right;
+}
+.headright li
+{
+	
+	margin:5px 5px 5px 5px;
+	float:left;
+}
+.title
+{
+	float:left;
+	
+	height:30px;
+	margin-top:20px;
+	margin-left:5px;
+	font-size:24px;
+	font-style:italic;
+	color:#0583C3;
+}
+.actionbar
+{
+	width:1200px;
+	height:25px;
+	background:#FF7300;
+}
+.actionbar li
+{
+	height:25px;
+	margin:0px 10px 0px 10px;
+	line-height:25px;
+	font-size:16px;
+	color: #FFF;
+	font-family: 楷体_GB2312,楷体;
+}
+.actionbar li:hover
+{
+	background:#1EB3EA;
+	cursor:pointer;
+}
+/*主页属性控制*/
+contentItem1
+{
+	margin-top:100px;
+	width:870px;
+	height:100px;
+}
+.contentItem1 ul
+{
+	float:none;
+	width:850px;
+	height:100px;
+	margin-left:200px;
+	margin-top:70px;
+}
+.contentItem1 li
+{
+	width:385px;
+	height:90px;
+	margin:0px 10px 0px 10px;
+}
+.Chandle
+{
+	font-size:14px;
+	color:#03F;
+}
+.Chandle:hover
+{
+	cursor:pointer;
+}
+/*主页属性控制*/
+/*-----查询条件属性控制------*/
+.contentItem2 li
+{
+	float:none;
+}
+.selectBar
+{
+	width:1200px;
+	height:50px;
+}
+.contentItem2 ul
+{
+	float:left;
+}
+.date
+{
+	width:80px;
+}
+.put:hover
+{
+	cursor:pointer;
+}
+/*-----查询条件属性控制------*/
+/*-----表格控制------*/
+.form
+{
+	width:1200px;
+}
+.selectTab
+{
+	margin-bottom: 15px;
+		width: 100%;
+	border-collapse: collapse;
+}
+
+.selectTab td {
+	border: 1px solid #CBD6DE;
+}
+table td
+{
+	border-top: 1px solid #CBD6DE;
+	border-bottom: 1px solid #ADBECB;
+	text-align:center;
+}
+.tabtitle
+{
+	background:#FDE7BE;
+	font-size:14px;
+	font-weight:bold;
+}
+#page
+{
+	text-align:right;
+}
+/*-----查询条件属性控制-----*/
+.contentItem3 li
+{
+	float:none;
+}
+.contentItem3 ul
+{
+	float:left;
+	margin-left:15px;
+	margin-right:15px;
+}
+.contentItem3 .selectBar
+{
+	width:1200px;
+	height:80px;
+}
+.btn
+{
+	margin-left:10px;
+	width:1200px;
+	height:30px;
+}
+
+/*js加的属性*/
+.active
+{
+	background:#1EB3EA;
+}
+
+#page_size a
+{
+    color:Blue;
+    margin-right:30px;
+    text-decoration:none;
+    }

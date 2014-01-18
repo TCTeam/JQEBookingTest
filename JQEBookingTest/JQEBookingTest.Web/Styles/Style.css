@@ -1,0 +1,13 @@
+﻿body {
+}
+.head
+{
+    background:url(../images/cnLogo.png) no-repeat 50px;
+	height:70px;
+	width:100%;
+}
+.mainnav
+{
+    margin-left:350px;
+    padding-top:10px;
+}

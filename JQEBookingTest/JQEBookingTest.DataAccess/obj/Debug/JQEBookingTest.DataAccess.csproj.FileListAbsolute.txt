@@ -1,0 +1,9 @@
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.DataAccess\obj\Debug\JQEBookingTest.DataAccess.csprojResolveAssemblyReference.cache
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.DataAccess\bin\Debug\JQEBookingTest.DataAccess.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.DataAccess\bin\Debug\JQEBookingTest.DataAccess.pdb
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.DataAccess\bin\Debug\JQEBookingTest.Model.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.DataAccess\bin\Debug\TCSmartFramework.DataAccess.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.DataAccess\bin\Debug\TCSmartFramework.Utility.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.DataAccess\bin\Debug\JQEBookingTest.Model.pdb
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.DataAccess\obj\Debug\JQEBookingTest.DataAccess.dll
+D:\WorkSpaceOfVS\JQEBookingTest\JQEBookingTest\JQEBookingTest.DataAccess\obj\Debug\JQEBookingTest.DataAccess.pdb
