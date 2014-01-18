@@ -8,21 +8,20 @@ using System;
 using System.Text;
 using System.Data;
 using System.Collections.Generic;
-using JQEBookingTest.Model.Enum;
 using JQEBookingTest.Model.TableModel;
 using JQEBookingTest.DataAccess.Tables;
-using JQEBookingTest.IBusiness.TableBusiness;
+using JQEBookingTest.Model.Enum;
 
 namespace JQEBookingTest.Business.TableBusiness
 {
     /// <summary>
     /// OrderTable表数据库业务层自定义扩展开发
     /// </summary>
-    public partial class OrderTableServices:IOrderTableServices,IDisposable
+    public partial class OrderTableServices
     {
-        public DataTable GetOrderTableExtend(DataBaseType dbType, List<OrderTableFields> orderTableShowFields, List<TicketTypeFields> ticketTypeShowFields, List<OrderTableWhereFields> whereFields, List<OrderTableOrderFields> orderFields, int pageSize, int pageIndex, string mainTableName, string joinTableName, string joinCondition) 
+        public DataTable GetOrderTableExtend(DataBaseType dbType, List<OrderTableFields> orderTableShowFields, List<TicketTypeFields> ticketTypeShowFields, List<OrderTableWhereFields> whereFields, List<OrderTableOrderFields> orderFields, int pageSize, int pageIndex)
         {
-            return dataAccess.GetOrderTableExtend(dbType, orderTableShowFields, ticketTypeShowFields, whereFields, orderFields, pageSize, pageIndex, mainTableName, joinTableName, joinCondition);
+            return dataAccess.GetOrderTableExtend(dbType, orderTableShowFields, ticketTypeShowFields, whereFields, orderFields, pageSize, pageIndex);
         }
     }
 }

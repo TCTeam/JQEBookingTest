@@ -18,6 +18,6 @@ namespace JQEBookingTest.IBusiness.TableBusiness
     /// </summary>
     public partial interface IOrderTableServices
     {
-        DataTable GetOrderTableExtend(DataBaseType dbType, List<OrderTableFields> orderTableShowFields, List<TicketTypeFields> ticketTypeShowFields, List<OrderTableWhereFields> whereFields, List<OrderTableOrderFields> orderFields, int pageSize, int pageIndex, string mainTableName, string joinTableName, string joinCondition);
+        DataTable GetOrderTableExtend(DataBaseType dbType, List<OrderTableFields> orderTableShowFields, List<TicketTypeFields> ticketTypeShowFields, List<OrderTableWhereFields> whereFields, List<OrderTableOrderFields> orderFields, int pageSize, int pageIndex);
     }
 }

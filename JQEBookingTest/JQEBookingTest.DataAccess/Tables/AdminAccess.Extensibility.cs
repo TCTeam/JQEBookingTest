@@ -18,10 +18,6 @@ namespace JQEBookingTest.DataAccess.Tables
     /// </summary>
     public partial class AdminAccess
     {
-        public List<OrderTableFields> GetScopeList(string starttime,string endtime,string database)
-        {
 
-            return null;
-        }
     }
 }

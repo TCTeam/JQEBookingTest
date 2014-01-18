@@ -10,16 +10,13 @@ using System.Data;
 using System.Collections.Generic;
 using JQEBookingTest.Model.TableModel;
 using JQEBookingTest.DataAccess.Tables;
-using JQEBookingTest.IBusiness;
 using JQEBookingTest.Injector;
-using JQEBookingTest.Model.Enum;
 using JQEBookingTest.IBusiness.TableBusiness;
 
 namespace JQEBookingTest.Business.TableBusiness
 {
     /// <summary>
     /// Admin表数据库业务层自定义扩展开发
-    /// 密码验证
     /// </summary>
     public partial class AdminServices
     {
@@ -62,8 +59,6 @@ namespace JQEBookingTest.Business.TableBusiness
             }
             return result;
         }
-        
-
         /// <summary>
         /// 获取用户权限
         /// </summary>
@@ -106,6 +101,12 @@ namespace JQEBookingTest.Business.TableBusiness
             return checkB;
         }
 
+        /// <summary>
+        /// 更改密码
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="userPwd"></param>
+        /// <returns></returns>
         public bool ChangePwd(string userName, string userPwd)
         {
             List<AdminFieldValuePair> updatePwd = new List<AdminFieldValuePair>();
@@ -116,6 +117,30 @@ namespace JQEBookingTest.Business.TableBusiness
             return right;
         }
 
+        /// <summary>
+        /// 获得用户密码
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public string GetUserPassWD(string userId)
+        {
+            List<AdminWhereFields> whereFileds = new List<AdminWhereFields>();
+            whereFileds.Add(new AdminWhereFields(AdminFields.AId, userId));
+            DataTable dt = DependencyInjector.GetInstance<IAdminServices>().GetAdminTable(whereFileds);
+            string result = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                result = Convert.ToString(dt.Rows[0]["APassword"]);
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         public bool ResetPwd(string userName)
         {
             List<AdminFieldValuePair> updatePwd = new List<AdminFieldValuePair>();
@@ -126,5 +151,4 @@ namespace JQEBookingTest.Business.TableBusiness
             return right;
         }
     }
-
 }

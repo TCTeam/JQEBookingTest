@@ -11,7 +11,7 @@
 	{
 		var pwdVal = document.getElementById("userPwd").value;	
 		var pwdChe = document.getElementById("checkPwd").value;
-		var reg = /^[A-Z],[a-z],0-9]{8}$/;
+		var reg = /^[{A-Z},{a-z},0-9]{8}$/;
 		
         // 是否一致
 		if(pwdVal === pwdChe) {
@@ -175,8 +175,6 @@ body{
                 <!--<span class="errpwd"  id="confirmPwdInfo"></span>-->
        		</div>
 			<div id="btn">
-				<!--<input class="btnYellow" id="confirmbtn" type="button" value="确认" onclick="CheckPwd()" />
-                <input class="btnYellow" id="removebtn" type="reset"  value="取消" />-->
                 <input class="btnYellow" id="confirmbtn" type="submit" value="确认" />
             </div>
  		</div>

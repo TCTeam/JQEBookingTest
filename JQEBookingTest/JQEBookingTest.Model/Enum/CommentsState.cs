@@ -1,4 +1,11 @@
-﻿using System;
+﻿//-------------------------------------------------------------
+//  <copyright company="同程网" file="CommentState.cs">
+//   Copyright(c)  V1.0
+//   作者: asp.net全体组员
+//   功能:订单状态枚举
+//  </copyright>
+//-------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

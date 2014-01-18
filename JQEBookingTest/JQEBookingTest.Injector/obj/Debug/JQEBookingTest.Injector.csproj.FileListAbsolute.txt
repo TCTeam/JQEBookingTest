@@ -1,13 +1,4 @@
-E:\asp.net\WorkSpace\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.dll
-E:\asp.net\WorkSpace\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.pdb
-E:\asp.net\WorkSpace\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\ResolveAssemblyReference.cache
-E:\asp.net\WorkSpace\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.dll
-E:\asp.net\WorkSpace\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.pdb
-D:\工作文档\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.dll
-D:\工作文档\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.pdb
-D:\工作文档\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.dll
-D:\工作文档\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.pdb
-D:\工作文档\StepTwo\谢超\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.dll
-D:\工作文档\StepTwo\谢超\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.pdb
-D:\工作文档\StepTwo\谢超\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.dll
-D:\工作文档\StepTwo\谢超\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.pdb
+D:\工作文档\StepThree\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.dll
+D:\工作文档\StepThree\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.pdb
+D:\工作文档\StepThree\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.dll
+D:\工作文档\StepThree\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.pdb

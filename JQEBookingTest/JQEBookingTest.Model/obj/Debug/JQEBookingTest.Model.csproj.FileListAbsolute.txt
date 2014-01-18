@@ -1,13 +1,4 @@
-E:\asp.net\WorkSpace\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\bin\Debug\JQEBookingTest.Model.dll
-E:\asp.net\WorkSpace\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\bin\Debug\JQEBookingTest.Model.pdb
-E:\asp.net\WorkSpace\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\obj\Debug\ResolveAssemblyReference.cache
-E:\asp.net\WorkSpace\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\obj\Debug\JQEBookingTest.Model.dll
-E:\asp.net\WorkSpace\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\obj\Debug\JQEBookingTest.Model.pdb
-D:\工作文档\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\bin\Debug\JQEBookingTest.Model.dll
-D:\工作文档\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\bin\Debug\JQEBookingTest.Model.pdb
-D:\工作文档\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\obj\Debug\JQEBookingTest.Model.dll
-D:\工作文档\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\obj\Debug\JQEBookingTest.Model.pdb
-D:\工作文档\StepTwo\谢超\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\bin\Debug\JQEBookingTest.Model.dll
-D:\工作文档\StepTwo\谢超\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\bin\Debug\JQEBookingTest.Model.pdb
-D:\工作文档\StepTwo\谢超\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\obj\Debug\JQEBookingTest.Model.dll
-D:\工作文档\StepTwo\谢超\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\obj\Debug\JQEBookingTest.Model.pdb
+D:\工作文档\StepThree\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\bin\Debug\JQEBookingTest.Model.dll
+D:\工作文档\StepThree\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\bin\Debug\JQEBookingTest.Model.pdb
+D:\工作文档\StepThree\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\obj\Debug\JQEBookingTest.Model.dll
+D:\工作文档\StepThree\JQEBookingTest\JQEBookingTest\JQEBookingTest.Model\obj\Debug\JQEBookingTest.Model.pdb

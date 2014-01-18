@@ -1,4 +1,9 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright company="同程网" file="ShowSplitData.cs">
+//    作者：asp.net全体组员
+//    功能：分页处理封装
+//-----------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +14,8 @@ using JQEBookingTest.Business.TableBusiness;
 using JQEBookingTest.Model.Enum;
 using JQEBookingTest.DataAccess.Tables;
 using JQEBookingTest.Model;
-using JQEBookingTest.Model.TableModel;
-using JQEBookingTest.DataAccess.Tables;
 using JQEBookingTest.Injector;
 using JQEBookingTest.IBusiness.TableBusiness;
-using JQEBookingTest.Model.Enum;
 
 namespace JQEBookingTest.Web
 {
@@ -33,10 +35,10 @@ namespace JQEBookingTest.Web
         //    DataBaseType dbType = DataBaseType.Read;
         //    return new JQEBookingTest.DataAccess.Tables.OrderTableAccess().GetOrderTableList(dbType, showFields, whereFields, orderFields, pageSize, pageIndex);
         //}
-        public DataTable GetServerTableExtend(List<OrderTableFields> orderTableShowFields, List<TicketTypeFields> ticketTypeShowFields, List<OrderTableWhereFields> whereFields, List<OrderTableOrderFields> orderFields, int pageSize, int pageIndex,string mainTableName, string joinTableName, string joinCondition)
+        public DataTable GetServerTableExtend(List<OrderTableFields> orderTableShowFields, List<TicketTypeFields> ticketTypeShowFields, List<OrderTableWhereFields> whereFields, List<OrderTableOrderFields> orderFields,int pageSize, int pageIndex)
         {
             DataBaseType dbType = DataBaseType.Read;
-            DataTable datatable = JQEBookingTest.Injector.DependencyInjector.GetInstance<IOrderTableServices>().GetOrderTableExtend(dbType, orderTableShowFields, ticketTypeShowFields, whereFields, orderFields, pageSize, pageIndex, mainTableName,joinTableName,joinCondition);
+            DataTable datatable = JQEBookingTest.Injector.DependencyInjector.GetInstance<IOrderTableServices>().GetOrderTableExtend(dbType, orderTableShowFields, ticketTypeShowFields, whereFields, orderFields, pageSize, pageIndex);
             return datatable;
         }
     }

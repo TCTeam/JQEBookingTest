@@ -167,13 +167,13 @@
  <!--Item2 End-->
       <!--订单确认-->
         <div class="contentItem3" style="display: none">
-            <div id="quick">
+            <%--<div id="quick">
                 <span>
                     <asp:Button ID="ButtonNewOrder" CssClass="put" runat="server" Text="今日未确认订单" /></span><span>订单确认号：</span>
                 <span>
                     <input type="text" value="" /></span> <span>
                         <input class="put" type="button" value="查询" /></span>
-            </div>
+            </div>--%>
             <p class="mySearchP2">
                 【<span class="mySearch">自定义查询</span>】</p>
             <div id="item3Form" style="display: none" class="uDefined2">
@@ -325,7 +325,8 @@
                         <td width="88px">取票人手机</td>
                         <td width="88px">下单时间</td>
                         <td width="88px">旅游时间</td>
-                        <td width="120px">票数</td>
+                        <td width="60px">票数</td>
+                        <td width="60px">实际取票数</td>
                         <td width="200px">门票类型</td>
                         
                     </tr>
@@ -507,7 +508,7 @@
             <textarea class="BzText" cols="46" rows="8" placeholder="在此添加备注"></textarea>
             <div>
                 <input class="BzBtn" id="AddBz" type="button" value="添加" />
-                <input class="BzBtn" id="CanBz" type="button" value="取消" onclick="" />
+                <input class="BzBtn" id="CanBz" type="button" value="取消" />
             </div>
         </div>
     </div>

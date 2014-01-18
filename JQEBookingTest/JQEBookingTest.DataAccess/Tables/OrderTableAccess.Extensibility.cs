@@ -1,16 +1,16 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright company="同程网" file="OrderTableAccess.Extensibility.cs">
 //    Copyright (c)  V1.0
-//    作者：Asp.net组 谢超
-//    功能：OrderTable表与TicketType表连表查询
+//    作者：TCSmartFrameWork 工具自动生成
+//    功能：OrderTable表的数据操作自定义扩展开发
 //-----------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Text;
-using JQEBookingTest.Model.Enum;
+using System.Data;
+using System.Collections.Generic;
 using JQEBookingTest.Model.TableModel;
 using TCSmartFramework.DataAccess;
+using JQEBookingTest.Model.Enum;
 
 namespace JQEBookingTest.DataAccess.Tables
 {
@@ -19,34 +19,18 @@ namespace JQEBookingTest.DataAccess.Tables
     /// </summary>
     public partial class OrderTableAccess
     {
-        /// <summary>
-        /// 获取订单表
-        /// </summary>
-        /// <param name="dbType"></param>
-        /// <param name="orderTableShowFields"></param>
-        /// <param name="ticketTypeShowFields"></param>
-        /// <param name="whereFields"></param>
-        /// <param name="orderFields"></param>
-        /// <param name="pageSize"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="mainTableName"></param>
-        /// <param name="joinTableName"></param>
-        /// <param name="joinCondition"></param>
-        /// <returns></returns>
-        public DataTable GetOrderTableExtend(DataBaseType dbType, List<OrderTableFields> orderTableShowFields, List<TicketTypeFields> ticketTypeShowFields, List<OrderTableWhereFields> whereFields, List<OrderTableOrderFields> orderFields, int pageSize, int pageIndex,string mainTableName,string joinTableName,string joinCondition)
+        public DataTable GetOrderTableExtend(DataBaseType dbType, List<OrderTableFields> orderTableShowFields, List<TicketTypeFields> ticketTypeShowFields, List<OrderTableWhereFields> whereFields, List<OrderTableOrderFields> orderFields, int pageSize, int pageIndex)
         {
-            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:谢超/For:OrderTable表分页查询操作、订单表和票型表连表查询/File:OrderTableAccess.Extensibility.cs/Fun:GetOrderTableListExtend*/";
             StringBuilder sql = new StringBuilder();
-            sql.Append(sqlDescription);
-            string orderTableShowFieldsSql = GetOrderShowFields(mainTableName, orderTableShowFields);
-            string ticketTypeShowFieldsSql = GetTicketShowFields(joinTableName, ticketTypeShowFields);
+            string orderTableShowFieldsSql = GetOrderShowFields("OrderTable", orderTableShowFields);
+            string ticketTypeShowFieldsSql = GetTicketShowFields("TicketType", ticketTypeShowFields);
             int start = (pageIndex - 1) * pageSize + 1;
             int end = start + pageSize - 1;
             sql.Append("SELECT * FROM (SELECT ROW_NUMBER() OVER (");
             if (string.IsNullOrEmpty(GetOrderFields(orderFields)))
             {
                 sql.Append(" order by ");
-                sql.Append(mainTableName + "." + "OTId");
+                sql.AppendFormat("[{0}].[dbo].[OrderTable].OTId", DatabaseManager.Db_JQEBookingDataBase);
             }
             else
             {
@@ -57,14 +41,14 @@ namespace JQEBookingTest.DataAccess.Tables
             sql.Append(",");
             sql.Append(ticketTypeShowFieldsSql);
             sql.Append(" from ");
-            sql.Append(mainTableName);
+            sql.AppendFormat("[{0}].[dbo].[OrderTable]", DatabaseManager.Db_JQEBookingDataBase);
             sql.Append(" with(nolock) ");
             sql.Append("left join ");
-            sql.Append("TicketType");
+            sql.AppendFormat("[{0}].[dbo].[TicketType]", DatabaseManager.Db_JQEBookingDataBase);
             sql.Append(" on ");
-            sql.Append(joinCondition);
+            sql.AppendFormat("[{0}].[dbo].[OrderTable].OTTicketTypeId=[{0}].[dbo].[TicketType].TTTypeId", DatabaseManager.Db_JQEBookingDataBase);
             sql.Append(" where ");
-            sql.Append(GetSqlString(null,whereFields));
+            sql.Append(GetSqlString(null, whereFields));
             sql.Append(") AS sp WHERE rowNumber BETWEEN ");
             sql.Append(start.ToString());
             sql.Append(" AND ");
@@ -91,7 +75,7 @@ namespace JQEBookingTest.DataAccess.Tables
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < showFieldsList.Count; i++)
             {
-                sb.Append(tableName+showFieldsList[i].ToString());
+                sb.Append(tableName + showFieldsList[i].ToString());
                 if (i != showFieldsList.Count - 1)
                 {
                     sb.Append(", ");
@@ -118,5 +102,5 @@ namespace JQEBookingTest.DataAccess.Tables
             }
             return sb.ToString();
         }
-    }  
+    }
 }

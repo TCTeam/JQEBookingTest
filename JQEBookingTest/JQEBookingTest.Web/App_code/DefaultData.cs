@@ -1,4 +1,9 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright company="同程网" file="Default.cs">
+//    作者：asp.net全体组员
+//    功能：数据存储类，主要是条件存储，方便异步访问的条件保存
+//-----------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

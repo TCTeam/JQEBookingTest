@@ -1,4 +1,9 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright company="同程网" file="BasePage.cs">
+//    作者：asp.net全体组员
+//    功能：登陆页面
+//-----------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -47,6 +52,7 @@ public partial class Default2 : BasePage
                         Response.Cookies["userPwd"].Value = password;
                         Response.Cookies["userName"].Expires = DateTime.Now.AddDays(7);
                         Response.Cookies["userPwd"].Expires = DateTime.Now.AddDays(7);
+
                         Response.Redirect("~/HomePage.aspx");
                     }
                     else
@@ -79,7 +85,8 @@ public partial class Default2 : BasePage
         {
             if (Session["CheckCode"].ToString() == validCode.Text.Trim())
             {
-                if (Lg.CheckLogin(Request.Cookies["userName"].Value.ToString(), Request.Cookies["userPwd"].Value.ToString()) != null)
+                //////////////更改：修正密码记住之后就会出现密码错误提示
+                if (Lg.CheckLogin(Request.Cookies["userName"].Value.ToString(),Lg.GetUserPassWD(Lg.GetUserID(Request.Cookies["userName"].Value))) != null)
                 {
                     Session.Add("userName", name);
                     Session.Add("AId", Lg.GetUserID(name));

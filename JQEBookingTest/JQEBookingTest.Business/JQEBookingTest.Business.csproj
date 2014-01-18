@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D5DBDDE9-4F0C-4182-A41B-398AAE4ED26D}</ProjectGuid>
+    <ProjectGuid>{8F4F0A3A-03AF-45F3-A0B9-B87023AB611D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JQEBookingTest.Business</RootNamespace>
@@ -56,19 +56,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JQEBookingTest.DataAccess\JQEBookingTest.DataAccess.csproj">
-      <Project>{6D281FF9-8D71-480F-9B2F-D5A1EE0DE178}</Project>
+      <Project>{1D90941A-0AC2-428B-B22C-699FA4CDC71D}</Project>
       <Name>JQEBookingTest.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\JQEBookingTest.IBusiness\JQEBookingTest.IBusiness.csproj">
-      <Project>{A946DCBA-4D04-48AB-8A19-E03FDFDA9E8F}</Project>
+      <Project>{18E179F0-3BEE-49AF-B921-E07578DD42A4}</Project>
       <Name>JQEBookingTest.IBusiness</Name>
     </ProjectReference>
     <ProjectReference Include="..\JQEBookingTest.Injector\JQEBookingTest.Injector.csproj">
-      <Project>{76884054-6D6F-41C6-882C-66BFDC50B7C6}</Project>
+      <Project>{15BD8212-4FB4-452D-8FFC-87E1966B3E29}</Project>
       <Name>JQEBookingTest.Injector</Name>
     </ProjectReference>
     <ProjectReference Include="..\JQEBookingTest.Model\JQEBookingTest.Model.csproj">
-      <Project>{0E94341C-2B96-49F6-BE04-1175BD44F5AB}</Project>
+      <Project>{C22EE390-AF05-4EB3-863F-54B575F872C6}</Project>
       <Name>JQEBookingTest.Model</Name>
     </ProjectReference>
   </ItemGroup>

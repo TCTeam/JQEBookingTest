@@ -21,6 +21,6 @@ namespace JQEBookingTest.IBusiness.TableBusiness
         /// 获取所有评论列表
         /// </summary>
         /// <returns></returns>
-        DataTable GetCommentsExtend();
+        DataTable GetCommentsExtend(int scenicId, int pageSize, int pageIndex);
     }
 }

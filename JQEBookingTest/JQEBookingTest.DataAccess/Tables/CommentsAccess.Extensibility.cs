@@ -1,7 +1,7 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright company="同程网" file="CommentsAccess.Extensibility.cs">
 //    Copyright (c)  V1.0
-//    作者：谢超
+//    作者：TCSmartFrameWork 工具自动生成
 //    功能：Comments表的数据操作自定义扩展开发
 //-----------------------------------------------------------------------
 using System;
@@ -22,19 +22,34 @@ namespace JQEBookingTest.DataAccess.Tables
         /// 获取所有评论列表
         /// </summary>
         /// <returns></returns>
-        public DataTable GetCommentsExtend()
+        public DataTable GetCommentsExtend(int scenicId, int pageSize, int pageIndex)
         {
-            String sql = @"/****** Script for SelectTopNRows command from SSMS  ******/
-                SELECT TOP 1000
-                Comments.COrderSerialNo
+            scenicId = 3320;
+            int start = (pageIndex - 1) * pageSize + 1;
+            int end = start + pageSize - 1;
+            StringBuilder sqlsb = new StringBuilder();
+            sqlsb.AppendFormat(@"SELECT * FROM 
+                (SELECT ROW_NUMBER() OVER 
+                ( order by [{0}].[dbo].[OrderTable].OTId) 
+                AS rowNumber
+                ,Comments.COrderSerialNo
                 ,Comments.CCommentsType
                 ,Comments.CCommentsContent
                 ,Comments.CCommentsTime
                 ,Comments.CCommentsReply
                 ,Comments.CCommentsState
-                ,OrderTable.OTOrderName
-                FROM [JQEBooking].[dbo].[Comments] left join [JQEBooking].[dbo].[OrderTable] on Comments.COrderSerialNo=OrderTable.OTOrderSerialNo;";
-            DataTable datatable = SqlHelper.ExecuteDataTable(sql);
+                ,OrderTable.OTOrderName from ", DatabaseManager.Db_JQEBookingDataBase);
+            sqlsb.AppendFormat("[{0}].[dbo].[Comments]", DatabaseManager.Db_JQEBookingDataBase);
+            sqlsb.Append(" with(nolock) left join");
+            sqlsb.AppendFormat("[{0}].[dbo].[OrderTable]", DatabaseManager.Db_JQEBookingDataBase);
+            sqlsb.Append(" on Comments.COrderSerialNo=OrderTable.OTOrderSerialNo");
+            sqlsb.AppendFormat(" where OrderTable.OTScenicId={0}", scenicId);
+            sqlsb.Append(") AS sp WHERE rowNumber BETWEEN ");
+            sqlsb.Append(start.ToString());
+            sqlsb.Append(" AND ");
+            sqlsb.Append(end.ToString());
+            sqlsb.Append(" --Flat:Asp.net小组/Author:谢超/For:获取订单统计列表/File :CommentsAccess.Extensibility.cs/Fun:GetCommentsExtend");
+            DataTable datatable = SqlHelper.ExecuteDataTable(sqlsb.ToString());
             return datatable;
         }
     }

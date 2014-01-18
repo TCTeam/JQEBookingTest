@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------
 //  <copyright company="同程网" file="PayWay.cs">
 //   Copyright(c)  V1.0
-//   作者: Asp.net组谢超
+//   作者:asp.net全体组员
 //   功能:支付方式枚举
 //    
 //  </copyright>

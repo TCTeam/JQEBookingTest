@@ -50,7 +50,7 @@ $(this).ready(function (e) {
                 tempdata = data;
                 $("#TabelOrderQuery tr:not('.tabtitle')").parent("tbody").remove();
                 document.getElementById("TabelOrderQuery").innerHTML += data;
-                //OrderConfirmInit();
+                OrderConfirmInit();
             }
         });
         $(this).blur();
@@ -129,15 +129,10 @@ $(this).ready(function (e) {
             }
         });
     });
-    // 取消按钮响应
-    $("#CanBz").click(function(){
-        $("#body_cont").hide();
-        $("#BzDiv").hide();
-    });
+
 
     //订单确认页面初始化
     function OrderConfirmInit() {
-        
         $(".ChooseTicketNum").click(function () {
             //显示再次确认弹窗
             $("#btn_tip").show();
@@ -152,30 +147,6 @@ $(this).ready(function (e) {
             $(".tip_cont:eq(5)").text($thisTr.children("td:eq(7)").text());
             $(".tip_cont:eq(6) input").val($thisTr.children("td:eq(7)").text());
             $("#ButtonConfirm").attr("data", $(this).attr("data"));
-        });
-
-        $(".RemarkView").click(function(){
-            $("#body_cont").show();
-            $("#BzDiv").show();
-            var sno = $(this).parents("tr").children("td:eq(1)").text();
-            $.ajax({
-                url:"AccessDataWithAjax.aspx?type=GetRemark&SearialNo="+ sno ,
-                type:"get",
-                success:function(data){
-                    if(data===""){
-                        $(".BzText").text("");
-                    }else{
-                        $(".BzText").text(data);
-                    }
-                },
-                error:function(){
-                    alert("数据访问错误！");
-                }
-            });
-            //添加备注按钮
-            $("#AddBz").click(function(){
-                
-            });
         });
         //分页页码点击事件
         $(".item2ListPage").click(function () {
@@ -222,7 +193,7 @@ $(this).ready(function (e) {
                     url: "AccessDataWithAjax.aspx?type=CancelReConfirm&otOrderSerialNo=" + otOrderSerialNo,
                     type: "get",
                     success: function (data) {
-                            if (data == "true") {
+                        if (data == "true") {
                             alert("操作成功");
                         } else {
                             alert("操作失败");
@@ -237,10 +208,59 @@ $(this).ready(function (e) {
                 return false;
             }
         });
+        ////////////////////////添加：备注显示
+        // 备注按钮
+        $(".sbutton").click(function(){
+        
+            ////////添加：保存备注信息，减少数据库的访问频率
+            var textarea = "";
+            $("#body_cont").show();
+            $("#BzDiv").show();
+            var otOrderSerialNo = $(this).attr("data");
+            $.ajax({
+                    url: "AccessDataWithAjax.aspx?type=GetRemark&otOrderSerialNo=" + otOrderSerialNo+"&randomtext="+Math.random(),
+                    type: "get",
+                    success: function (data) {
+                        if(data!="")
+                        {
+                            $(".BzText").val(data);
+                        }else{
+                            $(".BzText").val("请添加备注！");
+                        }
+                        
+                        textarea = data;
+                        //////////////////////添加：备注添加
+                        $("#AddBz").click(function(){
+                            var text = $(".BzText").val();
+                            if(text===textarea)
+                            {
+                                alert("备注未改变");
+                            }else{
+                                $.ajax({
+                                url: "AccessDataWithAjax.aspx?index=&type=UpdataRemark&otOrderSerialNo="+otOrderSerialNo+"&text="+text,
+                                type: "get",
+                                success: function (data) {
+                                    if(data=="true"){
+                                        $("#body_cont").hide();
+                                        $("#BzDiv").hide();
+                                        alert("添加成功");
+                                    }else{
+                                        alert("添加失败");
+                                    }
+                                },
+                                error: function () {
+                                    alert("数据访问失败");
+                                }
+                                });
+                            }
+                        });
+                    }
+                });
+        });
     }
     $("#OrderConfirm").click(function () {
         $.ajax({
-            url: "AccessDataWithAjax.aspx?index=1&type=OrderConfirmInit",
+            url: "AccessDataWithAjax.aspx?index=1&type=OrderConfirmQuery",
             type: "get",
             success: function (data) {
                 tempdata = data;
@@ -253,12 +273,16 @@ $(this).ready(function (e) {
             }
         });
     });
-    
-    //取消备注按钮
     $("#ButtonCancel").click(function () {
         $("#btn_tip").hide();
         $("#body_cont").hide();
     });
+    //////////////////////添加：备注隐藏
+    $("#CanBz").click(function(){
+        $("#body_cont").hide();
+        $("#BzDiv").hide();
+    });
+    
     $(".dateStart").datepicker({
         dateFormat: 'yy-mm-dd',
         defaultDate: "+1w",

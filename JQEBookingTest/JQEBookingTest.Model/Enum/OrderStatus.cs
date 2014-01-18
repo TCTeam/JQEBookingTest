@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------------------------
 //  <copyright company="同程网" file="OrderStatus.cs">
 //   Copyright(c)  V1.0
-//   作者: 吕刚
+//   作者: asp.net全体组员
 //   功能:订单状态枚举
 //    
 //  </copyright>
