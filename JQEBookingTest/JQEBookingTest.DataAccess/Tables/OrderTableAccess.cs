@@ -31,7 +31,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:OrderTable表增加操作/File:OrderTableAccess.cs/Fun:Add*/";
            StringBuilder sql = new StringBuilder();
            sql.Append(sqlDescription);
-           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] (OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketType,OTCreateTime,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber) values(@OTOrderSerialNo,@OTOrderComfirmNo,@OTOrderCreateTime,@OTTravelTime,@OTOrderPhone,@OTOrderName,@OTTicketPhone,@OTTicketName,@OTTicketNumber,@OTOrderState,@OTPayWay,@OTTicketPrice,@OTIdentityCard,@OTBrokerage,@OTTicketType,@OTCreateTime,@OTRowValid,@OTRemark,@OTScenicId,@OTHaveTicketNumber)");
+           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] (OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketTypeId,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber) values(@OTOrderSerialNo,@OTOrderComfirmNo,@OTOrderCreateTime,@OTTravelTime,@OTOrderPhone,@OTOrderName,@OTTicketPhone,@OTTicketName,@OTTicketNumber,@OTOrderState,@OTPayWay,@OTTicketPrice,@OTIdentityCard,@OTBrokerage,@OTTicketTypeId,@OTRowValid,@OTRemark,@OTScenicId,@OTHaveTicketNumber)");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@OTOrderSerialNo", ordertable.OTOrderSerialNo,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTOrderComfirmNo", ordertable.OTOrderComfirmNo,SqlDbType.NVarChar));
@@ -44,11 +44,10 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@OTTicketNumber", ordertable.OTTicketNumber,SqlDbType.Int));
            Collection.Add(new SqlParameterWrapper("@OTOrderState", ordertable.OTOrderState,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTPayWay", ordertable.OTPayWay,SqlDbType.TinyInt));
-           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", ordertable.OTTicketPrice,SqlDbType.Money));
+           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", ordertable.OTTicketPrice,SqlDbType.Decimal));
            Collection.Add(new SqlParameterWrapper("@OTIdentityCard", ordertable.OTIdentityCard,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTBrokerage", ordertable.OTBrokerage,SqlDbType.Money));
-           Collection.Add(new SqlParameterWrapper("@OTTicketType", ordertable.OTTicketType,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTCreateTime", ordertable.OTCreateTime,SqlDbType.DateTime));
+           Collection.Add(new SqlParameterWrapper("@OTBrokerage", ordertable.OTBrokerage,SqlDbType.Decimal));
+           Collection.Add(new SqlParameterWrapper("@OTTicketTypeId", ordertable.OTTicketTypeId,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTRowValid", ordertable.OTRowValid,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTRemark", ordertable.OTRemark,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTScenicId", ordertable.OTScenicId,SqlDbType.NVarChar));
@@ -67,7 +66,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:OrderTable表增加操作/File:OrderTableAccess.cs/Fun:Add*/";
            StringBuilder sql = new StringBuilder();
            sql.Append(sqlDescription);
-           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] (OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketType,OTCreateTime,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber) values(@OTOrderSerialNo,@OTOrderComfirmNo,@OTOrderCreateTime,@OTTravelTime,@OTOrderPhone,@OTOrderName,@OTTicketPhone,@OTTicketName,@OTTicketNumber,@OTOrderState,@OTPayWay,@OTTicketPrice,@OTIdentityCard,@OTBrokerage,@OTTicketType,@OTCreateTime,@OTRowValid,@OTRemark,@OTScenicId,@OTHaveTicketNumber)");
+           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] (OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketTypeId,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber) values(@OTOrderSerialNo,@OTOrderComfirmNo,@OTOrderCreateTime,@OTTravelTime,@OTOrderPhone,@OTOrderName,@OTTicketPhone,@OTTicketName,@OTTicketNumber,@OTOrderState,@OTPayWay,@OTTicketPrice,@OTIdentityCard,@OTBrokerage,@OTTicketTypeId,@OTRowValid,@OTRemark,@OTScenicId,@OTHaveTicketNumber)");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@OTOrderSerialNo", ordertable.OTOrderSerialNo,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTOrderComfirmNo", ordertable.OTOrderComfirmNo,SqlDbType.NVarChar));
@@ -80,11 +79,10 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@OTTicketNumber", ordertable.OTTicketNumber,SqlDbType.Int));
            Collection.Add(new SqlParameterWrapper("@OTOrderState", ordertable.OTOrderState,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTPayWay", ordertable.OTPayWay,SqlDbType.TinyInt));
-           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", ordertable.OTTicketPrice,SqlDbType.Money));
+           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", ordertable.OTTicketPrice,SqlDbType.Decimal));
            Collection.Add(new SqlParameterWrapper("@OTIdentityCard", ordertable.OTIdentityCard,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTBrokerage", ordertable.OTBrokerage,SqlDbType.Money));
-           Collection.Add(new SqlParameterWrapper("@OTTicketType", ordertable.OTTicketType,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTCreateTime", ordertable.OTCreateTime,SqlDbType.DateTime));
+           Collection.Add(new SqlParameterWrapper("@OTBrokerage", ordertable.OTBrokerage,SqlDbType.Decimal));
+           Collection.Add(new SqlParameterWrapper("@OTTicketTypeId", ordertable.OTTicketTypeId,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTRowValid", ordertable.OTRowValid,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTRemark", ordertable.OTRemark,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTScenicId", ordertable.OTScenicId,SqlDbType.NVarChar));
@@ -160,7 +158,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:OrderTable表增加操作/File:OrderTableAccess.cs/Fun:AddByIdentity*/";
            StringBuilder sql = new StringBuilder();
            sql.Append(sqlDescription);
-           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] (OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketType,OTCreateTime,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber) values(@OTOrderSerialNo,@OTOrderComfirmNo,@OTOrderCreateTime,@OTTravelTime,@OTOrderPhone,@OTOrderName,@OTTicketPhone,@OTTicketName,@OTTicketNumber,@OTOrderState,@OTPayWay,@OTTicketPrice,@OTIdentityCard,@OTBrokerage,@OTTicketType,@OTCreateTime,@OTRowValid,@OTRemark,@OTScenicId,@OTHaveTicketNumber)");
+           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] (OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketTypeId,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber) values(@OTOrderSerialNo,@OTOrderComfirmNo,@OTOrderCreateTime,@OTTravelTime,@OTOrderPhone,@OTOrderName,@OTTicketPhone,@OTTicketName,@OTTicketNumber,@OTOrderState,@OTPayWay,@OTTicketPrice,@OTIdentityCard,@OTBrokerage,@OTTicketTypeId,@OTRowValid,@OTRemark,@OTScenicId,@OTHaveTicketNumber)");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@OTOrderSerialNo", ordertable.OTOrderSerialNo,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTOrderComfirmNo", ordertable.OTOrderComfirmNo,SqlDbType.NVarChar));
@@ -173,11 +171,10 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@OTTicketNumber", ordertable.OTTicketNumber,SqlDbType.Int));
            Collection.Add(new SqlParameterWrapper("@OTOrderState", ordertable.OTOrderState,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTPayWay", ordertable.OTPayWay,SqlDbType.TinyInt));
-           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", ordertable.OTTicketPrice,SqlDbType.Money));
+           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", ordertable.OTTicketPrice,SqlDbType.Decimal));
            Collection.Add(new SqlParameterWrapper("@OTIdentityCard", ordertable.OTIdentityCard,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTBrokerage", ordertable.OTBrokerage,SqlDbType.Money));
-           Collection.Add(new SqlParameterWrapper("@OTTicketType", ordertable.OTTicketType,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTCreateTime", ordertable.OTCreateTime,SqlDbType.DateTime));
+           Collection.Add(new SqlParameterWrapper("@OTBrokerage", ordertable.OTBrokerage,SqlDbType.Decimal));
+           Collection.Add(new SqlParameterWrapper("@OTTicketTypeId", ordertable.OTTicketTypeId,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTRowValid", ordertable.OTRowValid,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTRemark", ordertable.OTRemark,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTScenicId", ordertable.OTScenicId,SqlDbType.NVarChar));
@@ -196,7 +193,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:OrderTable表增加操作/File:OrderTableAccess.cs/Fun:AddByIdentity*/";
            StringBuilder sql = new StringBuilder();
            sql.Append(sqlDescription);
-           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] (OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketType,OTCreateTime,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber) values(@OTOrderSerialNo,@OTOrderComfirmNo,@OTOrderCreateTime,@OTTravelTime,@OTOrderPhone,@OTOrderName,@OTTicketPhone,@OTTicketName,@OTTicketNumber,@OTOrderState,@OTPayWay,@OTTicketPrice,@OTIdentityCard,@OTBrokerage,@OTTicketType,@OTCreateTime,@OTRowValid,@OTRemark,@OTScenicId,@OTHaveTicketNumber)");
+           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] (OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketTypeId,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber) values(@OTOrderSerialNo,@OTOrderComfirmNo,@OTOrderCreateTime,@OTTravelTime,@OTOrderPhone,@OTOrderName,@OTTicketPhone,@OTTicketName,@OTTicketNumber,@OTOrderState,@OTPayWay,@OTTicketPrice,@OTIdentityCard,@OTBrokerage,@OTTicketTypeId,@OTRowValid,@OTRemark,@OTScenicId,@OTHaveTicketNumber)");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@OTOrderSerialNo", ordertable.OTOrderSerialNo,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTOrderComfirmNo", ordertable.OTOrderComfirmNo,SqlDbType.NVarChar));
@@ -209,11 +206,10 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@OTTicketNumber", ordertable.OTTicketNumber,SqlDbType.Int));
            Collection.Add(new SqlParameterWrapper("@OTOrderState", ordertable.OTOrderState,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTPayWay", ordertable.OTPayWay,SqlDbType.TinyInt));
-           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", ordertable.OTTicketPrice,SqlDbType.Money));
+           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", ordertable.OTTicketPrice,SqlDbType.Decimal));
            Collection.Add(new SqlParameterWrapper("@OTIdentityCard", ordertable.OTIdentityCard,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTBrokerage", ordertable.OTBrokerage,SqlDbType.Money));
-           Collection.Add(new SqlParameterWrapper("@OTTicketType", ordertable.OTTicketType,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTCreateTime", ordertable.OTCreateTime,SqlDbType.DateTime));
+           Collection.Add(new SqlParameterWrapper("@OTBrokerage", ordertable.OTBrokerage,SqlDbType.Decimal));
+           Collection.Add(new SqlParameterWrapper("@OTTicketTypeId", ordertable.OTTicketTypeId,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTRowValid", ordertable.OTRowValid,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTRemark", ordertable.OTRemark,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTScenicId", ordertable.OTScenicId,SqlDbType.NVarChar));
@@ -406,7 +402,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:OrderTable表更新操作/File:OrderTableAccess.cs/Fun:Update*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-           sql.Append("update ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] set OTOrderComfirmNo=@OTOrderComfirmNo,OTOrderCreateTime=@OTOrderCreateTime,OTTravelTime=@OTTravelTime,OTOrderPhone=@OTOrderPhone,OTOrderName=@OTOrderName,OTTicketPhone=@OTTicketPhone,OTTicketName=@OTTicketName,OTTicketNumber=@OTTicketNumber,OTOrderState=@OTOrderState,OTPayWay=@OTPayWay,OTTicketPrice=@OTTicketPrice,OTIdentityCard=@OTIdentityCard,OTBrokerage=@OTBrokerage,OTTicketType=@OTTicketType,OTCreateTime=@OTCreateTime,OTRowValid=@OTRowValid,OTRemark=@OTRemark,OTScenicId=@OTScenicId,OTHaveTicketNumber=@OTHaveTicketNumber where OTId=@OTId");
+           sql.Append("update ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] set OTOrderComfirmNo=@OTOrderComfirmNo,OTOrderCreateTime=@OTOrderCreateTime,OTTravelTime=@OTTravelTime,OTOrderPhone=@OTOrderPhone,OTOrderName=@OTOrderName,OTTicketPhone=@OTTicketPhone,OTTicketName=@OTTicketName,OTTicketNumber=@OTTicketNumber,OTOrderState=@OTOrderState,OTPayWay=@OTPayWay,OTTicketPrice=@OTTicketPrice,OTIdentityCard=@OTIdentityCard,OTBrokerage=@OTBrokerage,OTTicketTypeId=@OTTicketTypeId,OTRowValid=@OTRowValid,OTRemark=@OTRemark,OTScenicId=@OTScenicId,OTHaveTicketNumber=@OTHaveTicketNumber where OTId=@OTId");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@OTOrderComfirmNo", updateModel.OTOrderComfirmNo,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTOrderCreateTime", updateModel.OTOrderCreateTime,SqlDbType.DateTime));
@@ -418,11 +414,10 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@OTTicketNumber", updateModel.OTTicketNumber,SqlDbType.Int));
            Collection.Add(new SqlParameterWrapper("@OTOrderState", updateModel.OTOrderState,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTPayWay", updateModel.OTPayWay,SqlDbType.TinyInt));
-           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", updateModel.OTTicketPrice,SqlDbType.Money));
+           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", updateModel.OTTicketPrice,SqlDbType.Decimal));
            Collection.Add(new SqlParameterWrapper("@OTIdentityCard", updateModel.OTIdentityCard,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTBrokerage", updateModel.OTBrokerage,SqlDbType.Money));
-           Collection.Add(new SqlParameterWrapper("@OTTicketType", updateModel.OTTicketType,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTCreateTime", updateModel.OTCreateTime,SqlDbType.DateTime));
+           Collection.Add(new SqlParameterWrapper("@OTBrokerage", updateModel.OTBrokerage,SqlDbType.Decimal));
+           Collection.Add(new SqlParameterWrapper("@OTTicketTypeId", updateModel.OTTicketTypeId,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTRowValid", updateModel.OTRowValid,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTRemark", updateModel.OTRemark,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTScenicId", updateModel.OTScenicId,SqlDbType.NVarChar));
@@ -443,7 +438,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:OrderTable表更新操作/File:OrderTableAccess.cs/Fun:Update*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-           sql.Append("update ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] set OTOrderComfirmNo=@OTOrderComfirmNo,OTOrderCreateTime=@OTOrderCreateTime,OTTravelTime=@OTTravelTime,OTOrderPhone=@OTOrderPhone,OTOrderName=@OTOrderName,OTTicketPhone=@OTTicketPhone,OTTicketName=@OTTicketName,OTTicketNumber=@OTTicketNumber,OTOrderState=@OTOrderState,OTPayWay=@OTPayWay,OTTicketPrice=@OTTicketPrice,OTIdentityCard=@OTIdentityCard,OTBrokerage=@OTBrokerage,OTTicketType=@OTTicketType,OTCreateTime=@OTCreateTime,OTRowValid=@OTRowValid,OTRemark=@OTRemark,OTScenicId=@OTScenicId,OTHaveTicketNumber=@OTHaveTicketNumber where OTId=@OTId");
+           sql.Append("update ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] set OTOrderComfirmNo=@OTOrderComfirmNo,OTOrderCreateTime=@OTOrderCreateTime,OTTravelTime=@OTTravelTime,OTOrderPhone=@OTOrderPhone,OTOrderName=@OTOrderName,OTTicketPhone=@OTTicketPhone,OTTicketName=@OTTicketName,OTTicketNumber=@OTTicketNumber,OTOrderState=@OTOrderState,OTPayWay=@OTPayWay,OTTicketPrice=@OTTicketPrice,OTIdentityCard=@OTIdentityCard,OTBrokerage=@OTBrokerage,OTTicketTypeId=@OTTicketTypeId,OTRowValid=@OTRowValid,OTRemark=@OTRemark,OTScenicId=@OTScenicId,OTHaveTicketNumber=@OTHaveTicketNumber where OTId=@OTId");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@OTOrderComfirmNo", updateModel.OTOrderComfirmNo,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTOrderCreateTime", updateModel.OTOrderCreateTime,SqlDbType.DateTime));
@@ -455,11 +450,10 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@OTTicketNumber", updateModel.OTTicketNumber,SqlDbType.Int));
            Collection.Add(new SqlParameterWrapper("@OTOrderState", updateModel.OTOrderState,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTPayWay", updateModel.OTPayWay,SqlDbType.TinyInt));
-           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", updateModel.OTTicketPrice,SqlDbType.Money));
+           Collection.Add(new SqlParameterWrapper("@OTTicketPrice", updateModel.OTTicketPrice,SqlDbType.Decimal));
            Collection.Add(new SqlParameterWrapper("@OTIdentityCard", updateModel.OTIdentityCard,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTBrokerage", updateModel.OTBrokerage,SqlDbType.Money));
-           Collection.Add(new SqlParameterWrapper("@OTTicketType", updateModel.OTTicketType,SqlDbType.NVarChar));
-           Collection.Add(new SqlParameterWrapper("@OTCreateTime", updateModel.OTCreateTime,SqlDbType.DateTime));
+           Collection.Add(new SqlParameterWrapper("@OTBrokerage", updateModel.OTBrokerage,SqlDbType.Decimal));
+           Collection.Add(new SqlParameterWrapper("@OTTicketTypeId", updateModel.OTTicketTypeId,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTRowValid", updateModel.OTRowValid,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@OTRemark", updateModel.OTRemark,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@OTScenicId", updateModel.OTScenicId,SqlDbType.NVarChar));
@@ -620,7 +614,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:OrderTable表查询操作/File:OrderTableAccess.cs/Fun:GetOrderTableTable*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-            sql.Append("select OTId,OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketType,OTCreateTime,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] with(nolock)");
+            sql.Append("select OTId,OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketTypeId,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] with(nolock)");
             return SqlHelper.ExecuteDataTable(DatabaseManager.GetDataBase(DatabaseManager.Db_JQEBookingConfig,dbType),sql.ToString());
         }
 
@@ -643,7 +637,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:OrderTable表查询操作/File:OrderTableAccess.cs/Fun:GetOrderTableList*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-            sql.Append("select OTId,OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketType,OTCreateTime,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] with(nolock)");
+            sql.Append("select OTId,OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketTypeId,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] with(nolock)");
             IDataReader reader = SqlHelper.ExecuteReader(DatabaseManager.GetDataBase(DatabaseManager.Db_JQEBookingConfig,dbType),sql.ToString());
             return  GetList(null,reader);
         }
@@ -668,7 +662,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:OrderTable表查询操作/File:OrderTableAccess.cs/Fun:GetOrderTableList*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-            sql.Append("select OTId,OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketType,OTCreateTime,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] with(nolock) where OTId=@OTId");
+            sql.Append("select OTId,OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketTypeId,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] with(nolock) where OTId=@OTId");
             IDataReader reader = SqlHelper.ExecuteReader(DatabaseManager.GetDataBase(DatabaseManager.Db_JQEBookingConfig,dbType),sql.ToString(),new SqlParameterWrapper("@OTId",oTId,SqlDbType.Int));
             List<OrderTableModel> list= GetList(null, reader);
             if(list ==null || list.Count==0)
@@ -699,7 +693,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:OrderTable表查询操作/File:OrderTableAccess.cs/Fun:GetOrderTableTable*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-            sql.Append("select OTId,OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketType,OTCreateTime,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] with(nolock) where OTId=@OTId");
+            sql.Append("select OTId,OTOrderSerialNo,OTOrderComfirmNo,OTOrderCreateTime,OTTravelTime,OTOrderPhone,OTOrderName,OTTicketPhone,OTTicketName,OTTicketNumber,OTOrderState,OTPayWay,OTTicketPrice,OTIdentityCard,OTBrokerage,OTTicketTypeId,OTRowValid,OTRemark,OTScenicId,OTHaveTicketNumber from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[OrderTable] with(nolock) where OTId=@OTId");
            return SqlHelper.ExecuteDataTable(DatabaseManager.GetDataBase(DatabaseManager.Db_JQEBookingConfig,dbType),sql.ToString(),new SqlParameterWrapper("@OTId",oTId,SqlDbType.Int));
         }
 
@@ -1527,7 +1521,7 @@ namespace JQEBookingTest.DataAccess.Tables
                     break;
 
                 case OrderTableFields.OTTicketPrice:
-                    collection.Add(new SqlParameterWrapper("@" + fieldVariable, fieldValue, SqlDbType.Money));
+                    collection.Add(new SqlParameterWrapper("@" + fieldVariable, fieldValue, SqlDbType.Decimal));
                     break;
 
                 case OrderTableFields.OTIdentityCard:
@@ -1535,15 +1529,11 @@ namespace JQEBookingTest.DataAccess.Tables
                     break;
 
                 case OrderTableFields.OTBrokerage:
-                    collection.Add(new SqlParameterWrapper("@" + fieldVariable, fieldValue, SqlDbType.Money));
+                    collection.Add(new SqlParameterWrapper("@" + fieldVariable, fieldValue, SqlDbType.Decimal));
                     break;
 
-                case OrderTableFields.OTTicketType:
+                case OrderTableFields.OTTicketTypeId:
                     collection.Add(new SqlParameterWrapper("@" + fieldVariable, fieldValue, SqlDbType.NVarChar));
-                    break;
-
-                case OrderTableFields.OTCreateTime:
-                    collection.Add(new SqlParameterWrapper("@" + fieldVariable, fieldValue, SqlDbType.DateTime));
                     break;
 
                 case OrderTableFields.OTRowValid:
@@ -1750,14 +1740,9 @@ namespace JQEBookingTest.DataAccess.Tables
                    ordertable.OTBrokerage = Convert.ToDecimal(reader["OTBrokerage"]);
                 }
 
-                if ( (( showFields == null || showFields.Count == 0 ) || IsExistField(showFields, OrderTableFields.OTTicketType)) && reader["OTTicketType"] !=DBNull.Value)
+                if ( (( showFields == null || showFields.Count == 0 ) || IsExistField(showFields, OrderTableFields.OTTicketTypeId)) && reader["OTTicketTypeId"] !=DBNull.Value)
                 {
-                   ordertable.OTTicketType = reader["OTTicketType"].ToString();
-                }
-
-                if ( (( showFields == null || showFields.Count == 0 ) || IsExistField(showFields, OrderTableFields.OTCreateTime)) && reader["OTCreateTime"] !=DBNull.Value)
-                {
-                   ordertable.OTCreateTime = Convert.ToDateTime(reader["OTCreateTime"]);
+                   ordertable.OTTicketTypeId = reader["OTTicketTypeId"].ToString();
                 }
 
                 if ( (( showFields == null || showFields.Count == 0 ) || IsExistField(showFields, OrderTableFields.OTRowValid)) && reader["OTRowValid"] !=DBNull.Value)

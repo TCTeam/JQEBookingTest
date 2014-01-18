@@ -142,6 +142,20 @@ namespace JQEBookingTest.Model.TableModel
            get{ return db_aUserId;}
            set{ db_aUserId = value;}
         }
+
+        /// <summary>
+        /// 数据库字段：AUserLimit
+        /// </summary>
+        private byte db_aUserLimit=Convert.ToByte("0");
+
+        /// <summary>
+        /// 获取或设置用户权限（0：不能导出数据；1：可以导出数据）
+        /// </summary>
+        public byte AUserLimit
+        {
+           get{ return db_aUserLimit;}
+           set{ db_aUserLimit = value;}
+        }
     }
        
     /// <summary>
@@ -194,6 +208,11 @@ namespace JQEBookingTest.Model.TableModel
         /// 用户编号[主键]
         /// </summary>
         AUserId,
+       
+        /// <summary>
+        /// 用户权限（0：不能导出数据；1：可以导出数据）
+        /// </summary>
+        AUserLimit,
     }
      
      

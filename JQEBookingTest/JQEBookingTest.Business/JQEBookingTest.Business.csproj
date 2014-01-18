@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7B677F19-6B30-456F-96C3-0D3F5F92F8E7}</ProjectGuid>
+    <ProjectGuid>{5094DE30-1E57-4BF2-B250-B49E582E944A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JQEBookingTest.Business</RootNamespace>
@@ -44,6 +44,10 @@
     <Compile Include="TableBusiness\JQResourceServices.Extensibility.cs" />
     <Compile Include="TableBusiness\OrderTableServices.cs" />
     <Compile Include="TableBusiness\OrderTableServices.Extensibility.cs" />
+    <Compile Include="TableBusiness\RemarkServices.cs" />
+    <Compile Include="TableBusiness\RemarkServices.Extensibility.cs" />
+    <Compile Include="TableBusiness\TicketTypeServices.cs" />
+    <Compile Include="TableBusiness\TicketTypeServices.Extensibility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ExternalService\" />
@@ -52,15 +56,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JQEBookingTest.DataAccess\JQEBookingTest.DataAccess.csproj">
-      <Project>{F84F7466-3028-4088-A3C6-3F6A9B4B10A8}</Project>
+      <Project>{975B3B75-557F-4337-8892-82670C6938AC}</Project>
       <Name>JQEBookingTest.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\JQEBookingTest.IBusiness\JQEBookingTest.IBusiness.csproj">
-      <Project>{86A0FFB6-0DEB-4E83-A234-EBB60D792DD3}</Project>
+      <Project>{CE37F836-9FE8-44E4-A8B7-01EEE1EC0C08}</Project>
       <Name>JQEBookingTest.IBusiness</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JQEBookingTest.Injector\JQEBookingTest.Injector.csproj">
+      <Project>{DCDBA6F8-0674-4ED8-90A8-3DBDAC4583D3}</Project>
+      <Name>JQEBookingTest.Injector</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JQEBookingTest.Model\JQEBookingTest.Model.csproj">
-      <Project>{34D53048-4B98-48EF-9959-0686DDBB6CF4}</Project>
+      <Project>{C213E29A-9C9A-4EC7-B827-6DF6307991FE}</Project>
       <Name>JQEBookingTest.Model</Name>
     </ProjectReference>
   </ItemGroup>

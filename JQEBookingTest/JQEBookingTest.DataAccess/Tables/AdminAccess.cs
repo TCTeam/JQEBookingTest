@@ -31,7 +31,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:Admin表增加操作/File:AdminAccess.cs/Fun:Add*/";
            StringBuilder sql = new StringBuilder();
            sql.Append(sqlDescription);
-           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] (AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId) values(@AName,@APassword,@AEmail,@ATelephone,@ARowValid,@ACreateTime,@AScenicId,@AUserId)");
+           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] (AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId,AUserLimit) values(@AName,@APassword,@AEmail,@ATelephone,@ARowValid,@ACreateTime,@AScenicId,@AUserId,@AUserLimit)");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@AName", admin.AName,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@APassword", admin.APassword,SqlDbType.NVarChar));
@@ -41,6 +41,7 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@ACreateTime", admin.ACreateTime,SqlDbType.DateTime));
            Collection.Add(new SqlParameterWrapper("@AScenicId", admin.AScenicId,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@AUserId", admin.AUserId,SqlDbType.NVarChar));
+           Collection.Add(new SqlParameterWrapper("@AUserLimit", admin.AUserLimit,SqlDbType.TinyInt));
            return SqlHelper.ExecuteNonQuery(DatabaseFactory.GetWriteDatabase(DatabaseManager.Db_JQEBookingConfig),sql.ToString(),Collection) > 0;
         }
 
@@ -55,7 +56,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:Admin表增加操作/File:AdminAccess.cs/Fun:Add*/";
            StringBuilder sql = new StringBuilder();
            sql.Append(sqlDescription);
-           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] (AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId) values(@AName,@APassword,@AEmail,@ATelephone,@ARowValid,@ACreateTime,@AScenicId,@AUserId)");
+           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] (AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId,AUserLimit) values(@AName,@APassword,@AEmail,@ATelephone,@ARowValid,@ACreateTime,@AScenicId,@AUserId,@AUserLimit)");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@AName", admin.AName,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@APassword", admin.APassword,SqlDbType.NVarChar));
@@ -65,6 +66,7 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@ACreateTime", admin.ACreateTime,SqlDbType.DateTime));
            Collection.Add(new SqlParameterWrapper("@AScenicId", admin.AScenicId,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@AUserId", admin.AUserId,SqlDbType.NVarChar));
+           Collection.Add(new SqlParameterWrapper("@AUserLimit", admin.AUserLimit,SqlDbType.TinyInt));
            return SqlHelper.ExecuteNonQuery(DatabaseFactory.GetWriteDatabase(DatabaseManager.Db_JQEBookingConfig),sql.ToString(),Collection,transaction) > 0;
         }
 
@@ -136,7 +138,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:Admin表增加操作/File:AdminAccess.cs/Fun:AddByIdentity*/";
            StringBuilder sql = new StringBuilder();
            sql.Append(sqlDescription);
-           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] (AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId) values(@AName,@APassword,@AEmail,@ATelephone,@ARowValid,@ACreateTime,@AScenicId,@AUserId)");
+           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] (AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId,AUserLimit) values(@AName,@APassword,@AEmail,@ATelephone,@ARowValid,@ACreateTime,@AScenicId,@AUserId,@AUserLimit)");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@AName", admin.AName,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@APassword", admin.APassword,SqlDbType.NVarChar));
@@ -146,6 +148,7 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@ACreateTime", admin.ACreateTime,SqlDbType.DateTime));
            Collection.Add(new SqlParameterWrapper("@AScenicId", admin.AScenicId,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@AUserId", admin.AUserId,SqlDbType.NVarChar));
+           Collection.Add(new SqlParameterWrapper("@AUserLimit", admin.AUserLimit,SqlDbType.TinyInt));
            return SqlHelper.ExecuteIdentity(DatabaseFactory.GetWriteDatabase(DatabaseManager.Db_JQEBookingConfig),sql.ToString(),Collection);
         }
 
@@ -160,7 +163,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:Admin表增加操作/File:AdminAccess.cs/Fun:AddByIdentity*/";
            StringBuilder sql = new StringBuilder();
            sql.Append(sqlDescription);
-           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] (AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId) values(@AName,@APassword,@AEmail,@ATelephone,@ARowValid,@ACreateTime,@AScenicId,@AUserId)");
+           sql.Append("insert ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] (AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId,AUserLimit) values(@AName,@APassword,@AEmail,@ATelephone,@ARowValid,@ACreateTime,@AScenicId,@AUserId,@AUserLimit)");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@AName", admin.AName,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@APassword", admin.APassword,SqlDbType.NVarChar));
@@ -170,6 +173,7 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@ACreateTime", admin.ACreateTime,SqlDbType.DateTime));
            Collection.Add(new SqlParameterWrapper("@AScenicId", admin.AScenicId,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@AUserId", admin.AUserId,SqlDbType.NVarChar));
+           Collection.Add(new SqlParameterWrapper("@AUserLimit", admin.AUserLimit,SqlDbType.TinyInt));
            return SqlHelper.ExecuteIdentity(DatabaseFactory.GetWriteDatabase(DatabaseManager.Db_JQEBookingConfig),sql.ToString(),Collection,transaction);
         }
 
@@ -358,7 +362,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:Admin表更新操作/File:AdminAccess.cs/Fun:Update*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-           sql.Append("update ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] set APassword=@APassword,AEmail=@AEmail,ATelephone=@ATelephone,ARowValid=@ARowValid,ACreateTime=@ACreateTime,AScenicId=@AScenicId, where AId=@AId");
+           sql.Append("update ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] set APassword=@APassword,AEmail=@AEmail,ATelephone=@ATelephone,ARowValid=@ARowValid,ACreateTime=@ACreateTime,AScenicId=@AScenicId,AUserLimit=@AUserLimit where AId=@AId");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@APassword", updateModel.APassword,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@AEmail", updateModel.AEmail,SqlDbType.NVarChar));
@@ -366,6 +370,7 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@ARowValid", updateModel.ARowValid,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@ACreateTime", updateModel.ACreateTime,SqlDbType.DateTime));
            Collection.Add(new SqlParameterWrapper("@AScenicId", updateModel.AScenicId,SqlDbType.NVarChar));
+           Collection.Add(new SqlParameterWrapper("@AUserLimit", updateModel.AUserLimit,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@AId", aId,SqlDbType.Int));
             return SqlHelper.ExecuteNonQuery(DatabaseFactory.GetWriteDatabase(DatabaseManager.Db_JQEBookingConfig),sql.ToString(),Collection) > 0;
         }
@@ -382,7 +387,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:Admin表更新操作/File:AdminAccess.cs/Fun:Update*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-           sql.Append("update ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] set APassword=@APassword,AEmail=@AEmail,ATelephone=@ATelephone,ARowValid=@ARowValid,ACreateTime=@ACreateTime,AScenicId=@AScenicId, where AId=@AId");
+           sql.Append("update ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] set APassword=@APassword,AEmail=@AEmail,ATelephone=@ATelephone,ARowValid=@ARowValid,ACreateTime=@ACreateTime,AScenicId=@AScenicId,AUserLimit=@AUserLimit where AId=@AId");
            SqlParameterWrapperCollection Collection = new SqlParameterWrapperCollection();
            Collection.Add(new SqlParameterWrapper("@APassword", updateModel.APassword,SqlDbType.NVarChar));
            Collection.Add(new SqlParameterWrapper("@AEmail", updateModel.AEmail,SqlDbType.NVarChar));
@@ -390,6 +395,7 @@ namespace JQEBookingTest.DataAccess.Tables
            Collection.Add(new SqlParameterWrapper("@ARowValid", updateModel.ARowValid,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@ACreateTime", updateModel.ACreateTime,SqlDbType.DateTime));
            Collection.Add(new SqlParameterWrapper("@AScenicId", updateModel.AScenicId,SqlDbType.NVarChar));
+           Collection.Add(new SqlParameterWrapper("@AUserLimit", updateModel.AUserLimit,SqlDbType.TinyInt));
            Collection.Add(new SqlParameterWrapper("@AId", aId,SqlDbType.Int));
            return SqlHelper.ExecuteNonQuery(DatabaseFactory.GetWriteDatabase(DatabaseManager.Db_JQEBookingConfig),sql.ToString(),Collection,transaction) > 0;
         }
@@ -546,7 +552,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:Admin表查询操作/File:AdminAccess.cs/Fun:GetAdminTable*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-            sql.Append("select AId,AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] with(nolock)");
+            sql.Append("select AId,AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId,AUserLimit from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] with(nolock)");
             return SqlHelper.ExecuteDataTable(DatabaseManager.GetDataBase(DatabaseManager.Db_JQEBookingConfig,dbType),sql.ToString());
         }
 
@@ -569,7 +575,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:Admin表查询操作/File:AdminAccess.cs/Fun:GetAdminList*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-            sql.Append("select AId,AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] with(nolock)");
+            sql.Append("select AId,AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId,AUserLimit from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] with(nolock)");
             IDataReader reader = SqlHelper.ExecuteReader(DatabaseManager.GetDataBase(DatabaseManager.Db_JQEBookingConfig,dbType),sql.ToString());
             return  GetList(null,reader);
         }
@@ -594,7 +600,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:Admin表查询操作/File:AdminAccess.cs/Fun:GetAdminList*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-            sql.Append("select AId,AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] with(nolock) where AId=@AId");
+            sql.Append("select AId,AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId,AUserLimit from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] with(nolock) where AId=@AId");
             IDataReader reader = SqlHelper.ExecuteReader(DatabaseManager.GetDataBase(DatabaseManager.Db_JQEBookingConfig,dbType),sql.ToString(),new SqlParameterWrapper("@AId",aId,SqlDbType.Int));
             List<AdminModel> list= GetList(null, reader);
             if(list ==null || list.Count==0)
@@ -625,7 +631,7 @@ namespace JQEBookingTest.DataAccess.Tables
            string sqlDescription = "/*" + DatabaseManager.SqlDescription + "/Author:TCSmartFrameWork自动生成/For:Admin表查询操作/File:AdminAccess.cs/Fun:GetAdminTable*/";
             StringBuilder sql = new StringBuilder();
             sql.Append(sqlDescription);
-            sql.Append("select AId,AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] with(nolock) where AId=@AId");
+            sql.Append("select AId,AName,APassword,AEmail,ATelephone,ARowValid,ACreateTime,AScenicId,AUserId,AUserLimit from ["+ DatabaseManager.Db_JQEBookingDataBase+"].[dbo].[Admin] with(nolock) where AId=@AId");
            return SqlHelper.ExecuteDataTable(DatabaseManager.GetDataBase(DatabaseManager.Db_JQEBookingConfig,dbType),sql.ToString(),new SqlParameterWrapper("@AId",aId,SqlDbType.Int));
         }
 
@@ -1440,6 +1446,10 @@ namespace JQEBookingTest.DataAccess.Tables
                     collection.Add(new SqlParameterWrapper("@" + fieldVariable, fieldValue, SqlDbType.NVarChar));
                     break;
 
+                case AdminFields.AUserLimit:
+                    collection.Add(new SqlParameterWrapper("@" + fieldVariable, fieldValue, SqlDbType.TinyInt));
+                    break;
+
             }
         }
 
@@ -1596,6 +1606,11 @@ namespace JQEBookingTest.DataAccess.Tables
                 if ( (( showFields == null || showFields.Count == 0 ) || IsExistField(showFields, AdminFields.AUserId)) && reader["AUserId"] !=DBNull.Value)
                 {
                    admin.AUserId = reader["AUserId"].ToString();
+                }
+
+                if ( (( showFields == null || showFields.Count == 0 ) || IsExistField(showFields, AdminFields.AUserLimit)) && reader["AUserLimit"] !=DBNull.Value)
+                {
+                   admin.AUserLimit = Convert.ToByte(reader["AUserLimit"]);
                 }
 
                   list.Add(admin);

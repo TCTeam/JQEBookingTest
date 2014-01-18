@@ -62,7 +62,7 @@ namespace JQEBookingTest.Model.TableModel
         /// <summary>
         /// 数据库字段：OTOrderCreateTime
         /// </summary>
-        private DateTime db_oTOrderCreateTime= DateTime.Now;
+        private DateTime db_oTOrderCreateTime=Convert.ToDateTime("1900-1-1");
 
         /// <summary>
         /// 获取或设置订单创建时间
@@ -228,31 +228,17 @@ namespace JQEBookingTest.Model.TableModel
         }
 
         /// <summary>
-        /// 数据库字段：OTTicketType
+        /// 数据库字段：OTTicketTypeId
         /// </summary>
-        private string db_oTTicketType= string.Empty;
+        private string db_oTTicketTypeId= string.Empty;
 
         /// <summary>
-        /// 获取或设置门票类型
+        /// 获取或设置门票类型编号
         /// </summary>
-        public string OTTicketType
+        public string OTTicketTypeId
         {
-           get{ return db_oTTicketType;}
-           set{ db_oTTicketType = value;}
-        }
-
-        /// <summary>
-        /// 数据库字段：OTCreateTime
-        /// </summary>
-        private DateTime db_oTCreateTime= DateTime.Now;
-
-        /// <summary>
-        /// 获取或设置创建时间
-        /// </summary>
-        public DateTime OTCreateTime
-        {
-           get{ return db_oTCreateTime;}
-           set{ db_oTCreateTime = value;}
+           get{ return db_oTTicketTypeId;}
+           set{ db_oTTicketTypeId = value;}
         }
 
         /// <summary>
@@ -394,14 +380,9 @@ namespace JQEBookingTest.Model.TableModel
         OTBrokerage,
        
         /// <summary>
-        /// 门票类型
+        /// 门票类型编号
         /// </summary>
-        OTTicketType,
-       
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        OTCreateTime,
+        OTTicketTypeId,
        
         /// <summary>
         /// 是否有效(0:无效;1:有效)

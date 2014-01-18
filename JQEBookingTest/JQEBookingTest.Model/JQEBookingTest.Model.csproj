@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{34D53048-4B98-48EF-9959-0686DDBB6CF4}</ProjectGuid>
+    <ProjectGuid>{C213E29A-9C9A-4EC7-B827-6DF6307991FE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JQEBookingTest.Model</RootNamespace>
@@ -44,6 +44,8 @@
     <Compile Include="TableModel\AdminModel.cs" />
     <Compile Include="TableModel\JQResourceModel.cs" />
     <Compile Include="TableModel\OrderTableModel.cs" />
+    <Compile Include="TableModel\RemarkModel.cs" />
+    <Compile Include="TableModel\TicketTypeModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />

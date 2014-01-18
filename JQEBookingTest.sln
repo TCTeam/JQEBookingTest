@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "JQEBookingTest.Web", "JQEBookingTest\JQEBookingTest.Web\", "{FF5E2891-4EA2-49CB-88D5-800F5F584126}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "JQEBookingTest.Web", "JQEBookingTest\JQEBookingTest.Web\", "{C079D590-5A99-4AFB-A6C7-203FA9982C7B}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{7B677F19-6B30-456F-96C3-0D3F5F92F8E7}|JQEBookingTest.Business.dll;{24CB7951-7A8A-43F9-8549-41D9C44A379C}|JQEBookingTest.Common.dll;{F84F7466-3028-4088-A3C6-3F6A9B4B10A8}|JQEBookingTest.DataAccess.dll;{86A0FFB6-0DEB-4E83-A234-EBB60D792DD3}|JQEBookingTest.IBusiness.dll;{34D53048-4B98-48EF-9959-0686DDBB6CF4}|JQEBookingTest.Model.dll;{8FBA6951-0AA1-4A8F-984C-DC1756BB3B2D}|JQEBookingTest.Injector.dll;"
+		ProjectReferences = "{5094DE30-1E57-4BF2-B250-B49E582E944A}|JQEBookingTest.Business.dll;{264A2FA2-73CF-4B19-B002-ABA1885F5E8A}|JQEBookingTest.Common.dll;{975B3B75-557F-4337-8892-82670C6938AC}|JQEBookingTest.DataAccess.dll;{CE37F836-9FE8-44E4-A8B7-01EEE1EC0C08}|JQEBookingTest.IBusiness.dll;{DCDBA6F8-0674-4ED8-90A8-3DBDAC4583D3}|JQEBookingTest.Injector.dll;{C213E29A-9C9A-4EC7-B827-6DF6307991FE}|JQEBookingTest.Model.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/JQEBookingTest.Web"
 		Debug.AspNetCompiler.PhysicalPath = "JQEBookingTest\JQEBookingTest.Web\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\JQEBookingTest.Web\"
@@ -19,21 +19,21 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "JQEBookingTest.Web", "JQEBo
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "50837"
+		VWDPort = "55457"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.Business", "JQEBookingTest\JQEBookingTest.Business\JQEBookingTest.Business.csproj", "{7B677F19-6B30-456F-96C3-0D3F5F92F8E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.Business", "JQEBookingTest\JQEBookingTest.Business\JQEBookingTest.Business.csproj", "{5094DE30-1E57-4BF2-B250-B49E582E944A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.DataAccess", "JQEBookingTest\JQEBookingTest.DataAccess\JQEBookingTest.DataAccess.csproj", "{F84F7466-3028-4088-A3C6-3F6A9B4B10A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.DataAccess", "JQEBookingTest\JQEBookingTest.DataAccess\JQEBookingTest.DataAccess.csproj", "{975B3B75-557F-4337-8892-82670C6938AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.IBusiness", "JQEBookingTest\JQEBookingTest.IBusiness\JQEBookingTest.IBusiness.csproj", "{86A0FFB6-0DEB-4E83-A234-EBB60D792DD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.IBusiness", "JQEBookingTest\JQEBookingTest.IBusiness\JQEBookingTest.IBusiness.csproj", "{CE37F836-9FE8-44E4-A8B7-01EEE1EC0C08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.Model", "JQEBookingTest\JQEBookingTest.Model\JQEBookingTest.Model.csproj", "{34D53048-4B98-48EF-9959-0686DDBB6CF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.Model", "JQEBookingTest\JQEBookingTest.Model\JQEBookingTest.Model.csproj", "{C213E29A-9C9A-4EC7-B827-6DF6307991FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.Common", "JQEBookingTest\JQEBookingTest.Common\JQEBookingTest.Common.csproj", "{24CB7951-7A8A-43F9-8549-41D9C44A379C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.Common", "JQEBookingTest\JQEBookingTest.Common\JQEBookingTest.Common.csproj", "{264A2FA2-73CF-4B19-B002-ABA1885F5E8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.Injector", "JQEBookingTest\JQEBookingTest.Injector\JQEBookingTest.Injector.csproj", "{8FBA6951-0AA1-4A8F-984C-DC1756BB3B2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQEBookingTest.Injector", "JQEBookingTest\JQEBookingTest.Injector\JQEBookingTest.Injector.csproj", "{DCDBA6F8-0674-4ED8-90A8-3DBDAC4583D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,34 +41,34 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FF5E2891-4EA2-49CB-88D5-800F5F584126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF5E2891-4EA2-49CB-88D5-800F5F584126}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF5E2891-4EA2-49CB-88D5-800F5F584126}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF5E2891-4EA2-49CB-88D5-800F5F584126}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{7B677F19-6B30-456F-96C3-0D3F5F92F8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B677F19-6B30-456F-96C3-0D3F5F92F8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B677F19-6B30-456F-96C3-0D3F5F92F8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B677F19-6B30-456F-96C3-0D3F5F92F8E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F84F7466-3028-4088-A3C6-3F6A9B4B10A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F84F7466-3028-4088-A3C6-3F6A9B4B10A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F84F7466-3028-4088-A3C6-3F6A9B4B10A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F84F7466-3028-4088-A3C6-3F6A9B4B10A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{86A0FFB6-0DEB-4E83-A234-EBB60D792DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{86A0FFB6-0DEB-4E83-A234-EBB60D792DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{86A0FFB6-0DEB-4E83-A234-EBB60D792DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{86A0FFB6-0DEB-4E83-A234-EBB60D792DD3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{34D53048-4B98-48EF-9959-0686DDBB6CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34D53048-4B98-48EF-9959-0686DDBB6CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34D53048-4B98-48EF-9959-0686DDBB6CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34D53048-4B98-48EF-9959-0686DDBB6CF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{24CB7951-7A8A-43F9-8549-41D9C44A379C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24CB7951-7A8A-43F9-8549-41D9C44A379C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24CB7951-7A8A-43F9-8549-41D9C44A379C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24CB7951-7A8A-43F9-8549-41D9C44A379C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FBA6951-0AA1-4A8F-984C-DC1756BB3B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FBA6951-0AA1-4A8F-984C-DC1756BB3B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FBA6951-0AA1-4A8F-984C-DC1756BB3B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FBA6951-0AA1-4A8F-984C-DC1756BB3B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C079D590-5A99-4AFB-A6C7-203FA9982C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C079D590-5A99-4AFB-A6C7-203FA9982C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C079D590-5A99-4AFB-A6C7-203FA9982C7B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{C079D590-5A99-4AFB-A6C7-203FA9982C7B}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{5094DE30-1E57-4BF2-B250-B49E582E944A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5094DE30-1E57-4BF2-B250-B49E582E944A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5094DE30-1E57-4BF2-B250-B49E582E944A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5094DE30-1E57-4BF2-B250-B49E582E944A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{975B3B75-557F-4337-8892-82670C6938AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{975B3B75-557F-4337-8892-82670C6938AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{975B3B75-557F-4337-8892-82670C6938AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{975B3B75-557F-4337-8892-82670C6938AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE37F836-9FE8-44E4-A8B7-01EEE1EC0C08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE37F836-9FE8-44E4-A8B7-01EEE1EC0C08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE37F836-9FE8-44E4-A8B7-01EEE1EC0C08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE37F836-9FE8-44E4-A8B7-01EEE1EC0C08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C213E29A-9C9A-4EC7-B827-6DF6307991FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C213E29A-9C9A-4EC7-B827-6DF6307991FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C213E29A-9C9A-4EC7-B827-6DF6307991FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C213E29A-9C9A-4EC7-B827-6DF6307991FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{264A2FA2-73CF-4B19-B002-ABA1885F5E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{264A2FA2-73CF-4B19-B002-ABA1885F5E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{264A2FA2-73CF-4B19-B002-ABA1885F5E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{264A2FA2-73CF-4B19-B002-ABA1885F5E8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCDBA6F8-0674-4ED8-90A8-3DBDAC4583D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCDBA6F8-0674-4ED8-90A8-3DBDAC4583D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCDBA6F8-0674-4ED8-90A8-3DBDAC4583D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCDBA6F8-0674-4ED8-90A8-3DBDAC4583D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

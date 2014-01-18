@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{86A0FFB6-0DEB-4E83-A234-EBB60D792DD3}</ProjectGuid>
+    <ProjectGuid>{CE37F836-9FE8-44E4-A8B7-01EEE1EC0C08}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JQEBookingTest.IBusiness</RootNamespace>
@@ -43,6 +43,10 @@
     <Compile Include="TableBusiness\IJQResourceServices.Extensibility.cs" />
     <Compile Include="TableBusiness\IOrderTableServices.cs" />
     <Compile Include="TableBusiness\IOrderTableServices.Extensibility.cs" />
+    <Compile Include="TableBusiness\IRemarkServices.cs" />
+    <Compile Include="TableBusiness\IRemarkServices.Extensibility.cs" />
+    <Compile Include="TableBusiness\ITicketTypeServices.cs" />
+    <Compile Include="TableBusiness\ITicketTypeServices.Extensibility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ExternalService\" />
@@ -51,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JQEBookingTest.Model\JQEBookingTest.Model.csproj">
-      <Project>{34D53048-4B98-48EF-9959-0686DDBB6CF4}</Project>
+      <Project>{C213E29A-9C9A-4EC7-B827-6DF6307991FE}</Project>
       <Name>JQEBookingTest.Model</Name>
     </ProjectReference>
   </ItemGroup>
