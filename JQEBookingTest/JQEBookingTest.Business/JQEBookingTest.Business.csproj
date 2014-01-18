@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5094DE30-1E57-4BF2-B250-B49E582E944A}</ProjectGuid>
+    <ProjectGuid>{D5DBDDE9-4F0C-4182-A41B-398AAE4ED26D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JQEBookingTest.Business</RootNamespace>
@@ -40,12 +40,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableBusiness\AdminServices.cs" />
     <Compile Include="TableBusiness\AdminServices.Extensibility.cs" />
+    <Compile Include="TableBusiness\CommentsServices.cs" />
+    <Compile Include="TableBusiness\CommentsServices.Extensibility.cs" />
     <Compile Include="TableBusiness\JQResourceServices.cs" />
     <Compile Include="TableBusiness\JQResourceServices.Extensibility.cs" />
     <Compile Include="TableBusiness\OrderTableServices.cs" />
     <Compile Include="TableBusiness\OrderTableServices.Extensibility.cs" />
-    <Compile Include="TableBusiness\RemarkServices.cs" />
-    <Compile Include="TableBusiness\RemarkServices.Extensibility.cs" />
     <Compile Include="TableBusiness\TicketTypeServices.cs" />
     <Compile Include="TableBusiness\TicketTypeServices.Extensibility.cs" />
   </ItemGroup>
@@ -56,19 +56,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JQEBookingTest.DataAccess\JQEBookingTest.DataAccess.csproj">
-      <Project>{975B3B75-557F-4337-8892-82670C6938AC}</Project>
+      <Project>{6D281FF9-8D71-480F-9B2F-D5A1EE0DE178}</Project>
       <Name>JQEBookingTest.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\JQEBookingTest.IBusiness\JQEBookingTest.IBusiness.csproj">
-      <Project>{CE37F836-9FE8-44E4-A8B7-01EEE1EC0C08}</Project>
+      <Project>{A946DCBA-4D04-48AB-8A19-E03FDFDA9E8F}</Project>
       <Name>JQEBookingTest.IBusiness</Name>
     </ProjectReference>
     <ProjectReference Include="..\JQEBookingTest.Injector\JQEBookingTest.Injector.csproj">
-      <Project>{DCDBA6F8-0674-4ED8-90A8-3DBDAC4583D3}</Project>
+      <Project>{76884054-6D6F-41C6-882C-66BFDC50B7C6}</Project>
       <Name>JQEBookingTest.Injector</Name>
     </ProjectReference>
     <ProjectReference Include="..\JQEBookingTest.Model\JQEBookingTest.Model.csproj">
-      <Project>{C213E29A-9C9A-4EC7-B827-6DF6307991FE}</Project>
+      <Project>{0E94341C-2B96-49F6-BE04-1175BD44F5AB}</Project>
       <Name>JQEBookingTest.Model</Name>
     </ProjectReference>
   </ItemGroup>

@@ -21,7 +21,8 @@ public partial class HomePage : BasePage
     // id号
     private string scenicId = string.Empty;
     private string userName = string.Empty;
-    
+    private string userLimit = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         // 判断Cookie记录，确定用户已经登陆
@@ -29,12 +30,14 @@ public partial class HomePage : BasePage
         {
             userName = Request.Cookies["userName"].Value;
             scenicId = new AdminServices().GetUserID(userName);
+            userLimit = (new AdminServices().GetUserMode(userName));
+
             if (Session["userName"] == null)
             {
                 // 保存用户信息
-                Session.Add("userName", Request.Cookies["userName"].Value);
+                Session.Add("userName", userName);
                 Session.Add("ScenicId", scenicId);
-
+                Session.Add("UserLimit",userLimit);
                 // 页面添加选项
                 LinkButton user = new LinkButton();
                 user.Text = (string)Session["userName"];
@@ -55,17 +58,32 @@ public partial class HomePage : BasePage
             // 检查Cookie确定用户已经拥有合适身份浏览过网页
             if (Session["userName"] != null)
             {
+                userName = (string)Session["userName"];
+                scenicId = (string)Session["ScenicId"];
+                userLimit = (string)Session["UserLimit"];
+
                 // 页面添加选项
                 LinkButton user = new LinkButton();
                 user.Text = (string)Session["userName"];
                 user.Attributes.Add("href", "Change.aspx");
                 Place.Controls.Add(user);
+
+                
             }
             else
             {
                 // 返回登录页面
                 Response.Redirect("Default.aspx");
             }
+        }
+        SetLimit(userLimit);
+    }
+
+    private void SetLimit(string limit)
+    {
+        if (limit == "1")
+        {
+            DataOut.Visible = false;
         }
     }
 

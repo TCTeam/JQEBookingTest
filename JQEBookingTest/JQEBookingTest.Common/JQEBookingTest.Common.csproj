@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{264A2FA2-73CF-4B19-B002-ABA1885F5E8A}</ProjectGuid>
+    <ProjectGuid>{8D1CC95C-3E70-43AA-9FF8-142C3A2B15E5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JQEBookingTest.Common</RootNamespace>

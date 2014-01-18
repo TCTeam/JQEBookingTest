@@ -11,7 +11,7 @@
 	{
 		var pwdVal = document.getElementById("userPwd").value;	
 		var pwdChe = document.getElementById("checkPwd").value;
-		var reg = /^[{A-Z},{a-z},0-9]{8}$/;
+		var reg = /^[A-Z],[a-z],0-9]{8}$/;
 		
         // 是否一致
 		if(pwdVal === pwdChe) {
@@ -187,6 +187,5 @@ body{
         </span>
     </div>
  </form>
-    </form>
 </body>
 </html>

@@ -31,10 +31,9 @@
             <li>
             	<a href="Default.aspx">退出</a>
             </li>
-            
         </ul>
     </div>
-  <!--   PageHeadEnd-->
+ <!--   PageHeadEnd-->
   <!--   Action-->
     <div class="actionbar">
     	<ul >
@@ -42,7 +41,8 @@
             <li id="OrderQuery">订单查询</li>
             <li id="OrderConfirm">订单确认</li>
             <li id="OrderSta">订单统计</li>
-            <li>数据导出</li>
+            <li id="DataOut" runat="server">数据导出</li>
+            <li id="Comments">点评管理</li>
         </ul>
     </div>
     <div class="content">
@@ -101,14 +101,14 @@
                         <li>
                             <span>门&nbsp;票&nbsp;排&nbsp;序&nbsp;：&nbsp&nbsp&nbsp;</span>
                             <span>
-                                <select name="ticketSort">
+                                <select id="Item1ticketSort" name="ticketSort">
                                     <option value="drawTicketName">取票人姓名</option>
                                     <option value="drawTicketTime">取票时间</option>
                                     <option value="buyTime">下单时间</option>
                                 </select>
                             </span>
                             <span>
-                            	<select name="sortType">
+                            	<select id="Item1SortType" name="sortType">
                                     <option value="up">升序</option>
                                     <option value="down">降序</option>
                                 </select>
@@ -123,7 +123,7 @@
                         <li>
                              <span>支付方式：</span>
                             <span>
-                            	<select name="payType">
+                            	<select id="Item1PayType" name="payType">
                                     <option value="noPlace" >不限</option>
                                     <option value="viewPay" >景区到付</option>
                                     <option value="onlinePay" >在线支付</option>
@@ -136,7 +136,7 @@
                     
                      <div class="btn" >
                       <span><input id="ButtonItem2Query" class="item2input" type="button" value="查询"/></span>
-                      <span><input class="putout" type="button" value="导出数据"/></span>
+                     <%-- <span><input class="putout" type="button" value="导出数据"/></span>--%>
                   </div>
                   
                  
@@ -153,6 +153,7 @@
                         <td width="100px">下单时间</td>
                         <td width="80px">旅游时间</td>
                         <td width="40px">票数</td>
+                        <td width="80px">实际取票数</td>
                         <td width="100px">单价</td>
                         <td width="100px">总金额</td>
                         <td width="110px">门票类型</td>
@@ -295,18 +296,18 @@
                             </span>   
                         </li>
                          <li>
-                         		<input type="radio" name="chooseOrderByDate" id="chOrByDate" value="ordertime" /><label for="chOrByDate">下单日期：</label>
+                         		<input type="radio" name="chooseOrderByDate" id="chOrByDate" value="ordertime" checked="checked" /><label for="chOrByDate">下单日期：</label>
                                 <span>从</span>
-                                <span><input type="text" value="" class="dateStart" name="dateStart1"/></span>
+                                <span><input type="text" value="" class="dateStart" id="Item4dateStart1"/></span>
                                 <span>到</span>
-                                <span><input type="text" value="" class="dateEnd" id="dateEnd1"/><span>
+                                <span><input type="text" value="" class="dateEnd" id="Item4dateEnd1"/></span>
                             </li>
                             <li>
                          		<input type="radio" name="chooseOrderByDate" id="chOrByDate2" value="taketime" /><label for="chOrByDate2">取票日期：</label>
                                 <span>从</span>
-                                <span><input type="text" value="" class="dateStart2" id="dataStart2"/></span>
+                                <span><input type="text" value="" class="dateStart2" id="Item4dateStart2"/></span>
                                 <span>到</span>
-                                <span><input type="text" value="" class="dateEnd2" id="dataEnd2"/><span>
+                                <span><input type="text" value="" class="dateEnd2" id="Item4dateEnd2"/></span>
                             </li>
                     </ul>
                         <ul class="PayWay">
@@ -324,7 +325,7 @@
                         <td width="88px">取票人手机</td>
                         <td width="88px">下单时间</td>
                         <td width="88px">旅游时间</td>
-                        <td width="120px">实到人数</td>
+                        <td width="120px">票数</td>
                         <td width="200px">门票类型</td>
                         
                     </tr>
@@ -418,9 +419,27 @@
             </div>
         </div>
         <!--数据导出 End-->
+        <!--点评管理-->
+        <div class="contentItem6" style="display: none">
+            <div class="form">
+                <table id="Item6Table" class="selectTab">
+                    <tr class="tabtitle">
+                       <td><input type="checkbox" /></td>
+                       <td>订单流水号</td>
+                       <td>用户名</td>
+                       <td>点评内容</td>
+                       <td>点评日期</td>
+                       <td>回复内容</td>
+                       <td>状态</td>
+                       <td>操作</td>
+                    </tr>
+                    <!--遍历数据形成表格,后台数据返回到这里-->
+                </table>
+            </div>
+        </div>
+        <!--点评管理 End-->
     </div>
-    <div id="body_cont" class="tip_window" style="display: none;">
-    </div>
+    <div id="body_cont" class="tip_window" style="display: none;"></div>
     <div id="btn_tip" class="tip_window" style="display: none;">
         <div id="tip_up">
             <span id="tip_title">确认提示</span><span id="tip_close" onclick="javascript:closeTip()"></span>
@@ -480,15 +499,15 @@
             </div>
         </div>
     </div>
-    <div id="BzDiv" class="tip_window" style="display:">
+    <div id="BzDiv" class="tip_window" style="display:none;">
         <div class="BzDivUp">
             <span class="BzTitle">添加备注</span>
         </div>
         <div class="BzDivDown">
-            <textarea class="BzText" cols="51" rows="8" placeholder="在此添加备注"></textarea>
+            <textarea class="BzText" cols="46" rows="8" placeholder="在此添加备注"></textarea>
             <div>
                 <input class="BzBtn" id="AddBz" type="button" value="添加" />
-                <input class="BzBtn" type="button" value="取消" onclick="" />
+                <input class="BzBtn" id="CanBz" type="button" value="取消" onclick="" />
             </div>
         </div>
     </div>

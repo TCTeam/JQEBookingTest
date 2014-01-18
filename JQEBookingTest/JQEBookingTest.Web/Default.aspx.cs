@@ -14,7 +14,7 @@ public partial class Default2 : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
         Ran check = new Ran();
         if (Request.Cookies["userName"] != null)
         {
@@ -26,14 +26,14 @@ public partial class Default2 : BasePage
     protected void loginBtn_Click(object sender, EventArgs e)
     {
         // 用户名及密码获取
-        string name = userName.Text.Trim() ;
+        string name = userName.Text.Trim();
         string password = userPwd.Text.Trim();
         AdminServices Lg = new AdminServices();
 
         // 检查Cookie之中是否拥有有效的登陆记录
         if (Request.Cookies["userName"] == null)
         {
-            if (Lg.CheckLogin(name, password)!=null)
+            if (Lg.CheckLogin(name, password) != null)
             {
                 if (Session["CheckCode"].ToString() == validCode.Text.Trim())
                 {
@@ -41,7 +41,8 @@ public partial class Default2 : BasePage
                     {
                         Session.Add("userName", name);
                         Session.Add("AId", Lg.GetUserID(name));
-                        
+                        Session.Add("UserLimit", Lg.GetUserMode(name));
+
                         Response.Cookies["userName"].Value = name;
                         Response.Cookies["userPwd"].Value = password;
                         Response.Cookies["userName"].Expires = DateTime.Now.AddDays(7);
@@ -52,6 +53,8 @@ public partial class Default2 : BasePage
                     {
                         Session.Add("userName", name);
                         Session.Add("AId", Lg.GetUserID(name));
+                        Session.Add("UserLimit", Lg.GetUserMode(name));
+
                         Response.Redirect("~/HomePage.aspx");
 
                     }
@@ -76,10 +79,12 @@ public partial class Default2 : BasePage
         {
             if (Session["CheckCode"].ToString() == validCode.Text.Trim())
             {
-                if (Lg.CheckLogin(Request.Cookies["userName"].Value.ToString(),Request.Cookies["userPwd"].Value.ToString())!=null)
+                if (Lg.CheckLogin(Request.Cookies["userName"].Value.ToString(), Request.Cookies["userPwd"].Value.ToString()) != null)
                 {
                     Session.Add("userName", name);
                     Session.Add("AId", Lg.GetUserID(name));
+                    Session.Add("UserLimit", Lg.GetUserMode(name));
+
                     Response.Redirect("~/HomePage.aspx");
                 }
                 else

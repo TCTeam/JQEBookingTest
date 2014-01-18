@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C213E29A-9C9A-4EC7-B827-6DF6307991FE}</ProjectGuid>
+    <ProjectGuid>{0E94341C-2B96-49F6-BE04-1175BD44F5AB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JQEBookingTest.Model</RootNamespace>
@@ -36,15 +36,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\CommentsState.cs" />
     <Compile Include="Enum\DataBaseType.cs" />
+    <Compile Include="Enum\OrderStatus.cs" />
     <Compile Include="Enum\OrderType.cs" />
+    <Compile Include="Enum\PayWay.cs" />
     <Compile Include="Enum\QueryCondition.cs" />
     <Compile Include="Enum\QueryOperator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableModel\AdminModel.cs" />
+    <Compile Include="TableModel\CommentsModel.cs" />
     <Compile Include="TableModel\JQResourceModel.cs" />
     <Compile Include="TableModel\OrderTableModel.cs" />
-    <Compile Include="TableModel\RemarkModel.cs" />
     <Compile Include="TableModel\TicketTypeModel.cs" />
   </ItemGroup>
   <ItemGroup>

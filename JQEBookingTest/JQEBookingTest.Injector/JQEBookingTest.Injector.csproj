@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DCDBA6F8-0674-4ED8-90A8-3DBDAC4583D3}</ProjectGuid>
+    <ProjectGuid>{76884054-6D6F-41C6-882C-66BFDC50B7C6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JQEBookingTest.Injector</RootNamespace>

@@ -36,7 +36,7 @@ namespace JQEBookingTest.Business.TableBusiness
             List<AdminWhereFields> whereFileds = new List<AdminWhereFields>();
             whereFileds.Add(new AdminWhereFields(AdminFields.AName, userName));
             whereFileds.Add(new AdminWhereFields(AdminFields.APassword, userPwd));
-            DataTable dt = DependencyInjector.GetInstance<IAdminServices>().GetAdminTable(show,whereFileds,null);
+            DataTable dt = DependencyInjector.GetInstance<IAdminServices>().GetAdminTable(show, whereFileds, null);
             string result = null;
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -59,6 +59,25 @@ namespace JQEBookingTest.Business.TableBusiness
             if (dt != null && dt.Rows.Count > 0)
             {
                 result = Convert.ToString(dt.Rows[0]["AId"]);
+            }
+            return result;
+        }
+        
+
+        /// <summary>
+        /// 获取用户权限
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public string GetUserMode(string userName)
+        {
+            List<AdminWhereFields> whereFileds = new List<AdminWhereFields>();
+            whereFileds.Add(new AdminWhereFields(AdminFields.AName, userName));
+            DataTable dt = DependencyInjector.GetInstance<IAdminServices>().GetAdminTable(whereFileds);
+            string result = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                result = Convert.ToString(dt.Rows[0]["AUserLimit"]);
             }
             return result;
         }
@@ -107,5 +126,5 @@ namespace JQEBookingTest.Business.TableBusiness
             return right;
         }
     }
-    
+
 }

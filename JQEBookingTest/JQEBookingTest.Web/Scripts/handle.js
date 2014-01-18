@@ -1,9 +1,25 @@
 $(this).ready(function (e) {
-    //订单查询页面查询按钮点击
+    //点评管理页面
+    $("#Comments").click(function () {
+        $.ajax({
+            url: "AccessDataWithAjax.aspx?index=1&type=CommentsQuery",
+            type: "get",
+            success: function (data) {
+                tempdata = data;
+                $("#Item6Table tr:not('.tabtitle')").parent("tbody").remove();
+                document.getElementById("Item6Table").innerHTML += data;
+                OrderConfirmInit();
+            },
+            error: function () {
+                alert("数据访问失败");
+            }
+        });
+    });
+    //订单查询页面
     $("#OrderQuery").click(function () {
         $.ajax({
             url: "AccessDataWithAjax.aspx?index=1&type=OrderQuery",
-            type: "post",
+            type: "get",
             success: function (data) {
                 tempdata = data;
                 $("#TabelOrderQuery tr:not('.tabtitle')").parent("tbody").remove();
@@ -16,7 +32,7 @@ $(this).ready(function (e) {
         });
     });
     //
-    //订单确认页面查询按钮点击
+    //订单查询页面查询按钮点击
     $("#ButtonItem2Query").click(function () {
         var orderComfirmNo = $("#orderComfirmNo").val();
         var takeTicketTime = $("#takeTicketTime").val();
@@ -24,9 +40,9 @@ $(this).ready(function (e) {
         var identityId = $("#identityId").val();
         var takeTicketName = $("#takeTicketName").val()
         var takeTicketPhone = $("#takeTicketPhone").val();
-        var ticketSort = $("#ticketSort option:selected").text();
-        var sortType = $("input:radio[name='sortType']:checked").val();
-        var payType = $("input:radio[name='payType']:checked").val();
+        var ticketSort = $("#Item1ticketSort option:selected").val();
+        var sortType = $("#Item1SortType option:selected").val();
+        var payType = $("#Item1PayType option:selected").val();
         $.ajax({
             url: "AccessDataWithAjax.aspx?index=1&type=OrderQuery&orderComfirmNo=" + orderComfirmNo + "&takeTicketTime=" + takeTicketTime + "&orderNo=" + orderNo + "&identityId=" + identityId + "&takeTicketName=" + takeTicketName + "&takeTicketPhone=" + takeTicketPhone + "&ticketSort=" + ticketSort + "&sortType=" + sortType + "&payType=" + payType,
             type: "get",
@@ -52,7 +68,7 @@ $(this).ready(function (e) {
         var payType = $("input:radio[name='Item3payType']:checked").val();
         $.ajax({
             url: "AccessDataWithAjax.aspx?index=1&type=OrderConfirmQuery&chooseDate=" + chooseDate + "&dateStart=" + dateStart + "&dateEnd=" + dateEnd + "&otOrderSerialNo=" + orderSerialNum + "&orderConfirmNum=" + orderConfirmNum + "&orderName=" + orderName + "&ticketPhone=" + ticketPhone + "&ticketSort=" + ticketSort + "&payType=" + payType,
-            type: "post",
+            type: "get",
             success: function (data) {
                 tempdata = data;
                 $("#TableOrderConfirm tr:not('.tabtitle')").parent("tbody").remove();
@@ -64,14 +80,14 @@ $(this).ready(function (e) {
     });
     $("#ButtonItem4Query").click(function () {
         var conStion = $("input:radio[name='chooseOrderByDate']:checked").val();
-        var dateStart1 = $("#dataStart1").val();
-        var dateEnd1 = $("#dataEnd1").val();
-        var dateStart2 = $("#dataStart2").val();
-        var dateEnd2 = $("#dataEnd2").val();
+        var dateStart1 = $("#Item4dateStart1").val();
+        var dateEnd1 = $("#Item4dateEnd1").val();
+        var dateStart2 = $("#Item4dateStart2").val();
+        var dateEnd2 = $("#Item4dateEnd2").val();
         var chooseOrder = $("#item4payType option:selected").val();
         $.ajax({
-            url: "AccessDataWithAjax.aspx?index=1&type=OrderStatistical&chooseOrder=" + chooseOrder + "&dateStart1=" + dateStart1 + "$dateEnd1=" + dateEnd1 + "&dateStart2=" + dateStart2 + "&dateEnd2=" + dateEnd2 + "&conStion=" + conStion,
-            type: "post",
+            url: "AccessDataWithAjax.aspx?index=1&type=OrderStatistical&chooseOrder=" + chooseOrder + "&dateStart1=" + dateStart1 + "&dateEnd1=" + dateEnd1 + "&dateStart2=" + dateStart2 + "&dateEnd2=" + dateEnd2 + "&conStion=" + conStion,
+            type: "get",
             success: function (data) {
                 tempdata = data;
                 $("#Chitem4 tr:not('.tabtitle')").parent("tbody").remove();
@@ -79,12 +95,13 @@ $(this).ready(function (e) {
                 OrderConfirmInit();
             }
         });
+        $(this).blur();
     });
 
     $("#OrderSta").click(function () {
         $.ajax({
             url: "AccessDataWithAjax.aspx?index=1&type=OrderStatistical",
-            type: "post",
+            type: "get",
             success: function (data) {
                 tempdata = data;
                 $("#Chitem4 tr:not('.tabtitle')").parent("tbody").remove();
@@ -99,7 +116,7 @@ $(this).ready(function (e) {
         var otOrderSerialNo = $(this).attr("data");
         $.ajax({
             url: "AccessDataWithAjax.aspx?type=OrderConfirmOk&otOrderSerialNo=" + otOrderSerialNo + "&realTicketNum=" + realTicketNum,
-            type: "post",
+            type: "get",
             success: function (data) {
                 if (data == "true") {
                     alert("订单确认成功");
@@ -112,10 +129,15 @@ $(this).ready(function (e) {
             }
         });
     });
-
+    // 取消按钮响应
+    $("#CanBz").click(function(){
+        $("#body_cont").hide();
+        $("#BzDiv").hide();
+    });
 
     //订单确认页面初始化
     function OrderConfirmInit() {
+        
         $(".ChooseTicketNum").click(function () {
             //显示再次确认弹窗
             $("#btn_tip").show();
@@ -131,11 +153,35 @@ $(this).ready(function (e) {
             $(".tip_cont:eq(6) input").val($thisTr.children("td:eq(7)").text());
             $("#ButtonConfirm").attr("data", $(this).attr("data"));
         });
+
+        $(".RemarkView").click(function(){
+            $("#body_cont").show();
+            $("#BzDiv").show();
+            var sno = $(this).parents("tr").children("td:eq(1)").text();
+            $.ajax({
+                url:"AccessDataWithAjax.aspx?type=GetRemark&SearialNo="+ sno ,
+                type:"get",
+                success:function(data){
+                    if(data===""){
+                        $(".BzText").text("");
+                    }else{
+                        $(".BzText").text(data);
+                    }
+                },
+                error:function(){
+                    alert("数据访问错误！");
+                }
+            });
+            //添加备注按钮
+            $("#AddBz").click(function(){
+                
+            });
+        });
         //分页页码点击事件
         $(".item2ListPage").click(function () {
             $.ajax({
                 url: "AccessDataWithAjax.aspx?index=" + $(this).text() + "&type=OrderQuery",
-                type: "post",
+                type: "get",
                 success: function (data) {
                     tempdata = data;
                     $("#TabelOrderQuery tr:not('.tabtitle')").parent("tbody").remove();
@@ -147,7 +193,7 @@ $(this).ready(function (e) {
         $(".item3ListPage").click(function () {
             $.ajax({
                 url: "AccessDataWithAjax.aspx?index=" + $(this).text() + "&type=OrderConfirmInit",
-                type: "post",
+                type: "get",
                 success: function (data) {
                     tempdata = data;
                     $("#TableOrderConfirm tr:not('.tabtitle')").parent("tbody").remove();
@@ -159,7 +205,7 @@ $(this).ready(function (e) {
         $(".item4ListPage").click(function () {
             $.ajax({
                 url: "AccessDataWithAjax.aspx?index=" + $(this).text() + "&type=OrderStatistical",
-                type: "post",
+                type: "get",
                 success: function (data) {
                     tempdata = data;
                     $("#Chitem4 tr:not('.tabtitle')").parent("tbody").remove();
@@ -174,9 +220,9 @@ $(this).ready(function (e) {
                 var otOrderSerialNo = $(this).attr("data");
                 $.ajax({
                     url: "AccessDataWithAjax.aspx?type=CancelReConfirm&otOrderSerialNo=" + otOrderSerialNo,
-                    type: "post",
+                    type: "get",
                     success: function (data) {
-                        if (data == "true") {
+                            if (data == "true") {
                             alert("操作成功");
                         } else {
                             alert("操作失败");
@@ -195,7 +241,7 @@ $(this).ready(function (e) {
     $("#OrderConfirm").click(function () {
         $.ajax({
             url: "AccessDataWithAjax.aspx?index=1&type=OrderConfirmInit",
-            type: "post",
+            type: "get",
             success: function (data) {
                 tempdata = data;
                 $("#TableOrderConfirm tr:not('.tabtitle')").parent("tbody").remove();
@@ -207,6 +253,8 @@ $(this).ready(function (e) {
             }
         });
     });
+    
+    //取消备注按钮
     $("#ButtonCancel").click(function () {
         $("#btn_tip").hide();
         $("#body_cont").hide();
@@ -251,9 +299,6 @@ $(this).ready(function (e) {
         dateFormat: 'yy-mm-dd',
         defaultDate: "+1w",
         numberOfMonths: 1,
-        onClose: function (selectedDate) {
-            $(".dateH").datepicker("option", "maxDate", selectedDate);
-        }
     });
     /*动作条控制*/
     $(".actionbar li").click(function () {
@@ -323,7 +368,7 @@ function GetBaseData() {
         $(this).click(function () {
             $.ajax({
                 url: "AccessDataWithAjax.aspx?index=" + $(this).html() + "&&type=orderNow",
-                typr: "post",
+                typr: "get",
                 success: function (data) {
                     $("#Chitem1 tr:not('.tabtitle')").parent("tbody").remove();
                     document.getElementById("Chitem1").innerHTML += data;
@@ -338,7 +383,7 @@ function GetBaseData() {
     $("#item2input").click(function () {
         $.ajax({
             url: "AccessDataWithAjax.aspx?index=1&&type=Search&&orderComfirmNo=" + $("#orderComfirmNo").val() + "&&takeTicketTime=" + $("#takeTicketTime").val() + "&&orderNo=" + $("#orderNo").val() + "&&takeTicketName" + $("#takeTicketName").val() + "&&ticketSort=" + $("#ticketSort option:selected").text() + "&&sortType=" + $("#sortType option:selected").text() + "&&takeTicketPhone=" + $("#takeTicketPhone").val() + "&&payType=" + $("#payType option:selected").text() + "&&identityId=" + $("#identityId").val(),
-            type: "post",
+            type: "get",
             success: function (data) {
                 $("#Chitem1 tr:not('.tabtitle')").parent("tbody").remove();
                 document.getElementById("Chitem1").innerHTML += data;
@@ -360,7 +405,7 @@ function GetBaseData() {
 
         $.ajax({
             url: "AccessDataWithAjax.aspx?index=1&&type=" + res + "&&starttime=" + $(".starttime1").val() + "&&endtime=" + $(".endtime1").val(),
-            type: "post",
+            type: "get",
             success: function (data) {
                 $("#Chitem1 tr:not('.tabtitle')").parent("tbody").remove();
                 document.getElementById("Chitem4").innerHTML += data;

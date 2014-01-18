@@ -10,14 +10,13 @@ using JQEBookingTest.Injector;
 using JQEBookingTest.Model.Enum;
 using JQEBookingTest.Model.TableModel;
 
-public partial class Change :BasePage
+public partial class Change : System.Web.UI.Page
 {
     // 用户身份
     string username = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        // 用户身份获取
         username = Request["username"];
         userPwd.TextMode = TextBoxMode.Password;
         userPwdCheck.TextMode = TextBoxMode.Password;
