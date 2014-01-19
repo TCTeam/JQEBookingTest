@@ -1,14 +1,15 @@
 $(this).ready(function (e) {
-     //navSon展开
-    $("#OrderQuery").hover(function(){
-        var $son = $("#OrderQuery .actSon");
-        if($son.is(":visible")){
-            $son.hide();
-        }else
-        {
-            $son.show();
-        }
-    });
+//     //navSon展开
+//    $("#OrderQuery").hover(function(){
+//        var $son = $("#OrderQuery .actSon");
+//        if($son.is(":visible")){
+//            $son.hide();
+//        }else
+//        {
+//            $son.show();
+//        }
+//    });
+
    //点评管理页面
 	$("#Comments").click(function() {
 		$.ajax({
@@ -314,10 +315,11 @@ $(this).ready(function (e) {
                                 url: "AccessDataWithAjax.aspx?index=&type=UpdataRemark&otOrderSerialNo="+otOrderSerialNo+"&text="+text,
                                 type: "get",
                                 success: function (data) {
-                                    if(data=="true"){
+                                    if(data==="true"){
                                         $("#body_cont").hide();
                                         $("#BzDiv").hide();
                                         alert("添加成功");
+                                        return;
                                     }else{
                                         alert("添加失败");
                                     }
@@ -327,9 +329,11 @@ $(this).ready(function (e) {
                                 }
                                 });
                             }
+                            return;
                         });
                     }
                 });
+                return;
         });
         //分页页码点击事件
         $(".item2ListPage").click(function () {

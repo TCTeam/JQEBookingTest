@@ -28,7 +28,7 @@
                 <ul>
                     <li><a class="nowPlace" onclick="">首页</a></li>
                     <li id="OrderQuery"><a onclick="">订单查询</a>
-                        <div class="actSon none"><a onclick="">自定义查询</a></div>
+                       <%-- <div class="actSon none"><a onclick="">自定义查询</a></div>--%>
                     </li>
                     <li id="OrderConfirm"><a onclick="">订单确认</a></li>
                     <li id="OrderSta"><a onclick="">订单统计</a></li>
@@ -41,30 +41,34 @@
     <div class="clear"></div>
     <div class="content">
     <!--Item1-->
-    	<div class="contentItem1">
-        	<ul>
-            	<li class="aItem1">
-                	<p class="Chandle">订单查询</p>
-                    <div><p>按照游客下单日期、取票日期、订单号、取票人姓名和手机，进行订单查询功能 </p></div>
-                </li>   	
-                <li class="bItem1">
-                	<p class="Chandle">订单确认</p>
-                    <div><p>对客户购票票数进行确认。方便景区与同程网之间的订单确认。 </p></div>
-                </li>
-            	<li class="cItem1">
-                	<p class="Chandle">订单统计</p>
-                    <div><p>按照游客下单日期、取票日期、付费类型对已核单的账单进行统计</p></div>
-                </li>
-                <li style="display:none;">
-                    <p class="Chandle">点评管理</p>
-                </li>   	
-                <li class="dItem1">
-                	<p class="Chandle">数据导出</p>
-                    <div><p>按照游客下单日期、取票日期、付费类型对数据导出（高级管理员权限）</p></div>
-                </li>
-            </ul>
-        </div>
-     <!--Item1 End-->
+      <!--Item1-->
+    <div class="contentItem1">
+    <div id="picBox" class="slideBox">
+        <ul class="items">
+            <li><a href="#" target="_blank" title="中国第一水乡——江苏周庄"><img src="images/jq1.jpg"></a></li>
+            <li><a href="#" target="_blank" title="犹在画中行——云南普者黑"><img src="images/jq2.jpg"></a></li>
+            <li><a href="#" target="_blank" title="世界自然遗产——湖南张家界"><img src="images/jq3.jpg"></a></li>
+            <li><a href="#" target="_blank" title="人间天堂，童话九寨——四川九寨沟"><img src="images/jq4.jpg"></a></li>
+         </ul>
+    </div>
+    <script type="text/javascript">
+        /*
+        * jQuery图片轮播
+        * Author: Hgl
+        */
+        (function ($) { $.fn.slideBox = function (options) { var defaults = { direction: 'left', duration: 0.6, easing: 'swing', delay: 3, startIndex: 0, hideClickBar: true, clickBarRadius: 5, hideBottomBar: false }; var settings = $.extend(defaults, options || {}); var wrapper = $(this), ul = wrapper.children('ul.items'), lis = ul.find('li'), firstPic = lis.first().find('img'); var li_num = lis.size(), li_height = 0, li_width = 0; var order_by = 'ASC'; var init = function () { if (!wrapper.size()) return false; li_height = lis.first().height(); li_width = lis.first().width(); wrapper.css({ width: li_width + 'px', height: li_height + 'px' }); lis.css({ width: li_width + 'px', height: li_height + 'px' }); if (settings.direction == 'left') { ul.css('width', li_num * li_width + 'px') } else { ul.css('height', li_num * li_height + 'px') }; ul.find('li:eq(' + settings.startIndex + ')').addClass('active'); if (!settings.hideBottomBar) { var tips = $('<div class="tips"></div>').css('opacity', 0.6).appendTo(wrapper); var title = $('<div class="title"></div>').html(function () { var active = ul.find('li.active').find('a'), text = active.attr('title'), href = active.attr('href'); return $('<a>').attr('href', href).text(text) }).appendTo(tips); var nums = $('<div class="nums"></div>').hide().appendTo(tips); lis.each(function (i, n) { var a = $(n).find('a'), text = a.attr('title'), href = a.attr('href'), css = ''; i == settings.startIndex && (css = 'active'); $('<a>').attr('href', href).text(text).addClass(css).css('borderRadius', settings.clickBarRadius + 'px').mouseover(function () { $(this).addClass('active').siblings().removeClass('active'); ul.find('li:eq(' + $(this).index() + ')').addClass('active').siblings().removeClass('active'); start(); stop() }).appendTo(nums) }); if (settings.hideClickBar) { tips.hover(function () { nums.animate({ top: '0px' }, 'fast') }, function () { nums.animate({ top: tips.height() + 'px' }, 'fast') }); nums.show().delay(2000).animate({ top: tips.height() + 'px' }, 'fast') } else { nums.show() } }; lis.size() > 1 && start() }; var start = function () { var active = ul.find('li.active'), active_a = active.find('a'); var index = active.index(); if (settings.direction == 'left') { offset = index * li_width * -1; param = { 'left': offset + 'px'} } else { offset = index * li_height * -1; param = { 'top': offset + 'px'} }; wrapper.find('.nums').find('a:eq(' + index + ')').addClass('active').siblings().removeClass('active'); wrapper.find('.title').find('a').attr('href', active_a.attr('href')).text(active_a.attr('title')); ul.stop().animate(param, settings.duration * 1000, settings.easing, function () { active.removeClass('active'); if (order_by == 'ASC') { if (active.next().size()) { active.next().addClass('active') } else { order_by = 'DESC'; active.prev().addClass('active') } } else if (order_by == 'DESC') { if (active.prev().size()) { active.prev().addClass('active') } else { order_by = 'ASC'; active.next().addClass('active') } } }); wrapper.data('timeid', window.setTimeout(start, settings.delay * 1000)) }; var stop = function () { window.clearTimeout(wrapper.data('timeid')) }; wrapper.hover(function () { stop() }, function () { start() }); var imgLoader = new Image(); imgLoader.onload = function () { imgLoader.onload = null; init() }; imgLoader.src = firstPic.attr('src') } })(jQuery);
+        jQuery(function ($) {
+            $('#picBox').slideBox({
+                duration: 0.5, //滚动持续时间，单位：秒
+                easing: 'swing', //swing,linear//滚动特效
+                delay: 5, //滚动延迟时间，单位：秒
+                hideClickBar: false, //不自动隐藏点选按键
+                clickBarRadius: 10
+            });
+        });
+</script>
+     <div><a class="item1input Chandle">订单查询</a><a class="item1input Chandle">订单确认</a><a class="item1input Chandle" >订单统计</a><a class="item1input Chandle">点评管理</a></div>
+    </div>	<!--Item1 End ---------------->
       <!--Item2-->
         <div class="contentItem2" style="display:none">
         	<div class="selectBar">

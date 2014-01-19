@@ -171,7 +171,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         }
         if (!string.IsNullOrEmpty(req["orderName"]))
         {
-            DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTOrderName, req["orderName"]));
+            DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTTicketName, req["orderName"]));
         }
         if (!string.IsNullOrEmpty(req["ticketPhone"]))
         {
@@ -285,11 +285,11 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         }
         if (!string.IsNullOrEmpty(req["takeTicketTime"]))
         {
-            DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTOrderCreateTime, req["takeTicketTime"].Trim()));
+            DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTTravelTime, req["takeTicketTime"].Trim()));
         }
         if (!string.IsNullOrEmpty(req["orderNo"]) && !string.IsNullOrEmpty(req["orderNo"].Trim()))
         {
-            DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTId, req["orderNo"].Trim()));
+            DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTOrderSerialNo, req["orderNo"].Trim()));
         }
         if (!string.IsNullOrEmpty(req["identityId"]) && !string.IsNullOrEmpty(req["identityId"].Trim()))
         {
@@ -422,6 +422,8 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         DefaultData.showFields.Add(OrderTableFields.OTHaveTicketNumber);
         DefaultData.showFields.Add(OrderTableFields.OTTicketPrice);
         DefaultData.showFields1.Add(TicketTypeFields.TTTypeName);
+        
+        // 条件
         DefaultData.whereFields = new List<OrderTableWhereFields>();
         DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTScenicId, 3320));
         if (req["payType"] != null)
