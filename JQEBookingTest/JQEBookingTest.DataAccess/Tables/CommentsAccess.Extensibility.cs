@@ -22,7 +22,7 @@ namespace JQEBookingTest.DataAccess.Tables
         /// 获取所有评论列表
         /// </summary>
         /// <returns></returns>
-        public DataTable GetCommentsExtend(List<CommentsWhereFields> whereFields, int scenicId, int pageSize, int pageIndex)
+        public DataTable GetCommentsExtend(List<CommentsWhereFields> whereFields, string scenicId, int pageSize, int pageIndex)
         {
             int start = (pageIndex - 1) * pageSize + 1;
             int end = start + pageSize - 1;
@@ -63,7 +63,7 @@ namespace JQEBookingTest.DataAccess.Tables
         /// </summary>
         /// <param name="scenicId"></param>
         /// <returns></returns>
-        public int GetCommentsCount(List<CommentsWhereFields> whereFields, int scenicId)
+        public int GetCommentsCount(List<CommentsWhereFields> whereFields, string scenicId)
         {
             StringBuilder sqlsb = new StringBuilder();
             sqlsb.Append("select count(Comments.COrderSerialNo) from ");

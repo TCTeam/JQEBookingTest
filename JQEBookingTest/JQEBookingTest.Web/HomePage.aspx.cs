@@ -83,7 +83,8 @@ public partial class HomePage : BasePage
         orderTableFields.Add(OrderTableFields.OTOrderState);
         orderTableFields.Add(OrderTableFields.OTIdentityCard);
         List<OrderTableWhereFields> where = new List<OrderTableWhereFields>();
-        where.Add(new OrderTableWhereFields(OrderTableFields.OTScenicId, 3320));
+        where.Add(new OrderTableWhereFields(OrderTableFields.OTScenicId, scenicId));
+        // 支付方式
         switch (Item5payType.Value)
         {
             case "viewPay":
@@ -101,15 +102,10 @@ public partial class HomePage : BasePage
             where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderCreateTime, Item5TextCreateTimeStart.Value.Trim(), QueryCondition.GreaterThanAndEqual));
             where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderCreateTime, Item5TextCreateTimeEnd.Value.Trim(), QueryCondition.LessThan));
         }
-        //else
-        //{
-        //    where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderCreateTime, DateTime.Today, QueryCondition.GreaterThanAndEqual));
-        //    where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderCreateTime, DateTime.Today.AddDays(1), QueryCondition.LessThan));
-        //}
         if (Item5TextTravelTimeStart.Value.Trim() != "" && Item5TextTravelTimeEnd.Value.Trim() != "")
         {
-            where.Add(new OrderTableWhereFields(OrderTableFields.OTTravelTime, Item5TextCreateTimeStart.Value.Trim(), QueryCondition.GreaterThanAndEqual));
-            where.Add(new OrderTableWhereFields(OrderTableFields.OTTravelTime, Item5TextCreateTimeEnd.Value.Trim(), QueryCondition.LessThan));
+            where.Add(new OrderTableWhereFields(OrderTableFields.OTTravelTime, Item5TextTravelTimeStart.Value.Trim(), QueryCondition.GreaterThanAndEqual));
+            where.Add(new OrderTableWhereFields(OrderTableFields.OTTravelTime, Item5TextTravelTimeEnd.Value.Trim(), QueryCondition.LessThan));
         }
         switch (Item5ticketState.Value)
         {
@@ -126,6 +122,8 @@ public partial class HomePage : BasePage
                 break;
         }
         DataBaseType dbType = DataBaseType.Read;
+
+        // 结果
         DataTable table = DependencyInjector.GetInstance<IOrderTableServices>().GetOrderTableExtend(dbType, orderTableFields, ticketTypeFields, where, null, 100, 1);
         if (table != null && table.Rows.Count >= 1)
         {

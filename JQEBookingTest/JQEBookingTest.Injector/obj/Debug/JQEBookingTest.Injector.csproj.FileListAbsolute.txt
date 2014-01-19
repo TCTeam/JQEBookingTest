@@ -31,3 +31,12 @@ D:\第三期v4\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\J
 D:\第三期v4\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.pdb
 D:\第三期v4\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.dll
 D:\第三期v4\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.pdb
+E:\第三期v4\记录\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.dll
+E:\第三期v4\记录\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.pdb
+E:\第三期v4\记录\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\ResolveAssemblyReference.cache
+E:\第三期v4\记录\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.dll
+E:\第三期v4\记录\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.pdb
+D:\第三期v5\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.dll
+D:\第三期v5\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\bin\Debug\JQEBookingTest.Injector.pdb
+D:\第三期v5\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.dll
+D:\第三期v5\JQEBookingTest\JQEBookingTest\JQEBookingTest.Injector\obj\Debug\JQEBookingTest.Injector.pdb

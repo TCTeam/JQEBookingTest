@@ -23,7 +23,7 @@ namespace JQEBookingTest.Business.TableBusiness
         /// 获取所有评论列表
         /// </summary>
         /// <returns></returns>
-        public DataTable GetCommentsExtend(List<CommentsWhereFields> whereFields, int scenicId, int pageSize, int pageIndex)
+        public DataTable GetCommentsExtend(List<CommentsWhereFields> whereFields, string scenicId, int pageSize, int pageIndex)
         {
             return this.dataAccess.GetCommentsExtend(whereFields, scenicId, pageSize, pageIndex);
         }
@@ -33,7 +33,7 @@ namespace JQEBookingTest.Business.TableBusiness
         /// <param name="whereFields"></param>
         /// <param name="scenicId"></param>
         /// <returns></returns>
-        public int GetCommentsCount(List<CommentsWhereFields> whereFields, int scenicId)
+        public int GetCommentsCount(List<CommentsWhereFields> whereFields, string scenicId)
         {
             return this.dataAccess.GetCommentsCount(whereFields, scenicId);
         }

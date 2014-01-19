@@ -27,7 +27,8 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
 
     // 当前页面
     private int pageIndex = 1;
-    private int scenicId = 3320;
+    private string scenicId;// = scenicId;
+    
 
     // 页面的操作属性
     private string pageType = string.Empty;
@@ -39,6 +40,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
     /// <param name="e"></param>
     protected void Page_Load(object sender, EventArgs e)
     {
+        scenicId = Session["scenicId"].ToString();
         string type = Request["type"];
         if (Int32.TryParse(Request["index"], out pageIndex) == false)
         {
@@ -143,7 +145,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         DefaultData.showFields.Add(OrderTableFields.OTTicketPrice);
         DefaultData.showFields1.Add(TicketTypeFields.TTTypeName);
         DefaultData.whereFields = new List<OrderTableWhereFields>();
-        DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTScenicId, 3320));
+        DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTScenicId, scenicId));
         DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTOrderState, 1));
         // 初始化排序条件
         DefaultData.order = new List<OrderTableOrderFields>();
@@ -203,7 +205,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         DefaultData.listCount = new OrderTableAccess().GetCount(DefaultData.whereFields) / 10;
         StringBuilder stringbuilder = new StringBuilder();
         // 获取结果集 
-        DefaultData.datatable = new ShowSplitData().GetServerTableExtend(DefaultData.showFields, DefaultData.showFields1, DefaultData.whereFields, null, pageCount, pageIndex);
+        DefaultData.datatable = new ShowSplitData().GetServerTableExtend(DefaultData.showFields, DefaultData.showFields1, DefaultData.whereFields,DefaultData.order, pageCount, pageIndex);
 
         // 嵌入tbody标签中的table内容
         foreach (DataRow item in DefaultData.datatable.Rows)
@@ -273,7 +275,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
 
         // 初始化条件
         DefaultData.whereFields = new List<OrderTableWhereFields>();
-        DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTScenicId, 3320));
+        DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTScenicId, scenicId));
 
         // 初始化排序条件
         DefaultData.order = new List<OrderTableOrderFields>();
@@ -425,7 +427,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         
         // 条件
         DefaultData.whereFields = new List<OrderTableWhereFields>();
-        DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTScenicId, 3320));
+        DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTScenicId, scenicId));
         if (req["payType"] != null)
         {
             DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTPayWay, req["payType"]));
