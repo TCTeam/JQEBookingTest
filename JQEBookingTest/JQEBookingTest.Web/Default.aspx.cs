@@ -20,13 +20,17 @@ public partial class Default2 : BasePage
     protected void Page_Load(object sender, EventArgs e)
     {
         Ran check = new Ran();
-        //if (Request.Cookies["userName"] != null)
-        //{
-        //    userName.Text = Request.Cookies["userName"].Value;
-        //    userPwd.Attributes.Add("value", check.RandomNum(8));
-        //}
+        if (Request.Cookies["userName"] != null)
+        {
+            userName.Text = Request.Cookies["userName"].Value;
+        }
     }
 
+    /// <summary>
+    /// 登陆按钮响应
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void loginBtn_Click(object sender, EventArgs e)
     {
         // 用户名及密码获取
@@ -45,21 +49,38 @@ public partial class Default2 : BasePage
             if (!string.IsNullOrEmpty(scenicId))
             {
                 Session["userName"] = sName;
-                Session["ScenidId"] = scenicId;
+                Session["ScenicId"] = scenicId;
                 Session["userLimit"] = Lg.GetUserMode(sName);
                 Session["userId"] = Lg.GetUserID(sName);
 
-                // 记住密码
+                // 自动登录
                 if (autoLoging.Checked)
                 {
-                    Response.Cookies["userName"].Value = sName;
-                    Response.Cookies["userPwd"].Value = passWord;
-                    Response.Cookies["userName"].Expires = DateTime.Now.AddDays(7);
-                    Response.Cookies["userPwd"].Expires = DateTime.Now.AddDays(7);
+                    HttpCookie userNamece = new HttpCookie("userName");
+                    HttpCookie userPwdce = new HttpCookie("userPwd");
+                    userNamece.Value = sName;
+                    userNamece.Expires = DateTime.Now.AddDays(7);
+                    userPwdce.Value = passWord;
+                    userPwdce.Expires = DateTime.Now.AddDays(7);
+
+                    Response.AppendCookie(userNamece);
+                    Response.AppendCookie(userPwdce);
+
+                }
+                else
+                {
+                    HttpCookie userNamece = new HttpCookie("userName");
+                    HttpCookie userPwdce = new HttpCookie("userPwd");
+                    userNamece.Value = sName;
+                    userPwdce.Value = passWord;
+
+                    Response.AppendCookie(userNamece);
+                    Response.AppendCookie(userPwdce);
                 }
                 // 强制修改密码
                 if (passWord.Equals("11111111"))
                 {
+                    // 执行js响应
                     string url = @"<script language=javascript>
                                         alert('您的密码已被初始化，需要重置！');
                                         window.location.href='PwdChange.aspx';

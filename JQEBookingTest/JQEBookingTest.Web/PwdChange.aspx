@@ -5,7 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>密码修改</title>
-    
     <script src="Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script type="text/javascript">
     // 密码输入规范简单判断
@@ -21,26 +20,33 @@
 			if(!(reg.test(pwdVal)&&reg.test(pwdChe)))
 			{
 				document.getElementById("pwdInfo").innerHTML="密码必须是字母和汉字组合！";
-				return false;
+				//return false;
 			}
 			else
 			{
 				document.getElementById("pwdInfo").innerHTML="";
 				$.ajax({
-				    url: "PwdChange.aspx?type=PwdChange&Password=" + pwdVal,
+				    url: "AccessDataWithAjax.aspx?index=&type=ChangePwd&passwd=" + pwdVal,
 				    type: "get",
-				    success: function () {
-				        alert("密码修改成功！");
+				    success: function (data) {
+				        if (data === "true") {
+				            alert("密码修改成功！");
+				            window.location.href = "Default.aspx";
+				        } else {
+				            alert("密码修改失败！");
+				        }
 				    },
 				    error: function () {
 				        alert("数据访问失败！");
 				    }
 				});
+				//return true;
 			}	
 		}
 		else
 		{
 			document.getElementById("pwdInfo").innerHTML="两次输入的密码不一致！";
+			//return false;
 		}
 	}
 
@@ -186,7 +192,7 @@ body{
 			<div id="btn">
 				<!--<input class="btnYellow" id="confirmbtn" type="button" value="确认" onclick="CheckPwd()" />
                 <input class="btnYellow" id="removebtn" type="reset"  value="取消" />-->
-                <input class="btnYellow" id="confirmbtn" type="button" onclick="CheckPwd()" value="确认" />
+                <input class="btnYellow" id="confirmbtn" type="button" value="确认" onclick="CheckPwd()" />
             </div>
  		</div>
  	</div>

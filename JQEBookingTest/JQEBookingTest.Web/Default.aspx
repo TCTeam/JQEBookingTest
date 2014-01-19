@@ -50,7 +50,7 @@
                         width="70px" height="30px"  />
             </div>
             <div id="auto_login">
-                <asp:CheckBox ID="autoLoging" runat="server"  CssClass="Nplace" /><label for="autoLoging" class="labAuto">记住密码</label>
+                <asp:CheckBox ID="autoLoging" runat="server"  CssClass="Nplace" /><label for="autoLoging" class="labAuto">一周内自动登录</label>
             <a class="lostfound" href="Reset.aspx">忘记密码？</a></div>
             <asp:Button ID="loginBtn" runat="server" Text="登录" CssClass="form_btn Nplace" OnClientClick="return CheckFun();"
                 onclick="loginBtn_Click"  />

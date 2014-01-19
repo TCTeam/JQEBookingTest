@@ -13,7 +13,7 @@
 <title>ebooking订单处理</title>
 </head>
 <body>
-<form id="Form1" runat="server">
+<form runat="server">
 <!--PageHead-->
     <div class="head">
         <div id="headerCont">
@@ -21,7 +21,7 @@
                 <a href="Homepage.aspx"><img id="logo" src="Images/cnLogo.png" /></a><span>景区订单管理系统</span>
             </div>
             <div class="loginInfo">
-                <span>你好,&nbsp;&nbsp;</span><span id="head_uname"><asp:PlaceHolder runat="server" ID="Place"></asp:PlaceHolder></span><a href="PwdChange.aspx">修改密码</a>
+                <span>你好,&nbsp;&nbsp;<asp:PlaceHolder runat="server" ID="Place"></asp:PlaceHolder></span><span id="head_uname"></span><a href="PwdChange.aspx">修改密码</a>
                 <asp:LinkButton ID="Logout" OnClick="LogoutClick" Text="退出" runat="server"></asp:LinkButton>
             </div>
             <div class="actionbar">
@@ -161,13 +161,6 @@
  <!--Item2 End-->
       <!--Item3 订单确认-->
         <div class="contentItem3" style="display: none">
-            <div id="quick">
-                <span>
-                    <asp:Button ID="ButtonNewOrder" CssClass="put" runat="server" Text="今日未确认订单" /></span><span>订单确认号：</span>
-                <span>
-                    <input type="text" value="" />
-                        <input class="put" type="button" value="查询" /></span>
-            </div>
             <p class="mySearchP2">
                 -＞&nbsp;<span class="mySearch">自定义查询</span></p>
             <div id="item3Form" style="display: none" class="uDefined2">
@@ -337,12 +330,34 @@
             </div>
         </div>  
          <!--Item4End-->
-           <!--点评管理-->
+             <!--点评管理-->
         <div class="contentItem6" style="display: none">
+        <div id="conmentTime" style="margin-left:140px; padding-top:10px">
+                <span>
+                    点评时间：<input type="text" id="Item6StartDate" class="dateStart"/>
+                    到&nbsp;<input type="text" id="Item6EndDate" class="dateEnd"/>
+                </span>
+                <span class="conmentSpan">    
+                    评价：<select id="Item6Evaluate">
+                                <option value="all">全部</option>
+                                <option value="good">好评</option>
+                                <option value="middle">中评</option>
+                                <option value="bad">差评</option>
+                          </select>
+                </span>
+                <span class="conmentSpan">
+                    <input id="Item6CustomQuery" type="button" value="查询" />
+                </span>
+                <span class="conmentSpan">
+                    <input class="Item6QueryTime" data="Ultimo" type="button" value="上月点评" />
+                </span>
+                <span class="conmentSpan">
+                    <input class="Item6QueryTime" data="Month" type="button" value="当月点评" />
+                </span>
+            </div>
             <div class="form">
                 <table id="Item6Table" class="selectTab">
                     <tr class="tabtitle">
-                       <td><input type="checkbox" /></td>
                        <td>订单流水号</td>
                        <td>用户名</td>
                        <td>点评内容</td>
@@ -519,10 +534,11 @@
     </div>
     <!--评论页 -->
     <div class="clear"></div> 
-    <div class="commentBox" style="display:none; ">
-        <p>回复<span>某某</span>的点评：</p>
-        <textarea placeholder="在此处输入回复..."></textarea>
-        <input type="button" class="subBtn" value="提交" /><input type="button" class="cancleBtn" value="取消" />
+    <div  id="CommentsReply" class="commentBox" style="display:none; ">
+        <p>回复<span id="CommentsUserName">某某</span>的点评：</p>
+        <textarea id="textReplyContent" placeholder="在此处输入回复..."></textarea>
+        <input id="BtnCommentsReply" type="button" class="subBtn" value="提交" />
+        <input id="BtnCommentsCancel" type="button" class="cancleBtn" value="取消" />
     </div>
     <!--Footer-->
     <div class="clear"></div> 

@@ -24,7 +24,6 @@ namespace JQEBookingTest.DataAccess.Tables
         /// <returns></returns>
         public DataTable GetCommentsExtend(List<CommentsWhereFields> whereFields, int scenicId, int pageSize, int pageIndex)
         {
-            scenicId = 3320;
             int start = (pageIndex - 1) * pageSize + 1;
             int end = start + pageSize - 1;
             StringBuilder sqlsb = new StringBuilder();
@@ -44,13 +43,19 @@ namespace JQEBookingTest.DataAccess.Tables
             sqlsb.AppendFormat("[{0}].[dbo].[OrderTable]", DatabaseManager.Db_JQEBookingDataBase);
             sqlsb.Append(" on Comments.COrderSerialNo=OrderTable.OTOrderSerialNo");
             sqlsb.AppendFormat(" where OrderTable.OTScenicId={0} ", scenicId);
+            SqlParameterWrapperCollection collection = new SqlParameterWrapperCollection();
+            if (whereFields != null && whereFields.Count > 0)
+            {
+                GetSqlParameterWrapperCollection(collection, null, whereFields);
+                sqlsb.Append(" and ");
+            }
             sqlsb.Append(GetSqlString(null, whereFields));
             sqlsb.Append(") AS sp WHERE rowNumber BETWEEN ");
             sqlsb.Append(start.ToString());
             sqlsb.Append(" AND ");
             sqlsb.Append(end.ToString());
             sqlsb.Append(" --Flat:Asp.net小组/Author:谢超/For:获取订单统计列表/File :CommentsAccess.Extensibility.cs/Fun:GetCommentsExtend");
-            DataTable datatable = SqlHelper.ExecuteDataTable(sqlsb.ToString());
+            DataTable datatable = SqlHelper.ExecuteDataTable(sqlsb.ToString(), collection);
             return datatable;
         }
         /// <summary>
@@ -63,13 +68,20 @@ namespace JQEBookingTest.DataAccess.Tables
             StringBuilder sqlsb = new StringBuilder();
             sqlsb.Append("select count(Comments.COrderSerialNo) from ");
             sqlsb.AppendFormat("[{0}].[dbo].[Comments]", DatabaseManager.Db_JQEBookingDataBase);
-            sqlsb.Append(" with(nolock) left join");
+            sqlsb.Append(" with(nolock) left join ");
             sqlsb.AppendFormat("[{0}].[dbo].[OrderTable]", DatabaseManager.Db_JQEBookingDataBase);
             sqlsb.Append(" on Comments.COrderSerialNo=OrderTable.OTOrderSerialNo");
-            sqlsb.AppendFormat(" where OrderTable.OTScenicId={0} ", scenicId);
+            sqlsb.AppendFormat(" where OrderTable.OTScenicId={0}", scenicId);
+            SqlParameterWrapperCollection collection = new SqlParameterWrapperCollection();
+            if (whereFields != null && whereFields.Count > 0)
+            {
+                GetSqlParameterWrapperCollection(collection, null, whereFields);
+                sqlsb.Append(" and ");
+            }
             sqlsb.Append(GetSqlString(null, whereFields));
             sqlsb.Append(" --Flat:Asp.net小组/Author:谢超/For:获取订单统计列表/File :CommentsAccess.Extensibility.cs/Fun:GetCommentsExtend");
-            return SqlHelper.ExecuteScalarByInt(sqlsb.ToString());
+
+            return SqlHelper.ExecuteScalarByInt(sqlsb.ToString(), collection);
         }
     }
 }

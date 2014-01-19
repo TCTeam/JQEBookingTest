@@ -107,8 +107,8 @@ namespace JQEBookingTest.Business.TableBusiness
             whereFileds.Add(new AdminWhereFields(AdminFields.AName, userName));
             whereFileds.Add(new AdminWhereFields(AdminFields.ATelephone, phoNum));
             DataTable dt = DependencyInjector.GetInstance<IAdminServices>().GetAdminTable(whereFileds);
-            
-            return ((dt != null && dt.Rows.Count > 0)?true:false);
+
+            return ((dt != null && dt.Rows.Count > 0) ? true : false);
         }
 
         /// <summary>

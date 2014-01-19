@@ -15,17 +15,10 @@ using JQEBookingTest.IBusiness.TableBusiness;
 
 public partial class PwdChange : System.Web.UI.Page
 {
+    // 标识符，验证页面是否为第一次加载
+    static int flag = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
-        // 判断是否为修改密码选项
-        if (!string.IsNullOrEmpty(Request["type"])&&Request["type"].Equals("ChangePwd"))
-        {
-            string id = Convert.ToString(Session["AId"]);
-            List<AdminFieldValuePair> fields = new List<AdminFieldValuePair>();
-            fields.Add(new AdminFieldValuePair(AdminFields.APassword,Request["password"]));
-            List<AdminWhereFields> where = new List<AdminWhereFields>();
-            where.Add(new AdminWhereFields(AdminFields.AId,id));
-            DependencyInjector.GetInstance<IAdminServices>().Update(fields, where);
-        }
+        
     }
 }

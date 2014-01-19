@@ -26,38 +26,33 @@ public partial class HomePage : BasePage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["CheckCode"] = "";
-        // 用户状态判断
-        if (Session["userName"] != null)
-        {
-            // 页面添加选项
-            LinkButton user = new LinkButton();
-            user.Text = (string)Session["userName"];
-            user.Attributes.Add("href", "Change.aspx");
-            Place.Controls.Add(user);
-        }
-        else if (Request.Cookies["userName"] != null)
+        // 手动验证码失效
+        Session["CheckCode"] = string.Empty;
+
+        HttpCookie cookie = Request.Cookies["userName"];
+        
+        if (Request.Cookies["userName"] != null)
         {
             userName = Request.Cookies["userName"].Value;
             userId = new AdminServices().GetUserID(userName);
-      //      scenicId = new AdminServices().CheckLogin(userName, new AdminServices().GetUserPassWD(userName));
+            scenicId = new AdminServices().CheckLogin(userName,Request.Cookies["userPwd"].Value );
             userLimit = (new AdminServices().GetUserMode(userName));
 
             // 保存用户信息
             Session.Add("userName", Request.Cookies["userName"].Value);
-    //        Session.Add("ScenicId", scenicId);
+            Session.Add("ScenicId", scenicId);
             Session.Add("userLimit", userLimit);
             Session.Add("AId", userId);
 
             // 页面添加选项
             LinkButton user = new LinkButton();
             user.Text = (string)Session["userName"];
-            user.Attributes.Add("href", "Change.aspx");
+            user.Attributes.Add("href", "PwdChange.aspx");
             Place.Controls.Add(user);
         }
         else
         {
-            Response.Write("Default.aspx");
+            Response.Redirect("Default.aspx");
         }
         // 用户权限判断
         if (userLimit == "1")
@@ -106,11 +101,11 @@ public partial class HomePage : BasePage
             where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderCreateTime, Item5TextCreateTimeStart.Value.Trim(), QueryCondition.GreaterThanAndEqual));
             where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderCreateTime, Item5TextCreateTimeEnd.Value.Trim(), QueryCondition.LessThan));
         }
-        else
-        {
-            where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderCreateTime, DateTime.Today, QueryCondition.GreaterThanAndEqual));
-            where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderCreateTime, DateTime.Today.AddDays(1), QueryCondition.LessThan));
-        }
+        //else
+        //{
+        //    where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderCreateTime, DateTime.Today, QueryCondition.GreaterThanAndEqual));
+        //    where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderCreateTime, DateTime.Today.AddDays(1), QueryCondition.LessThan));
+        //}
         if (Item5TextTravelTimeStart.Value.Trim() != "" && Item5TextTravelTimeEnd.Value.Trim() != "")
         {
             where.Add(new OrderTableWhereFields(OrderTableFields.OTTravelTime, Item5TextCreateTimeStart.Value.Trim(), QueryCondition.GreaterThanAndEqual));
@@ -216,13 +211,21 @@ public partial class HomePage : BasePage
             Session["userId"] = null;
             Session["ScenicId"] = null;
             Session["userLimit"] = null;
+            
             // cookie清除
-            Request.Cookies["userName"].Expires = DateTime.Now;
-            Request.Cookies["userName"].Value = string.Empty;
-            Request.Cookies["userPwd"].Expires = DateTime.Now;
-            Request.Cookies["userPwd"].Value = string.Empty;
-        }
+            HttpCookie aCookie;
+            string cookieName;
+            int limit = Request.Cookies.Count;
+            for (int i = 0; i < limit; i++)
+            {
+                cookieName = Request.Cookies[i].Name;
+                aCookie = new HttpCookie(cookieName);
+                aCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(aCookie);
+            }
 
+        }
+       
         Response.Redirect("Default.aspx");
     }
 }

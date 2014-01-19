@@ -9,57 +9,102 @@ $(this).ready(function (e) {
             $son.show();
         }
     });
-    //点评管理页面
-    $("#Comments").click(function () {
-        $.ajax({
-            url: "AccessDataWithAjax.aspx?index=1&type=CommentsQuery",
-            type: "get",
-            success: function (data) {
-                tempdata = data;
-                $("#Item6Table tr:not('.tabtitle')").parent("tbody").remove();
-                document.getElementById("Item6Table").innerHTML += data;
-                OrderConfirmInit();
-            },
-            error: function () {
-                alert("数据访问失败");
-            }
-        });
-    });
-     //回复点评
-    $("#BtnOrderSerialNo").click(function(){
-        var commentsReply = $("#textReplyContent").val();
-        var orderSerialNo = $("#BtnOrderSerialNo").attr("data");
-        if(commentsReply == "")
-        {
-            alert("请输入回复内容！");
-            return false;
-        }
-        else{
-        $.ajax({
-            url: "AccessDataWithAjax.aspx?type=CommentsReply&orderSerialNo=" + orderSerialNo + "&commentsReply=" + commentsReply,
-            type: "get",
-            success: function (data) {
-                if (data == "true") {
-                    alert("回复成功");
-                } else {
-                    alert("回复失败");
-                }
-                $("#body_cont").hide();
-                $("#CommentsReply").hide();
-                $("#Comments").click();
-            }
-        });
-        }
-    });
+   //点评管理页面
+	$("#Comments").click(function() {
+		$.ajax({
+			url: "AccessDataWithAjax.aspx?index=1&type=CommentsQuery",
+			type: "get",
+			success: function(data) {
+				tempdata = data;
+				$("#Item6Table tr:not('.tabtitle')").remove();
+				$("#Item6Table").append(data);
+				OrderConfirmInit();
+			},
+			error: function() {
+				alert("数据访问失败");
+			}
+		});
+	});
+	//上月点评
+	$(".Item6QueryTime").click(function() {
+    var queryTime= $(this).attr("data");
+		$.ajax({
+			url: "AccessDataWithAjax.aspx?index=1&type=CommentsQuery&QueryTime="+queryTime,
+			type: "get",
+			success: function(data) {
+				tempdata = data;
+				$("#Item6Table tr:not('.tabtitle')").remove();
+				$("#Item6Table").append(data);
+				OrderConfirmInit();
+			},
+			error: function() {
+				alert("数据访问失败");
+			}
+		});
+        $(this).blur();
+	});
+	//自定义查询
+	$("#Item6CustomQuery").click(function() {
+		var startDate = $("#Item6StartDate").val();
+		var endDate = $("#Item6EndDate").val();
+		var Evaluate = $("#Item6Evaluate option:selected").val();
+		$.ajax({
+			url: "AccessDataWithAjax.aspx?index=1&type=CommentsQuery&CustomQuery=CustomQuery&StartDate=" + startDate + "&EndDate=" + endDate + "&Evaluate=" + Evaluate,
+			type: "get",
+			success: function(data) {
+				tempdata = data;
+				$("#Item6Table tr:not('.tabtitle')").remove();
+				$("#Item6Table").append(data);
+				OrderConfirmInit();
+			},
+			error: function() {
+				alert("数据访问失败");
+			}
+		});
+        $(this).blur();
+	});
+	//回复点评
+	$("#BtnCommentsReply").click(function() {
+		var commentsReply = $("#textReplyContent").val();
+		var orderSerialNo = $("#BtnCommentsReply").attr("data");
+		if (commentsReply == "") {
+			alert("请输入回复内容！");
+			return false;
+		}
+		else {
+			$.ajax({
+				url: "AccessDataWithAjax.aspx?type=CommentsReply&orderSerialNo=" + orderSerialNo + "&commentsReply=" + commentsReply,
+				type: "get",
+				success: function(data) {
+					if (data == "true") {
+						alert("回复成功");
+					} else {
+						alert("回复失败");
+					}
+					$("#body_cont").hide();
+					$("#CommentsReply").hide();
+					$("#textReplyContent").val("");
+					$("#BtnOrderSerialNo").attr("data", "");
+					$("#Comments").click();
+				}
+			});
+		}
+	});
+	$("#BtnCommentsCancel").click(function() {
+		$("#body_cont").hide();
+		$("#CommentsReply").hide();
+		$("#CommentsUserName").text("");
+		$("#BtnCommentsReply").attr("data", "");
+		$("#textReplyContent").val("");
+	});
     //订单查询页面
     $("#OrderQuery").click(function () {
         $.ajax({
             url: "AccessDataWithAjax.aspx?index=1&type=OrderQuery",
             type: "get",
             success: function (data) {
-                tempdata = data;
-                $("#TabelOrderQuery tr:not('.tabtitle')").parent("tbody").remove();
-                document.getElementById("TabelOrderQuery").innerHTML += data;
+                $("#TabelOrderQuery tr:not('.tabtitle')").remove();
+                $("#TabelOrderQuery").append(data);
                 OrderConfirmInit();
             },
             error: function () {
@@ -84,8 +129,8 @@ $(this).ready(function (e) {
             type: "get",
             success: function (data) {
                 tempdata = data;
-                $("#TabelOrderQuery tr:not('.tabtitle')").parent("tbody").remove();
-                document.getElementById("TabelOrderQuery").innerHTML += data;
+                $("#TabelOrderQuery tr:not('.tabtitle')").remove();
+                $("#TabelOrderQuery").append(data);
                 OrderConfirmInit();
             }
         });
@@ -98,8 +143,8 @@ $(this).ready(function (e) {
             type: "get",
             success: function (data) {
                 tempdata = data;
-                $("#TableOrderConfirm tr:not('.tabtitle')").parent("tbody").remove();
-                document.getElementById("TableOrderConfirm").innerHTML += data;
+                $("#TableOrderConfirm tr:not('.tabtitle')").remove();
+                $("#TableOrderConfirm").append(data);
                 OrderConfirmInit();
             },
             error: function () {
@@ -110,6 +155,10 @@ $(this).ready(function (e) {
     $("#ButtonCancel").click(function () {
         $("#btn_tip").hide();
         $("#body_cont").hide();
+    });
+    $("#CanBz").click(function(){
+        $("#body_cont").hide();
+        $("#BzDiv").hide();
     });
     //订单确认页面查询按钮点击
     $("#ButtonItem3Query").click(function () {
@@ -127,8 +176,8 @@ $(this).ready(function (e) {
             type: "get",
             success: function (data) {
                 tempdata = data;
-                $("#TableOrderConfirm tr:not('.tabtitle')").parent("tbody").remove();
-                document.getElementById("TableOrderConfirm").innerHTML += data;
+                $("#TableOrderConfirm tr:not('.tabtitle')").remove();
+                $("#TableOrderConfirm").append(data);
                 OrderConfirmInit();
             }
         });
@@ -146,8 +195,8 @@ $(this).ready(function (e) {
             type: "get",
             success: function (data) {
                 tempdata = data;
-                $("#Chitem4 tr:not('.tabtitle')").parent("tbody").remove();
-                document.getElementById("Chitem4").innerHTML += data;
+                $("#Chitem4 tr:not('.tabtitle')").remove();
+                $("#Chitem4").append(data);
                 OrderConfirmInit();
             }
         });
@@ -160,8 +209,8 @@ $(this).ready(function (e) {
             type: "get",
             success: function (data) {
                 tempdata = data;
-                $("#Chitem4 tr:not('.tabtitle')").parent("tbody").remove();
-                document.getElementById("Chitem4").innerHTML += data;
+                $("#Chitem4 tr:not('.tabtitle')").remove();
+                $("#Chitem4").append(data);
                 OrderConfirmInit();
             }
         });
@@ -186,14 +235,15 @@ $(this).ready(function (e) {
         });
     });
 
-
    //处理各个页面动态生成的标签的事件的初始化
     function OrderConfirmInit() {
         //点评管理，回复按钮点击
         $(".CommentsReply").click(function(){
             $("#body_cont").show();
             $("#CommentsReply").show();
-            $("#BtnOrderSerialNo").attr("data",$(this).attr("data"));
+            $("#CommentsUserName").text($(this).parents("tr").children("td:eq(2)").text());
+            $("#BtnCommentsReply").attr("data",$(this).attr("data"));
+            $("#textReplyContent").val($(this).parents("tr").children("td:eq(5)").text());
         });
         //订单确认，确认订单按钮点击
         $(".ChooseTicketNum").click(function () {
@@ -234,10 +284,10 @@ $(this).ready(function (e) {
                 return false;
             }
         });
-         // 备注按钮
+        // 备注按钮
         $(".sbutton").click(function(){
         
-            ////////添加：保存备注信息，减少数据库的访问频率
+            //保存备注信息，减少数据库的访问频率
             var textarea = "";
             $("#body_cont").show();
             $("#BzDiv").show();
@@ -254,7 +304,6 @@ $(this).ready(function (e) {
                         }
                         
                         textarea = data;
-                        //////////////////////添加：备注添加
                         $("#AddBz").click(function(){
                             var text = $(".BzText").val();
                             if(text===textarea)
@@ -288,21 +337,19 @@ $(this).ready(function (e) {
                 url: "AccessDataWithAjax.aspx?index=" + $(this).text() + "&type=OrderQuery",
                 type: "get",
                 success: function (data) {
-                    tempdata = data;
-                    $("#TabelOrderQuery tr:not('.tabtitle')").parent("tbody").remove();
-                    document.getElementById("TabelOrderQuery").innerHTML += data;
+                    $("#TabelOrderQuery tr:not('.tabtitle')").remove();
+                    $("#TabelOrderQuery").append(data);
                     OrderConfirmInit();
                 }
             });
         });
         $(".item3ListPage").click(function () {
             $.ajax({
-                url: "AccessDataWithAjax.aspx?index=" + $(this).text() + "&type=OrderConfirmInit",
+                url: "AccessDataWithAjax.aspx?index=" + $(this).text() + "&type=OrderConfirmQuery",
                 type: "get",
                 success: function (data) {
-                    tempdata = data;
-                    $("#TableOrderConfirm tr:not('.tabtitle')").parent("tbody").remove();
-                    document.getElementById("TableOrderConfirm").innerHTML += data;
+                    $("#TableOrderConfirm tr:not('.tabtitle')").remove();
+                    $("#TableOrderConfirm").append(data);
                     OrderConfirmInit();
                 }
             });
@@ -312,9 +359,8 @@ $(this).ready(function (e) {
                 url: "AccessDataWithAjax.aspx?index=" + $(this).text() + "&type=OrderStatistical",
                 type: "get",
                 success: function (data) {
-                    tempdata = data;
-                    $("#Chitem4 tr:not('.tabtitle')").parent("tbody").remove();
-                    document.getElementById("Chitem4").innerHTML += data;
+                    $("#Chitem4 tr:not('.tabtitle')").remove();
+                     $("#Chitem4").append(data);
                     OrderConfirmInit();
                 }
             });
@@ -324,9 +370,8 @@ $(this).ready(function (e) {
                 url: "AccessDataWithAjax.aspx?index=" + $(this).text() + "&type=CommentsQuery",
                 type: "get",
                 success: function (data) {
-                    tempdata = data;
-                    $("#Item6Table tr:not('.tabtitle')").parent("tbody").remove();
-                    document.getElementById("Item6Table").innerHTML += data;
+                    $("#Item6Table tr:not('.tabtitle')").remove();
+                    $("#Item6Table").append(data);
                     OrderConfirmInit();
                 }
             });
@@ -443,7 +488,7 @@ function GetBaseData() {
                 url: "AccessDataWithAjax.aspx?index=" + $(this).html() + "&&type=orderNow",
                 typr: "get",
                 success: function (data) {
-                    $("#Chitem1 tr:not('.tabtitle')").parent("tbody").remove();
+                    $("#Chitem1 tr:not('.tabtitle')").remove();
                     document.getElementById("Chitem1").innerHTML += data;
                 },
                 error: function () {
@@ -458,7 +503,7 @@ function GetBaseData() {
             url: "AccessDataWithAjax.aspx?index=1&&type=Search&&orderComfirmNo=" + $("#orderComfirmNo").val() + "&&takeTicketTime=" + $("#takeTicketTime").val() + "&&orderNo=" + $("#orderNo").val() + "&&takeTicketName" + $("#takeTicketName").val() + "&&ticketSort=" + $("#ticketSort option:selected").text() + "&&sortType=" + $("#sortType option:selected").text() + "&&takeTicketPhone=" + $("#takeTicketPhone").val() + "&&payType=" + $("#payType option:selected").text() + "&&identityId=" + $("#identityId").val(),
             type: "get",
             success: function (data) {
-                $("#Chitem1 tr:not('.tabtitle')").parent("tbody").remove();
+                $("#Chitem1 tr:not('.tabtitle')").remove();
                 document.getElementById("Chitem1").innerHTML += data;
             },
             error: function () {
@@ -480,7 +525,7 @@ function GetBaseData() {
             url: "AccessDataWithAjax.aspx?index=1&&type=" + res + "&&starttime=" + $(".starttime1").val() + "&&endtime=" + $(".endtime1").val(),
             type: "get",
             success: function (data) {
-                $("#Chitem1 tr:not('.tabtitle')").parent("tbody").remove();
+                $("#Chitem1 tr:not('.tabtitle')").remove();
                 document.getElementById("Chitem4").innerHTML += data;
             },
             error: function () {

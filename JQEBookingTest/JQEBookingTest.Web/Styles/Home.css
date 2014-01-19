@@ -363,16 +363,21 @@ table td
 	opacity:0.6;	/*FF3.5以上背景透明*/
 	text-align:center;
 	}
+/*--订单确认弹窗----------------------------*/
 #btn_tip{
 	width:406px;
-	height:245px;
-	background:#fff;
+	height:248px;
+	background:#F5F5F5;
+	color:#333;
 	z-index:9999;
 	position:fixed;
-	top:50%;
+	top:40%;
 	left:50%;
 	margin-top:-93px;
 	margin-left:-203px;
+	border:1px solid #999;
+	border-radius:3px;
+	box-shadow:3px 3px 6px 0 #aaa;
 	}
 #btn_tip #tip_up{
 	width:406px;
@@ -387,16 +392,7 @@ table td
 	
 	padding-left:10px;
 	}
-#btn_tip #tip_close{
-	background:url(/images/web_tip.png) 0 -146px no-repeat;
-	width:22px;
-	height:22px;
-	float:right;
-	margin-top:4px;
-	}
-#btn_tip #tip_close:hover{
-	background:url(/images/web_tip.png) 0 -175px no-repeat;
-	}
+
 #btn_tip #tip_down{
 	height:200px;
 	}
@@ -407,9 +403,9 @@ table td
 #btn_tip #tip_down .tip_title{
 	width:119px;
 	height:25px;
-	background:#CAE6A1;
+    line-height:25px;
 	border:1px solid #ccc;
-	text-align:center;
+	text-align:left;
 	float:left;
 	}
 #btn_tip #tip_down .tip_cont{
@@ -420,10 +416,36 @@ table td
 	padding-left:10px;
 	overflow:hidden;
 	}
+#TextRealTicketNum
+{
+    width:100px;
+    height:18px;
+    line-height:18px;
+    font-size:16px;
+    border-radius:3px;
+    }	
+#TextRealTicketNum:focus
+{
+    background:#F8B994;
+    color:#333;
+    }
 #btn_tip #tip_down .tip_title span{
 	padding:1px 10px;
 	display:inline-block;
 	}	
+#ButtonConfirm,#ButtonCancel
+{
+    display:inline-block;
+    float:left;
+    border:1px solid #666;
+    padding:2px 8px;
+    margin-right:10px;
+    }	
+#ButtonConfirm:hover,#ButtonCancel:hover
+{
+    background:#F89D68;
+    cursor:pointer;
+    }
 .tipBtn	{
 	height:24px;
 	font-size:18px;
@@ -475,3 +497,54 @@ table td
 {
     border:0px;
 }
+  /*---------------------- commentBox----------*/
+.commentBox
+{
+    width:400px;
+    height:300px;
+    background:#F5F5F5;
+    position:fixed;
+    left:30%;
+    top:24%;
+    z-index:7777;
+    padding:5px 20px 5px 14px;
+    border-radius:3px;
+    }  
+.commentBox p
+{
+    font-size:16px;
+    font-weight:400;
+    height:20px;
+    line-height:20px;
+    margin:5px 0;
+    }    
+.commentBox span
+{
+    color:#F89D68;
+    padding:0 8px;
+    font-weight:600;
+    }    
+.commentBox textarea
+{
+    width:100%;
+    height:220px;
+    resize: none;
+    }    
+.commentBox input
+{
+    margin-top:10px;
+    display:inline-block;
+    float:left;
+    border:1px solid #666;
+    padding:2px 8px;
+    margin-right:10px;
+    }    
+.commentBox input:hover
+{
+    background:#F89D68;
+    cursor:pointer;
+    }   
+    .conmentSpan
+{
+    padding-left:30px;    
+} 

@@ -68,10 +68,19 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
                 Response.Write(OrderConfirmQuery(pageIndex, Request));
                 break;
             case "CommentsQuery":
-                Response.Write(CommentsQuery(pageIndex));
+                Response.Write(CommentsQuery(pageIndex,Request));
                 break;
             case "CommentsReply":
                 Response.Write(CommentsReply(Request));
+                break;
+            case "GetRemark":
+                Response.Write(GetRemark(Request["otOrderSerialNo"]));
+                break;
+            case "UpdataRemark":
+                Response.Write(UpdataRemark(Request["otOrderSerialNo"], Request["text"]));
+                break;
+            case "ChangePwd":
+                Response.Write(ChangePwd(Convert.ToString(Session["userName"]),Request["passwd"]));
                 break;
             default:
                 break;
@@ -94,14 +103,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderSerialNo, otOrderSerialNo));
         where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderState, 1));
         bool ret = DependencyInjector.GetInstance<IOrderTableServices>().Update(updateFields, where);
-        if (ret)
-        {
-            return "true";
-        }
-        else
-        {
-            return "false";
-        }
+        return (ret ? "true" : "false");
     }
 
     /// <summary>
@@ -117,14 +119,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderSerialNo, otOrderSerialNo));
         where.Add(new OrderTableWhereFields(OrderTableFields.OTOrderState, 1));
         bool ret = DependencyInjector.GetInstance<IOrderTableServices>().Update(updateFields, where);
-        if (ret)
-        {
-            return "true";
-        }
-        else
-        {
-            return "false";
-        }
+        return (ret ? "true" : "false");
     }
 
     /// <summary>
@@ -184,7 +179,18 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         }
         if (!string.IsNullOrEmpty(req["ticketSort"]))
         {
-            //DefaultData.whereFields.Add(new OrderTableWhereFields(OrderTableFields.OTTicketPhone, req["ticketPhone"]));
+            if (req["ticketSort"].Equals("drawTicketName"))
+            {
+                DefaultData.order.Add(new OrderTableOrderFields(OrderTableFields.OTTicketName, OrderType.Asc));
+            }
+            if (req["ticketSort"].Equals("drawTicketTime"))
+            {
+                DefaultData.order.Add(new OrderTableOrderFields(OrderTableFields.OTTravelTime, OrderType.Asc));
+            }
+            if (req["ticketSort"].Equals("buyTime"))
+            {
+                DefaultData.order.Add(new OrderTableOrderFields(OrderTableFields.OTOrderCreateTime, OrderType.Asc));
+            }
         }
         if (!string.IsNullOrEmpty(req["payType"]) && req["payType"].Equals("viewPay"))
         {
@@ -210,7 +216,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketName"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketPhone"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTOrderCreateTime"]);
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTTravelTime"]);
+            stringbuilder.AppendFormat("{0}</td><td>", ((DateTime)item["OTTravelTime"]).ToShortDateString());
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketNumber"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketPrice"]);
             stringbuilder.AppendFormat("{0}</td><td>", (Convert.ToInt32(item["OTTicketPrice"]) * Convert.ToInt32(item["OTTicketNumber"])).ToString());
@@ -361,14 +367,14 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketName"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketPhone"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTOrderCreateTime"]);
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTTravelTime"]);
+            stringbuilder.AppendFormat("{0}</td><td>", ((DateTime)item["OTTravelTime"]).ToShortDateString());
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketNumber"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTHaveTicketNumber"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketPrice"]);
-            stringbuilder.AppendFormat("{0}</td><td>", (Convert.ToInt32(item["OTTicketPrice"]) * Convert.ToInt32(item["OTTicketNumber"])).ToString());
+            stringbuilder.AppendFormat("{0}</td><td>", (Convert.ToInt32(item["OTTicketPrice"]) * Convert.ToInt32(item["OTHaveTicketNumber"])).ToString());
             stringbuilder.AppendFormat("{0}</td><td>", item["TTTypeName"]);
             stringbuilder.AppendFormat("{0}</td><td>", (PayWay)Convert.ToInt32(item["OTPayWay"]));
-            stringbuilder.AppendFormat("<input type='button' value='查看修改' data='{0}'/></td></tr>", item["OTOrderSerialNo"]);
+            stringbuilder.AppendFormat("<input class='sbutton' value='查看' type='button' data='{0}'/></td></tr>", item["OTOrderSerialNo"]);
         }
         if (DefaultData.listCount > 0)
         {
@@ -376,13 +382,13 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         }
         for (int i = 1; i <= DefaultData.listCount; i++)
         {
-            if (i == pageIndex)
+            if (pageIndex == i)
             {
-                stringbuilder.Append("<a class='item2ListPage active' style='cursor:pointer;'>" + i + "</a>");
+                stringbuilder.AppendFormat("<a class='item2ListPage active' style='cursor:pointer;'>{0}{1}", i, "</a>");
             }
             else
             {
-                stringbuilder.Append("<a class='item2ListPage' style='cursor:pointer;'>" + i + "</a>");
+                stringbuilder.AppendFormat("<a class='item2ListPage' style='cursor:pointer;'>{0}{1}", i, "</a>");
             }
         }
         if (DefaultData.listCount > 0)
@@ -453,7 +459,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketName"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketPhone"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTOrderCreateTime"]);
-            stringbuilder.AppendFormat("{0}</td><td>", item["OTTravelTime"]);
+            stringbuilder.AppendFormat("{0}</td><td>", ((DateTime)item["OTTravelTime"]).ToShortDateString());
             stringbuilder.AppendFormat("{0}</td><td>", item["OTTicketNumber"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTHaveTicketNumber"]);
             stringbuilder.AppendFormat("{0}</td>", item["TTTypeName"]);
@@ -485,10 +491,48 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
     /// </summary>
     /// <param name="index"></param>
     /// <returns></returns>
-    public string CommentsQuery(int pageIndex)
+    public string CommentsQuery(int pageIndex, HttpRequest req)
     {
         List<CommentsWhereFields> whereFields = new List<CommentsWhereFields>();
-        // whereFields.Add(new CommentsWhereFields(CommentsFields.CCommentsTime));
+        string queryTime = req["QueryTime"];
+        string startTime = string.Empty;
+        string endTime = string.Empty;
+        if (!string.IsNullOrEmpty(queryTime) || !string.IsNullOrEmpty(req["CustomQuery"]))
+        {
+            if (!string.IsNullOrEmpty(req["StartDate"]) && !string.IsNullOrEmpty(req["EndDate"]))
+            {
+                startTime = req["StartDate"];
+                endTime = req["EndDate"];
+                switch (req["Evaluate"])
+                {
+                    case "all":
+                        break;
+                    case "good":
+                        whereFields.Add(new CommentsWhereFields(CommentsFields.CCommentsType, 1));
+                        break;
+                    case "middle":
+                        whereFields.Add(new CommentsWhereFields(CommentsFields.CCommentsType, 2));
+                        break;
+                    case "bad":
+                        whereFields.Add(new CommentsWhereFields(CommentsFields.CCommentsType, 3));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if ("Ultimo".Equals(queryTime))
+            {
+                startTime = DateTime.Now.AddMonths(-1).AddDays(1 - DateTime.Now.Day).ToShortDateString();
+                endTime = DateTime.Now.AddDays(-DateTime.Now.Day).ToShortDateString();
+            }
+            if ("Month".Equals(queryTime))
+            {
+                startTime = DateTime.Now.ToString("yyyy-MM-01");
+                endTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-01")).AddMonths(1).AddDays(-1).ToShortDateString();
+            }
+            whereFields.Add(new CommentsWhereFields(CommentsFields.CCommentsTime, startTime, QueryCondition.GreaterThanAndEqual));
+            whereFields.Add(new CommentsWhereFields(CommentsFields.CCommentsTime, endTime, QueryCondition.LessThanAndEqual));
+        }
         DefaultData.listCount = new CommentsAccess().GetCommentsCount(whereFields, scenicId) / pageCount;
         StringBuilder stringbuilder = new StringBuilder();
         // 获取结果集 
@@ -499,7 +543,6 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         {
             // 添加内容并嵌入表格内容标签
             stringbuilder.Append("<tr><td>");
-            stringbuilder.Append("<input type='checkbox'/></td><td>");
             stringbuilder.AppendFormat("{0}</td><td>", item["COrderSerialNo"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["OTOrderName"]);
             stringbuilder.AppendFormat("{0}</td><td>", item["CCommentsContent"]);
@@ -511,7 +554,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
 
         if (DefaultData.listCount > 0)
         {
-            stringbuilder.Append("<tr><td class='linkPage' colspan='8'>");
+            stringbuilder.Append("<tr><td class='linkPage' colspan='7'>");
         }
         for (int i = 1; i <= DefaultData.listCount; i++)
         {
@@ -532,7 +575,7 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
     }
 
     /// <summary>
-    /// 
+    /// 点评回复
     /// </summary>
     /// <param name="req"></param>
     /// <returns></returns>
@@ -543,10 +586,15 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
         updateFields.Add(new CommentsFieldValuePair(CommentsFields.CCommentsState, 1));
         List<CommentsWhereFields> where = new List<CommentsWhereFields>();
         where.Add(new CommentsWhereFields(CommentsFields.COrderSerialNo, req["orderSerialNo"]));
-        where.Add(new CommentsWhereFields(CommentsFields.CCommentsState, 0));
         bool ret = DependencyInjector.GetInstance<ICommentsServices>().Update(updateFields, where);
-        // 结果返回
-        return (ret ? "true" : "false");
+        if (ret)
+        {
+            return "true";
+        }
+        else
+        {
+            return "false";
+        }
     }
 
     /// <summary>
@@ -586,5 +634,18 @@ public partial class AccessDataWithDataBase : System.Web.UI.Page
 
         // 结果返回
         return (ret ? "true" : "false");
+    }
+
+    /// <summary>
+    /// 修改密码
+    /// </summary>
+    /// <param name="userName"></param>
+    /// <param name="pwd"></param>
+    /// <returns></returns>
+    public string ChangePwd(string userName, string pwd)
+    {
+        // 调用底层方法
+        bool result = new AdminServices().ChangePwd(userName, pwd);
+        return (result ? "true" : "false");
     }
 }
